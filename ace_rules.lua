@@ -1,74 +1,126 @@
 -- ACE Server Rules popup
 -- Shown once per connection.
+-- Poster displayed at 75%.
+-- Blurred full-screen poster in background.
 -- Plays Alonso.ogg once.
 -- Click anywhere to close.
 
 local IMAGE_URL =
-  'https://raw.githubusercontent.com/assetto-corsa-elite/ace-server-rules/main/ace_rules.png?v=3'
+  'https://raw.githubusercontent.com/assetto-corsa-elite/ace-server-rules/main/ace_rules.png?v=5'
 
 local SOUND_URL =
-  'https://raw.githubusercontent.com/assetto-corsa-elite/ace-server-rules/main/Alonso.ogg?v=3'
+  'https://raw.githubusercontent.com/assetto-corsa-elite/ace-server-rules/main/Alonso.ogg?v=5'
 
 local visible = true
 local openedAt = os.clock()
 
-local rulesSound = nil
-local soundAttempted = false
+local soundPlayer = nil
+local soundStarted = false
 
-local function playRulesSoundOnce()
-  if soundAttempted then return end
-  soundAttempted = true
+local blurredBackground = ui.ExtraCanvas(vec2(640, 360))
+local blurredBackgroundReady = false
 
-  -- Protected call: if the CSP build rejects remote audio,
-  -- the rules image will continue working.
-  local success, result = pcall(function()
-    local audio = ac.AudioEvent.fromFile({
-      filename = SOUND_URL,
-      use3D = false
-    })
 
-    if audio ~= nil then
-      audio.volume = 1.0
-      audio:start()
-    end
-
-    return audio
+-- Prepare a blurred copy of the rules poster.
+ui.onImageReady(IMAGE_URL, function()
+  local success, err = pcall(function()
+    blurredBackground:gaussianBlurFrom(IMAGE_URL, 63)
+    blurredBackgroundReady = true
   end)
 
-  if success then
-    rulesSound = result
-  else
-    ac.log('ACE rules sound failed to start: ' .. tostring(result))
+  if not success then
+    ac.log('ACE rules blur failed: ' .. tostring(err))
+  end
+end)
+
+
+local function startSoundOnce()
+  if soundStarted then return end
+  soundStarted = true
+
+  local success, err = pcall(function()
+    -- MediaPlayer supports URLs and off-screen audio playback.
+    soundPlayer = ui.MediaPlayer(SOUND_URL, {
+      use3D = false,
+      rawOutput = false
+    })
+
+    soundPlayer:setVolume(1.0)
+    soundPlayer:setLooping(false)
+    soundPlayer:setAutoPlay(true)
+    soundPlayer:play()
+  end)
+
+  if not success then
+    soundPlayer = nil
+    ac.log('ACE rules sound failed: ' .. tostring(err))
   end
 end
 
-local function stopRulesSound()
-  if rulesSound == nil then return end
+
+local function stopSound()
+  if soundPlayer == nil then return end
 
   pcall(function()
-    rulesSound:stop()
-    rulesSound:dispose()
+    soundPlayer:pause()
+    soundPlayer:setCurrentTime(0)
   end)
 
-  rulesSound = nil
+  soundPlayer = nil
 end
 
-local function coverScreenWithImage()
-  local screen = ui.windowSize()
 
-  -- Dark background behind the image.
+local function drawCoverImage(imageSource, screen)
+  local imageRatio = 16 / 9
+  local screenRatio = screen.x / screen.y
+
+  local size
+  local position
+
+  -- Cover the full screen without stretching.
+  if screenRatio > imageRatio then
+    size = vec2(screen.x, screen.x / imageRatio)
+    position = vec2(0, (screen.y - size.y) * 0.5)
+  else
+    size = vec2(screen.y * imageRatio, screen.y)
+    position = vec2((screen.x - size.x) * 0.5, 0)
+  end
+
+  ui.drawImage(
+    imageSource,
+    position,
+    position + size,
+    rgbm.colors.white
+  )
+end
+
+
+local function drawBlurredBackground(screen)
+  if blurredBackgroundReady then
+    -- Full-screen blurred version of the same rules image.
+    drawCoverImage(blurredBackground, screen)
+  else
+    -- Temporary fallback while blur is being prepared.
+    drawCoverImage(IMAGE_URL, screen)
+  end
+
+  -- Darken the blur so the central poster remains easy to read.
   ui.drawRectFilled(
     vec2(0, 0),
     screen,
-    rgbm(0, 0, 0, 0.92)
+    rgbm(0, 0, 0, 0.48)
   )
+end
 
-  -- Poster displayed at 60% of screen width.
+
+local function drawMainPoster(screen)
   local targetRatio = 16 / 9
-  local width = screen.x * 0.60
+
+  -- Main poster at 75% of screen width.
+  local width = screen.x * 0.75
   local height = width / targetRatio
 
-  -- Safety limit for unusually narrow or low-resolution screens.
+  -- Prevent overflow on narrow or unusual displays.
   if height > screen.y * 0.90 then
     height = screen.y * 0.90
     width = height * targetRatio
@@ -81,6 +133,14 @@ local function coverScreenWithImage()
 
   local bottomRight = topLeft + vec2(width, height)
 
+  -- Subtle shadow behind the main poster.
+  ui.drawRectFilled(
+    topLeft - vec2(10, 10),
+    bottomRight + vec2(10, 10),
+    rgbm(0, 0, 0, 0.55),
+    8
+  )
+
   ui.drawImage(
     IMAGE_URL,
     topLeft,
@@ -89,22 +149,37 @@ local function coverScreenWithImage()
   )
 end
 
+
 function script.update(dt)
   if visible then
-    playRulesSoundOnce()
+    startSoundOnce()
   end
 end
+
 
 function script.drawUI()
   if not visible then return end
 
-  coverScreenWithImage()
+  local screen = ui.windowSize()
 
-  -- Prevent the loading click from immediately closing the popup.
-  if os.clock() - openedAt > 1.0
-      and ui.mouseClicked(ui.MouseButton.Left) then
+  ui.transparentWindow(
+    'ace_rules_popup',
+    vec2(0, 0),
+    screen,
+    true,
+    true,
+    function()
+      drawBlurredBackground(screen)
+      drawMainPoster(screen)
 
-    visible = false
-    stopRulesSound()
-  end
+      -- Full-screen invisible click target.
+      ui.setCursor(vec2(0, 0))
+
+      if ui.invisibleButton('ace_rules_close', screen)
+          and os.clock() - openedAt > 1.0 then
+        visible = false
+        stopSound()
+      end
+    end
+  )
 end
