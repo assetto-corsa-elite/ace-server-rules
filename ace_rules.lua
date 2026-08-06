@@ -6,10 +6,10 @@
 -- Click anywhere to close.
 
 local IMAGE_URL =
-  'https://raw.githubusercontent.com/assetto-corsa-elite/ace-server-rules/main/ace_rules.png?v=7'
+  'https://raw.githubusercontent.com/assetto-corsa-elite/ace-server-rules/main/ace_rules.png?v=8'
 
 local SOUND_URL =
-  'https://raw.githubusercontent.com/assetto-corsa-elite/ace-server-rules/main/ACE%20AUDIO.ogg?v=7'
+  'https://raw.githubusercontent.com/assetto-corsa-elite/ace-server-rules/main/ACE%20AUDIO.ogg?v=8'
 
 local visible = true
 local openedAt = os.clock()
