@@ -2,7 +2,7 @@
 -- Shown once per connection.
 -- Poster displayed at 75%.
 -- Blurred full-screen poster in background.
--- Plays WTF once.
+-- Plays WTF once with a smooth fade-in to 50% volume.
 -- Click anywhere to close.
 
 local IMAGE_URL =
@@ -44,7 +44,8 @@ local function startSoundOnce()
       rawOutput = false
     })
 
-    soundPlayer:setVolume(1.0)
+    -- Start silent
+    soundPlayer:setVolume(0.0)
     soundPlayer:setLooping(false)
     soundPlayer:setAutoPlay(true)
     soundPlayer:play()
@@ -76,7 +77,6 @@ local function drawCoverImage(imageSource, screen)
   local size
   local position
 
-  -- Cover the full screen without stretching.
   if screenRatio > imageRatio then
     size = vec2(screen.x, screen.x / imageRatio)
     position = vec2(0, (screen.y - size.y) * 0.5)
@@ -96,14 +96,11 @@ end
 
 local function drawBlurredBackground(screen)
   if blurredBackgroundReady then
-    -- Full-screen blurred version of the same rules image.
     drawCoverImage(blurredBackground, screen)
   else
-    -- Temporary fallback while blur is being prepared.
     drawCoverImage(IMAGE_URL, screen)
   end
 
-  -- Darken the blur so the central poster remains easy to read.
   ui.drawRectFilled(
     vec2(0, 0),
     screen,
@@ -115,11 +112,9 @@ end
 local function drawMainPoster(screen)
   local targetRatio = 16 / 9
 
-  -- Main poster at 75% of screen width.
   local width = screen.x * 0.75
   local height = width / targetRatio
 
-  -- Prevent overflow on narrow or unusual displays.
   if height > screen.y * 0.90 then
     height = screen.y * 0.90
     width = height * targetRatio
@@ -132,7 +127,6 @@ local function drawMainPoster(screen)
 
   local bottomRight = topLeft + vec2(width, height)
 
-  -- Subtle shadow behind the main poster.
   ui.drawRectFilled(
     topLeft - vec2(10, 10),
     bottomRight + vec2(10, 10),
@@ -152,6 +146,18 @@ end
 function script.update(dt)
   if visible then
     startSoundOnce()
+
+    if soundPlayer ~= nil then
+      local elapsed = os.clock() - openedAt
+
+      -- Fade in over 1 second.
+      local volume = math.min(elapsed / 1.0, 1.0)
+
+      -- Cap at 50%.
+      volume = volume * 0.50
+
+      soundPlayer:setVolume(volume)
+    end
   end
 end
 
@@ -171,11 +177,11 @@ function script.drawUI()
       drawBlurredBackground(screen)
       drawMainPoster(screen)
 
-      -- Full-screen invisible click target.
       ui.setCursor(vec2(0, 0))
 
       if ui.invisibleButton('ace_rules_close', screen)
           and os.clock() - openedAt > 1.0 then
+
         visible = false
         stopSound()
       end
