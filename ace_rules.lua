@@ -2,14 +2,14 @@
 -- Shown once per connection.
 -- Poster displayed at 75%.
 -- Blurred full-screen poster in background.
--- Plays WTF once with a smooth fade-in to 50% volume.
+-- Plays ACE AUDIO.ogg once at 50% volume.
 -- Click anywhere to close.
 
 local IMAGE_URL =
-  'https://raw.githubusercontent.com/assetto-corsa-elite/ace-server-rules/main/ace_rules.png?v=6'
+  'https://raw.githubusercontent.com/assetto-corsa-elite/ace-server-rules/main/ace_rules.png?v=7'
 
 local SOUND_URL =
-  'https://raw.githubusercontent.com/assetto-corsa-elite/ace-server-rules/main/WTF?v=6'
+  'https://raw.githubusercontent.com/assetto-corsa-elite/ace-server-rules/main/ACE%20AUDIO.ogg?v=7'
 
 local visible = true
 local openedAt = os.clock()
@@ -44,8 +44,7 @@ local function startSoundOnce()
       rawOutput = false
     })
 
-    -- Start silent
-    soundPlayer:setVolume(0.0)
+    soundPlayer:setVolume(0.50)
     soundPlayer:setLooping(false)
     soundPlayer:setAutoPlay(true)
     soundPlayer:play()
@@ -146,18 +145,6 @@ end
 function script.update(dt)
   if visible then
     startSoundOnce()
-
-    if soundPlayer ~= nil then
-      local elapsed = os.clock() - openedAt
-
-      -- Fade in over 1 second.
-      local volume = math.min(elapsed / 1.0, 1.0)
-
-      -- Cap at 50%.
-      volume = volume * 0.50
-
-      soundPlayer:setVolume(volume)
-    end
   end
 end
 
