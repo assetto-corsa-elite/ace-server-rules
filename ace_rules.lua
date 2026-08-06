@@ -2,14 +2,14 @@
 -- Shown once per connection.
 -- Poster displayed at 75%.
 -- Blurred full-screen poster in background.
--- Plays Alonso.ogg once.
+-- Plays WTF once.
 -- Click anywhere to close.
 
 local IMAGE_URL =
-  'https://raw.githubusercontent.com/assetto-corsa-elite/ace-server-rules/main/ace_rules.png?v=5'
+  'https://raw.githubusercontent.com/assetto-corsa-elite/ace-server-rules/main/ace_rules.png?v=6'
 
 local SOUND_URL =
-  'https://raw.githubusercontent.com/assetto-corsa-elite/ace-server-rules/main/Alonso.ogg?v=5'
+  'https://raw.githubusercontent.com/assetto-corsa-elite/ace-server-rules/main/WTF?v=6'
 
 local visible = true
 local openedAt = os.clock()
@@ -39,7 +39,6 @@ local function startSoundOnce()
   soundStarted = true
 
   local success, err = pcall(function()
-    -- MediaPlayer supports URLs and off-screen audio playback.
     soundPlayer = ui.MediaPlayer(SOUND_URL, {
       use3D = false,
       rawOutput = false
