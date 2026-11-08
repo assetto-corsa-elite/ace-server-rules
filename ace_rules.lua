@@ -5,8 +5,8 @@
 local IMAGE_URL =
   'https://raw.githubusercontent.com/assetto-corsa-elite/ace-server-rules/main/ace_rules.png?v=8'
 
--- Set this to a direct HTTPS URL accessible to joining players.
-local VIDEO_URL = ''
+local VIDEO_URL =
+  'https://ace-welcome-media.malas-alvaro.chatgpt.site/ace-welcome.mp4'
 
 local visible = true
 local videoPlayer = nil
@@ -32,11 +32,6 @@ end)
 local function startVideoOnce()
   if videoRequested then return end
   videoRequested = true
-
-  if VIDEO_URL == '' then
-    ac.log('ACE welcome video URL is not configured')
-    return
-  end
 
   local success, err = pcall(function()
     local player = ui.MediaPlayer(nil, {
