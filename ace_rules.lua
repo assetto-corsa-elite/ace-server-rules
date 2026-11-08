@@ -1,21 +1,16 @@
--- ACE Server Rules popup
--- Shown once per connection.
--- Poster displayed at 75%.
--- Blurred full-screen poster in background.
--- Plays ACE AUDIO.ogg once at 50% volume.
--- Click anywhere to close.
+-- ACE welcome video, shown once per connection.
+-- The original poster fills the same frame while the video loads.
+-- Click anywhere to skip. Playback ending also closes the popup.
 
 local IMAGE_URL =
   'https://raw.githubusercontent.com/assetto-corsa-elite/ace-server-rules/main/ace_rules.png?v=8'
 
-local SOUND_URL =
-  'https://raw.githubusercontent.com/assetto-corsa-elite/ace-server-rules/main/ACE%20AUDIO.ogg?v=8'
+local VIDEO_URL =
+  'https://ace-welcome-media.malas-alvaro.chatgpt.site/ace-welcome.mp4'
 
 local visible = true
-local openedAt = os.clock()
-
-local soundPlayer = nil
-local soundStarted = false
+local videoPlayer = nil
+local videoRequested = false
 
 local blurredBackground = ui.ExtraCanvas(vec2(640, 360))
 local blurredBackgroundReady = false
@@ -34,38 +29,38 @@ ui.onImageReady(IMAGE_URL, function()
 end)
 
 
-local function startSoundOnce()
-  if soundStarted then return end
-  soundStarted = true
+local function startVideoOnce()
+  if videoRequested then return end
+  videoRequested = true
 
   local success, err = pcall(function()
-    soundPlayer = ui.MediaPlayer(SOUND_URL, {
+    local player = ui.MediaPlayer(nil, {
       use3D = false,
       rawOutput = false
     })
 
-    soundPlayer:setVolume(0.50)
-    soundPlayer:setLooping(false)
-    soundPlayer:setAutoPlay(true)
-    soundPlayer:play()
+    player:setVolume(0.50)
+    player:setLooping(false)
+    player:setAutoPlay(true)
+    player:setSource(VIDEO_URL)
+    videoPlayer = player
   end)
 
   if not success then
-    soundPlayer = nil
-    ac.log('ACE rules sound failed: ' .. tostring(err))
+    ac.log('ACE welcome video failed: ' .. tostring(err))
   end
 end
 
 
-local function stopSound()
-  if soundPlayer == nil then return end
+local function closePopup()
+  visible = false
 
-  pcall(function()
-    soundPlayer:pause()
-    soundPlayer:setCurrentTime(0)
-  end)
-
-  soundPlayer = nil
+  if videoPlayer then
+    videoPlayer:setAutoPlay(false)
+    videoPlayer:pause()
+    videoPlayer:setSource(nil)
+    videoPlayer = nil
+  end
 end
 
 
@@ -108,7 +103,7 @@ local function drawBlurredBackground(screen)
 end
 
 
-local function drawMainPoster(screen)
+local function drawMainMedia(screen, source)
   local targetRatio = 16 / 9
 
   local width = screen.x * 0.75
@@ -134,7 +129,7 @@ local function drawMainPoster(screen)
   )
 
   ui.drawImage(
-    IMAGE_URL,
+    source,
     topLeft,
     bottomRight,
     rgbm.colors.white
@@ -143,8 +138,11 @@ end
 
 
 function script.update(dt)
-  if visible then
-    startSoundOnce()
+  if not visible then return end
+
+  startVideoOnce()
+  if videoPlayer and videoPlayer:ended() then
+    closePopup()
   end
 end
 
@@ -162,15 +160,16 @@ function script.drawUI()
     true,
     function()
       drawBlurredBackground(screen)
-      drawMainPoster(screen)
+      local source = IMAGE_URL
+      if videoPlayer and videoPlayer:hasVideo() then
+        source = videoPlayer
+      end
+      drawMainMedia(screen, source)
 
       ui.setCursor(vec2(0, 0))
 
-      if ui.invisibleButton('ace_rules_close', screen)
-          and os.clock() - openedAt > 1.0 then
-
-        visible = false
-        stopSound()
+      if ui.invisibleButton('ace_rules_close', screen) then
+        closePopup()
       end
     end
   )
