@@ -8,6 +8,7 @@ local closed = false
 local player
 local lastPosition = 0
 local stalledFor = 0
+local overlayDrawn = false
 
 ac.log('ACE welcome video: script loaded')
 
@@ -21,12 +22,8 @@ local function close()
   end
 end
 
-function script.drawUI()
+function script.update(dt)
   if closed then return end
-
-  local state = ac.getUI()
-  local screen = state.windowSize
-  if screen.x <= 0 or screen.y <= 0 then return end
 
   if not player then
     local ok, err = pcall(function()
@@ -43,11 +40,6 @@ function script.drawUI()
       return
     end
   else
-    if state.isMouseLeftKeyClicked or state.isMouseRightKeyClicked or state.isMouseMiddleKeyClicked then
-      close()
-      return
-    end
-
     local position = player:currentTime()
     if position > lastPosition then
       if lastPosition == 0 then
@@ -56,7 +48,7 @@ function script.drawUI()
       lastPosition = position
       stalledFor = 0
     else
-      stalledFor = stalledFor + state.dt
+      stalledFor = stalledFor + dt
     end
 
     if lastPosition > 0 and player:ended() then
@@ -68,6 +60,17 @@ function script.drawUI()
       close()
       return
     end
+  end
+end
+
+function script.drawUI()
+  if closed or not player then return end
+
+  local screen = ui.windowSize()
+  if screen.x <= 0 or screen.y <= 0 then return end
+  if not overlayDrawn then
+    overlayDrawn = true
+    ac.log('ACE welcome video: overlay drawn')
   end
 
   -- Scale both limits of the original frame by 80%, keeping the 16:9 ratio.
@@ -84,6 +87,8 @@ function script.drawUI()
       vec2(topLeft.x, bottomRight.y + 4), vec2(bottomRight.x, bottomRight.y + 32),
       ui.Alignment.Center, ui.Alignment.Center, false, rgbm.colors.white)
     ui.setCursor(vec2(0, 0))
-    ui.invisibleButton('ace_welcome_skip', screen)
+    if ui.invisibleButton('ace_welcome_skip', screen) then
+      close()
+    end
   end)
 end
