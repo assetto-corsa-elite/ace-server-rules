@@ -9,6 +9,8 @@ local player
 local lastPosition = 0
 local stalledFor = 0
 
+ac.log('ACE welcome video: script loaded')
+
 local function close()
   closed = true
   if player then
@@ -33,6 +35,7 @@ function script.drawUI()
       player:setLooping(false)
       player:setAutoPlay(true)
       player:setSource(VIDEO_URL)
+      ac.log('ACE welcome video: playback requested')
     end)
     if not ok then
       ac.log('ACE welcome video failed to initialize: ' .. tostring(err))
@@ -47,6 +50,9 @@ function script.drawUI()
 
     local position = player:currentTime()
     if position > lastPosition then
+      if lastPosition == 0 then
+        ac.log('ACE welcome video: playback started')
+      end
       lastPosition = position
       stalledFor = 0
     else
