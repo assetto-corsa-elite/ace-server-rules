@@ -50,13 +50,13 @@ Cancellation invalidates unpublished affected results until regenerated and veri
 
 Preserve outstanding history and **Max outstanding reached X/2** events. Do not erase completed cycles or automatically lift a manual ban when cancelling an older decision. Show the proposed current-counter effect from the decision ledger before confirmation. A correction to a completed-cycle history entry or manual ban is an explicit owner-controlled administrative action, rather than an inferred consequence of ordinary cancellation.
 
-## Outstanding and manual bans
+## Outstanding and ban enforcement
 
 Awards may be 1, 2 or 3. Each reached maximum of three immediately resets the active counter to zero; surplus units carry into the next cycle. Persist the completed-cycle history as **Max outstanding reached 1/2**, then **2/2**.
 
-At the first maximum, surface the required round-ban action for manual enforcement. At the second maximum, surface the required league-ban action for manual enforcement. The counter reset does not wait for that manual action. CM records ban decisions and their manual enforcement state; time/points application and outstanding progression are automated, while ban execution is manual.
+At the first maximum, surface the required round-ban decision. At the second maximum, surface the required league-ban decision. Reset the counter independently of enforcement. Once the decision is authorized, CM schedules and verifies enforcement via the existing Blocklist workflow in [ACSM-Penalties-POST.md](ACSM-Penalties-POST.md). Keep other ban types on the existing manual workflow.
 
-Practice remains allowed under a round ban. The remaining ban access mechanics are outside this integration. They must not become an assumed automatic server/Discord ban adapter or a dependency on a new access-control implementation.
+Practice remains allowed before the round-ban window. Servers and Discord bans remain manual.
 
 ## Owner finalization and publication window
 
