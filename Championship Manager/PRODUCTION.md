@@ -19,7 +19,7 @@ The producer maintains the league's results history, team membership, aliases an
 
 Write in English. Keep the established titles, section categories and thematic emojis. Every section begins with `{{emoji:checked}}` followed by its thematic Unicode emoji and bold heading. CM renders checked to the actual `d_` custom emoji.
 
-Keep sentences short, with one idea per line. Use bullets for individual results and team point summaries. Preserve a factual, lightly humorous racing tone. Connect stories to past practice and race results. Each rendered Discord message stays within 2,000 UTF-16 units. Split long posts at section boundaries and give each part a stable post ID/order when necessary.
+Preserve the required level of detail. Total editorial volume is not capped. Keep sentences short, with one idea per line. Use blank lines between sections and bullet lists for individual results and team point summaries. Avoid dense paragraphs, tabs and four-space indentation that Discord renders as a code block. Use shallow indentation only when it clarifies a list. Split a detailed section across successive messages at the Discord limit; never remove pertinent content merely to shorten a package. Preserve a factual, lightly humorous racing tone. Connect stories to past practice and race results. Each rendered Discord message stays within 2,000 UTF-16 units. Split long posts at section boundaries and give each part a stable post ID/order when necessary.
 
 Use stable driver tokens throughout all messages. Never invent or vary a Discord handle. Escape underscores in ordinary display text, such as `Burnout\_Baddies`. Native mention tokens remain outside bold formatting. The renderer inserts Discord mentions and custom emoji after all escaping.
 

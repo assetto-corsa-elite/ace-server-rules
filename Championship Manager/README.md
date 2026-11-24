@@ -30,7 +30,7 @@ Each sequence carries an explicit timezone-aware `scheduled_at`. The Friday/Sund
 
 Four historical Nordschleife Round 4 sequences are included: the pre-race briefing, the post-race package and the two announcement examples. They contain eight structured text templates and fourteen unique PNG posters, including the corrected Portimao forecast with its team section.
 
-Their status is `archived` because they were already delivered for manual publication in this conversation. CM lists them in its archive view and excludes them from automatic delivery. Historical rendering now uses stable mention tokens and shorter sections. Race figures, supplied review decision and posters remain grounded in the delivered source packages.
+Their status is `archived` because they were already delivered for manual publication in this conversation. CM lists them in its archive view and excludes them from automatic delivery. Historical rendering now uses stable mention tokens and structured sections. Race figures, supplied review decision and posters remain grounded in the delivered source packages.
 
 There are currently zero live `ready` sequences. New packages will be added by ChatGPT/Codex with their publication time and promoted to `ready` in one atomic repository commit.
 
@@ -56,3 +56,7 @@ Code and configuration changes to CM itself belong in the later integration work
 ## Announcement routing
 
 See [ANNOUNCEMENTS.md](ANNOUNCEMENTS.md) for race-day announcements at 09:00 CET, the three-message post-results announcement, channel ID configuration and the exact everyone policy. All other sequences use Results.
+
+## Audit and implementation status
+
+[AUDIT.md](AUDIT.md) distinguishes repository checks from pending producer scheduling, CM integration and real Discord acceptance tests. Text can be detailed; short sentences, line breaks and readable list structure are required.

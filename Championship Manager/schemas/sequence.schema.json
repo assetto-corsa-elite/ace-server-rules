@@ -201,6 +201,9 @@
                 },
                 "description": {
                   "type": "string"
+                },
+                "role": {
+                  "type": "string"
                 }
               }
             }
@@ -272,6 +275,10 @@
         },
         "additionalProperties": false
       }
+    },
+    "race_date": {
+      "type": "string",
+      "format": "date"
     }
   },
   "allOf": [

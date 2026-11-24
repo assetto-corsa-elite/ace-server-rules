@@ -10,3 +10,5 @@ Read README.md, PRODUCTION.md CONSUMER.md and ANNOUNCEMENTS.md before preparing 
 - Visually inspect posters and keep structured, short text. Never claim Discord rendering was tested without checking an actual destination preview.
 - Existing archived sequences are historical. New ready sequences require a confirmed publication time, assets and completed post-race review where applicable.
 - Keep changes scoped to this directory and the repository's navigation link. The CSP video and server settings have separate instructions.
+
+Preserve editorial detail. The user identified indentation and dense paragraphs as the issue, not overall volume. Follow the audit status in AUDIT.md and never describe documented cadence as an active generation or delivery service.

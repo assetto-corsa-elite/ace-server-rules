@@ -1,50 +1,50 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-24T11:33:37.880967+00:00",
+  "generated_at": "2026-11-24T11:42:10.748097+00:00",
   "sequences": [
     {
       "sequence_id": "league04-r04-race-day-announcement",
-      "revision": 1,
+      "revision": 2,
       "status": "archived",
       "phase": "race_day_announcement",
       "league_id": "league-04",
       "round": 4,
       "scheduled_at": "2026-11-21T09:00:00+01:00",
       "path": "sequences/league-04/round-04/announcements/pre-race.sequence.json",
-      "sha256": "7ca45df4d7ae6fe827916fd3967df6ec0fbfc192a30df98b7b82580ade9bda03"
+      "sha256": "9021524727018436508456cd2ce7fd2df2e73999519284ad4af9ad53d16c2c9c"
     },
     {
       "sequence_id": "league04-r04-results-announcement",
-      "revision": 1,
+      "revision": 2,
       "status": "archived",
       "phase": "results_announcement",
       "league_id": "league-04",
       "round": 4,
       "scheduled_at": "2026-11-22T20:00:00+01:00",
       "path": "sequences/league-04/round-04/announcements/results.sequence.json",
-      "sha256": "a1823082f871dd813bb4a911cbe551345aaea409aaffb0df14029650066cb129"
+      "sha256": "596ee1ab7d74bffce31b1f5f0f3cf63d70347a08f4dd4a6eebc6534882f28ade"
     },
     {
       "sequence_id": "league04-r04-post-race",
-      "revision": 2,
+      "revision": 3,
       "status": "archived",
       "phase": "post_race",
       "league_id": "league-04",
       "round": 4,
       "scheduled_at": "2026-11-22T20:00:00+01:00",
       "path": "sequences/league-04/round-04/post-race/sequence.json",
-      "sha256": "38be5e8ada1209ec9ec5c29578d8cb5b010a8b4c8eca1326648134a2fe3aecda"
+      "sha256": "e117e31031b4bc965b325c63eb9f6addbed74e49b0e1ad734d6eb1b45fe40d57"
     },
     {
       "sequence_id": "league04-r04-pre-race-briefing",
-      "revision": 2,
+      "revision": 3,
       "status": "archived",
       "phase": "pre_race_briefing",
       "league_id": "league-04",
       "round": 4,
       "scheduled_at": null,
       "path": "sequences/league-04/round-04/pre-race-briefing/sequence.json",
-      "sha256": "3f588b80bae74910843c6e9970937410a95d33748a6714c86c6ecc1f76343c85"
+      "sha256": "154ed54af58b0f96d1daf154a866f4aef30c8010146f653461eb489d619864f9"
     }
   ],
   "config_sha256": {

@@ -118,7 +118,11 @@ class FeedRegressionTests(unittest.TestCase):
                 feed.validate_template(body, self.drivers, self.emojis)
 
 
-class AnnouncementTests(FeedRegressionTests):
+class AnnouncementTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        FeedRegressionTests.setUpClass.__func__(cls)
+
     def test_everyone_exactly_on_authorized_messages(self):
         for manifest in self.manifests:
             for post in manifest['posts']:
@@ -154,6 +158,48 @@ class AnnouncementTests(FeedRegressionTests):
         wrong['destination_key'] = 'announcements'
         with self.assertRaises(feed.FeedError):
             feed.render(ROOT, wrong, self.bindings)
+
+
+class AuditRegressionTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        FeedRegressionTests.setUpClass.__func__(cls)
+
+    def test_cycles_are_rejected(self):
+        manifests = copy.deepcopy(self.manifests)
+        manifests[0]['requires_sequences'] = [manifests[1]['sequence_id']]
+        manifests[1]['requires_sequences'] = [manifests[0]['sequence_id']]
+        with self.assertRaises(feed.FeedError):
+            feed.validate_dependencies(manifests)
+
+    def test_announcement_missing_poster_is_rejected(self):
+        manifests = copy.deepcopy(self.manifests)
+        announcement = next(m for m in manifests if m['phase'] == 'results_announcement')
+        announcement['posts'][2]['attachments'].pop()
+        with self.assertRaises(feed.FeedError):
+            feed.validate_dependencies(manifests)
+
+    def test_wrong_race_day_time_is_rejected(self):
+        m = copy.deepcopy(next(m for m in self.manifests if m['phase'] == 'race_day_announcement'))
+        m['status'] = 'ready'
+        feed.validate_sequence_metadata(m)
+        m['scheduled_at'] = '2026-11-21T09:00:00Z'
+        with self.assertRaises(feed.FeedError):
+            feed.validate_sequence_metadata(m)
+
+    def test_missing_stages_and_completed_sequences(self):
+        m = copy.deepcopy(self.sequence)
+        m['status'] = 'ready'
+        self.assertEqual(feed.due_sequences([m], feed.timestamp('2026-11-29T20:00:00+01:00'), {m['sequence_id']}), [])
+        m['posts'].pop()
+        with self.assertRaises(feed.FeedError):
+            feed.validate_sequence_metadata(m)
+
+    def test_detail_is_allowed_but_code_block_indentation_is_rejected(self):
+        text = '# Title\n\n{{emoji:checked}} 📊 **DETAILS**\n• One result.\n• Another result.\n'
+        feed.validate_template(text, self.drivers, self.emojis)
+        with self.assertRaises(feed.FeedError):
+            feed.validate_template(text.replace('• Another', '    • Another'), self.drivers, self.emojis)
 
 
 if __name__ == '__main__':

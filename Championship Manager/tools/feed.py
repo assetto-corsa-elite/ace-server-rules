@@ -65,7 +65,7 @@ def utf16_units(text: str) -> int:
     return len(text.encode("utf-16-le")) // 2
 
 
-def validate_template(text: str, drivers: dict, emojis: dict) -> None:
+def validate_template(text: str, drivers: dict, emojis: dict, mention_everyone: bool = False) -> None:
     if text.startswith("\ufeff") or any(item in text for item in BAD_TEXT):
         raise FeedError("BOM, mojibake or escaped text found in template")
     if "@" in text or re.search(r"<a?:|<@[!&]?", text):
@@ -79,6 +79,8 @@ def validate_template(text: str, drivers: dict, emojis: dict) -> None:
         raise FeedError("Malformed template token")
     if re.search(r"(?<!\\)_", re.sub(r"https://\S+", "URL", plain)):
         raise FeedError("Escape underscores in display text")
+    if re.search(r"(?m)^(?:\t| {4,})", text):
+        raise FeedError("Avoid code-block indentation; use normal lines and bullets")
     if text.count("**") % 2:
         raise FeedError("Unbalanced bold formatting")
     if re.search(r"\*\*\{\{driver:|\{\{driver:[^}]+\}\}\*\*", text):
@@ -95,6 +97,8 @@ def validate_template(text: str, drivers: dict, emojis: dict) -> None:
     conservative = TOKEN.sub(lambda match: "<@12345678901234567890>" if match[1] == "driver"
                              else ("<:d_:12345678901234567890>" if match[1] == "emoji" else
                                    "https://discord.com/channels/12345678901234567890/12345678901234567890/12345678901234567890"), text)
+    if mention_everyone:
+        conservative = "@everyone\n" + conservative
     if utf16_units(conservative) > 2000:
         raise FeedError("Rendered post would exceed 2,000 UTF-16 units")
 
@@ -103,6 +107,9 @@ def validate(root: Path) -> tuple[dict, list[dict]]:
     catalog = read_json(root / "catalog.json")
     if catalog.get("schema_version") != 1:
         raise FeedError("Unsupported catalog version")
+    required_configs = {"config/publication.json", "config/identities.json", "config/emojis.json"}
+    if set(catalog.get("config_sha256", {})) != required_configs:
+        raise FeedError("Catalog must pin every runtime configuration")
     for name, expected in catalog["config_sha256"].items():
         if digest(asset_path(root, name).read_bytes()) != expected:
             raise FeedError(f"Configuration digest mismatch: {name}")
@@ -114,6 +121,7 @@ def validate(root: Path) -> tuple[dict, list[dict]]:
         for field in ("sequence_id", "revision", "status", "phase", "league_id", "round", "scheduled_at"):
             if manifest[field] != entry[field]:
                 raise FeedError(f"Catalog/manifest disagreement: {field}")
+        validate_sequence_metadata(manifest)
         sid = manifest["sequence_id"]
         if sid in sequence_ids or manifest["status"] not in STATES:
             raise FeedError("Duplicate sequence or invalid status")
@@ -148,7 +156,7 @@ def validate(root: Path) -> tuple[dict, list[dict]]:
                 if post["content"]["format"] != "cm-template-v1":
                     raise FeedError("Unsupported content format")
                 content = checked_bytes(root, post["content"]).decode("utf-8")
-                validate_template(content, drivers, emojis)
+                validate_template(content, drivers, emojis, post["mention_everyone"])
                 if post["category"] == "race_results_announcement" and "{{link:results_start}}" not in content:
                     raise FeedError("Results announcement requires its complete-results link")
             elif post["content"] is not None or not post["attachments"]:
@@ -178,7 +186,77 @@ def validate(root: Path) -> tuple[dict, list[dict]]:
                 raise FeedError("Results link must target the first source-sequence message")
             if source["sequence_id"] not in manifest.get("requires_sequences", []):
                 raise FeedError("Results announcement must wait for its full source sequence")
+    validate_dependencies(manifests)
     return catalog, manifests
+
+
+def validate_sequence_metadata(manifest: dict) -> None:
+    expected = {
+        "pre_race": ["practice_highlights", "forecast"],
+        "pre_race_briefing": ["pre_race_briefing"],
+        "post_race": ["qualifying_report", "race_results", "race_insights", "standings", "next_round_forecast"],
+        "race_day_announcement": ["pre_race_announcement"],
+        "results_announcement": ["race_results_announcement"],
+    }
+    phase = manifest.get("phase")
+    if phase not in expected:
+        raise FeedError("Unsupported sequence phase")
+    if not isinstance(manifest.get("round"), int) or isinstance(manifest["round"], bool) or manifest["round"] < 1:
+        raise FeedError("Invalid round number")
+    categories = list(dict.fromkeys(post["category"] for post in manifest["posts"]))
+    if any(category not in expected[phase] for category in categories):
+        raise FeedError("Post category does not belong in this sequence phase")
+    if manifest.get("status") == "ready" and categories != expected[phase]:
+        raise FeedError("Ready sequence is missing required publication stages")
+    if phase == "race_day_announcement" and manifest.get("status") == "ready":
+        date = manifest.get("race_date")
+        scheduled = timestamp(manifest["scheduled_at"])
+        from datetime import timedelta
+        cet = timezone(timedelta(hours=1))
+        local = scheduled.astimezone(cet)
+        if local.date().isoformat() != date or (local.hour, local.minute, local.second) != (9, 0, 0):
+            raise FeedError("Race announcement must be on race_date at 09:00 CET")
+
+
+def validate_dependencies(manifests: list[dict]) -> None:
+    by_id = {manifest["sequence_id"]: manifest for manifest in manifests}
+    visiting, done = set(), set()
+
+    def visit(sid):
+        if sid in visiting:
+            raise FeedError("Cyclic publication dependency")
+        if sid in done:
+            return
+        visiting.add(sid)
+        for dependency in by_id[sid].get("requires_sequences", []):
+            if dependency not in by_id:
+                raise FeedError("Unknown publication dependency")
+            visit(dependency)
+        visiting.remove(sid)
+        done.add(sid)
+
+    for sid in by_id:
+        visit(sid)
+    for announcement in manifests:
+        if announcement["phase"] != "results_announcement":
+            continue
+        target = announcement["link_targets"]["results_start"]
+        source = by_id[target["sequence_id"]]
+        if source["phase"] != "post_race" or (source["league_id"], source["round"]) != (announcement["league_id"], announcement["round"]):
+            raise FeedError("Announcement must reference this round's complete Results sequence")
+        posts = announcement["posts"]
+        if posts[0]["attachments"]:
+            raise FeedError("Announcement message 1 must contain text only")
+        source_images = [asset for post in source["posts"] for asset in post["attachments"]]
+        individual = [asset for asset in source_images if asset.get("role") == "race_classification"]
+        teams = [asset for asset in source_images if asset.get("role") == "team_standings"]
+        if len(individual) != 1 or len(teams) != 1:
+            raise FeedError("Results source needs one individual classification and one team standings poster")
+        first = individual + teams
+        selected = {asset["path"] for asset in first}
+        remaining = [asset for asset in source_images if asset["path"] not in selected]
+        if posts[1]["attachments"] != first or posts[2]["attachments"] != remaining:
+            raise FeedError("Announcement must include the two results posters then every remaining source poster exactly in order")
 
 
 def validate_post_policy(post: dict) -> None:
@@ -203,7 +281,7 @@ def render(root: Path, post: dict, bindings: dict) -> dict:
     identities = read_json(root / "config/identities.json")["drivers"]
     emoji_registry = read_json(root / "config/emojis.json")["emojis"]
     content = checked_bytes(root, post["content"]).decode("utf-8")
-    validate_template(content, identities, emoji_registry)
+    validate_template(content, identities, emoji_registry, post["mention_everyone"])
     mentioned_users = set()
 
     def replacement(match):
@@ -252,6 +330,8 @@ def due_sequences(manifests: list[dict], now: datetime, completed: set[str] | No
     completed = completed or set()
     ready = []
     for manifest in manifests:
+        if manifest["sequence_id"] in completed:
+            continue
         if manifest["status"] != "ready":
             continue
         if manifest["phase"] == "post_race" and manifest.get("race_review_complete") is not True:

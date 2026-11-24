@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "sequence_id": "league04-r04-post-race",
-  "revision": 2,
+  "revision": 3,
   "status": "archived",
   "league_id": "league-04",
   "round": 4,
@@ -79,7 +79,8 @@
           "sha256": "b1846a2915a05640720536947db6504cc29433f2e316e0f29135d7ea83afc6e1",
           "size_bytes": 235546,
           "content_type": "image/png",
-          "description": "Race Results poster 2"
+          "description": "Race Results poster 2",
+          "role": "race_classification"
         }
       ],
       "kind": "text",
@@ -159,7 +160,8 @@
           "sha256": "a5baff1c4e0ccf4638a353af6b335b6a9543407bead62d1948099029deadd4f5",
           "size_bytes": 894082,
           "content_type": "image/png",
-          "description": "Championship Standings poster 2"
+          "description": "Championship Standings poster 2",
+          "role": "team_standings"
         }
       ],
       "kind": "text",
@@ -189,5 +191,6 @@
       "kind": "text",
       "mention_everyone": false
     }
-  ]
+  ],
+  "race_date": "2026-11-21"
 }
