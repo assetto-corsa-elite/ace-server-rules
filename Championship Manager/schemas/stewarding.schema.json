@@ -98,6 +98,15 @@
           },
           "reason": {
             "type": "string"
+          },
+          "outstanding_mode": {
+            "enum": [
+              "award",
+              "snapshot"
+            ]
+          },
+          "case_id": {
+            "type": "string"
           }
         }
       }

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-24T12:11:59.635733+00:00",
+  "generated_at": "2026-11-24T12:17:17.399072+00:00",
   "sequences": [
     {
       "sequence_id": "league04-r04-race-day-announcement",
@@ -15,25 +15,25 @@
     },
     {
       "sequence_id": "league04-r04-results-announcement",
-      "revision": 4,
+      "revision": 5,
       "status": "archived",
       "phase": "results_announcement",
       "league_id": "league-04",
       "round": 4,
       "scheduled_at": "2026-11-22T20:00:00+01:00",
       "path": "sequences/league-04/round-04/announcements/results.sequence.json",
-      "sha256": "d496c9f188d81d6c20152c1d28bde3eb98868d9f61b8ca8c0ae0819ee08d589d"
+      "sha256": "a1d569fa5bf7f21857cf9cd48b21713763f74488e7e26ac061152cf2ca2b8f9f"
     },
     {
       "sequence_id": "league04-r04-post-race",
-      "revision": 5,
+      "revision": 6,
       "status": "archived",
       "phase": "post_race",
       "league_id": "league-04",
       "round": 4,
       "scheduled_at": "2026-11-22T20:00:00+01:00",
       "path": "sequences/league-04/round-04/post-race/sequence.json",
-      "sha256": "efc2d0f47786bf08a81a1fb409609ead02fbcaf8d9c252d5c17d188c31c5ba8d"
+      "sha256": "126b374658c936b802113c2b170318032ab276085b6f5913fef8b9e25503ae1d"
     },
     {
       "sequence_id": "league04-r04-pre-race-briefing",
@@ -54,6 +54,6 @@
   },
   "stewarding_history": {
     "path": "stewarding/history.json",
-    "sha256": "2fa1394ce6dcc2e93a5c0ef47edd16dc17dfead2fce4dcf0cc4178faff49d8a2"
+    "sha256": "7f7a585981ae4984aa09a4f7e643764862e5857497f517e52df8e3bd56793c92"
   }
 }

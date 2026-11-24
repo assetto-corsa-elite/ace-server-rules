@@ -293,7 +293,7 @@ class StewardingTests(unittest.TestCase):
         review['result_snapshot_sha256'] = 'b' * 64
         self.check_gate(review, True)
         review['result_snapshot_sha256'] = 'a' * 64
-        decision = {'decision_id': 'same-decision', 'type': 'outstanding_penalty', 'value': 2}
+        decision = {'decision_id': 'same-decision', 'type': 'outstanding_penalty', 'value': 2, 'outstanding_mode': 'award'}
         review['decisions'] = [decision, decision.copy()]
         self.check_gate(review, True)
 
@@ -303,6 +303,32 @@ class StewardingTests(unittest.TestCase):
         self.assertEqual(post['presentation']['mode'], 'direct')
         self.assertFalse(post['mention_everyone'])
         self.assertEqual(post['destination_key'], 'results')
+
+
+class OutstandingTests(unittest.TestCase):
+    def test_large_awards_and_immediate_reset(self):
+        for active, award, expected in [(0, 3, 0), (1, 2, 0), (2, 2, 1), (2, 3, 2)]:
+            result = feed.advance_outstanding(active, 0, award)
+            self.assertEqual(result['active_counter_after'], expected)
+            self.assertEqual(result['threshold_events'][0]['ban_required'], 'round_ban')
+
+    def test_second_maximum_keeps_history_and_requires_league_ban(self):
+        result = feed.advance_outstanding(1, 1, 2)
+        self.assertEqual(result['active_counter_after'], 0)
+        self.assertEqual(result['maximum_events_after'], 2)
+        self.assertEqual(result['threshold_events'][0]['ban_required'], 'league_ban')
+        self.assertEqual(feed.advance_outstanding(0, 0, 2)['threshold_events'], [])
+
+    def test_combined_seconds_points_and_outstanding_are_accepted(self):
+        review = StewardingTests.approved(self)
+        review['numeric_application_state'] = 'acsm_verified'
+        review['decisions'] = [
+            {'decision_id': 'case-a-time', 'case_id': 'case-a', 'type': 'time_penalty', 'value': 20},
+            {'decision_id': 'case-a-points', 'case_id': 'case-a', 'type': 'points_deduction', 'value': 10},
+            {'decision_id': 'case-a-outstanding', 'case_id': 'case-a', 'type': 'outstanding_penalty', 'outstanding_mode': 'award', 'value': 3}]
+        FeedRegressionTests.setUpClass()
+        self.sequence = FeedRegressionTests.sequence
+        StewardingTests.check_gate(self, review)
 
 
 if __name__ == '__main__':

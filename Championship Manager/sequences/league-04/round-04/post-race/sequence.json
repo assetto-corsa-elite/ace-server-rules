@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "sequence_id": "league04-r04-post-race",
-  "revision": 5,
+  "revision": 6,
   "status": "archived",
   "league_id": "league-04",
   "round": 4,
@@ -262,7 +262,7 @@
   "race_date": "2026-11-21",
   "stewarding_review": {
     "path": "stewarding/league-04/round-04.json",
-    "sha256": "bef6859a1876baa42713a1db104ee99770857970b55f3adb8dbf95b044cdbf34"
+    "sha256": "03ea334b7ce96369d32262f123db5ca345a7918f8624ead6010a33acdf85ef1f"
   },
   "result_snapshot_sha256": null
 }

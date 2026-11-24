@@ -3,9 +3,9 @@
   "reviews": [
     {
       "review_id": "league04-r04-stewarding",
-      "revision": 1,
+      "revision": 2,
       "path": "stewarding/league-04/round-04.json",
-      "sha256": "bef6859a1876baa42713a1db104ee99770857970b55f3adb8dbf95b044cdbf34",
+      "sha256": "03ea334b7ce96369d32262f123db5ca345a7918f8624ead6010a33acdf85ef1f",
       "state": "archived"
     }
   ],

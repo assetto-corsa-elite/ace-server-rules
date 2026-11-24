@@ -24,7 +24,7 @@ The organizer's current list supersedes older descriptions in the reference scre
 | --- | --- | --- |
 | time_penalty | 5 or 20 seconds | Add to the driver's official race time and reconcile the resulting official classification. |
 | points_deduction | 10 points | Deduct 10 championship points through the verified official adjustment mechanism. |
-| outstanding_penalty | Confirmed resulting counter 1, 2 or 3 | Record the outstanding state and the specific case. |
+| outstanding_penalty | Award of 1, 2 or 3 | Add the organizer-supplied amount to the active counter. Reset immediately at each threshold of three and retain the threshold history. |
 | round_ban | Explicit affected round | A confirmed outstanding threshold of three triggers a round-ban decision/action record. |
 | league_ban | League scope | The second confirmed maximum-outstanding threshold event triggers a league-ban decision/action record. |
 | servers_discord_ban | Explicit server set plus Discord guild | Organizer-confirmed trolling, annoying behavior, childish/immature ranting or related stated conduct. Preserve the supplied reason and scope. |
@@ -63,7 +63,15 @@ Some standings/penalty adjustments may live outside the downloadable race JSON. 
 
 Maintain an append-only driver history across rounds, keyed by the stable driver identity. Record each confirmed outstanding state and every threshold event as a distinct event. Re-reading the same 3/3 decision must not produce a second threshold crossing.
 
-At the first confirmed maximum event, create the round-ban enforcement record and identify the affected round. At the second confirmed maximum event, create the league-ban record. Counter reset, ban service, expiry, appeal and reversal must be explicit history events. The current request does not specify when the active counter resets, so the bot must not infer a reset date or silently erase history. Preserve the maximum-event count through any organizer-confirmed active-counter reset.
+An outstanding award can add **1, 2 or 3** at once, according to the organizer's severity decision. At each threshold of three, increment the durable maximum-event count and immediately reset the active counter to zero. Apply any remaining units of that same award to the new cycle. This carry-over interpretation preserves every awarded unit.
+
+Examples: 0 + 3 reaches the threshold and leaves 0; 1 + 2 reaches the threshold and leaves 0; 2 + 2 reaches the threshold and leaves 1; 2 + 3 reaches the threshold and leaves 2. At the first confirmed maximum event, create the round-ban enforcement record and identify the affected round. At the second confirmed maximum event, create the league-ban record. The active counter resets immediately when reached; it does not wait for ban service. Keep the maximum-event history through every reset.
+
+Time penalties, outstanding awards and points deductions may be combined for the same driver and the same case. Store each component with a distinct decision ID and a shared case ID. Apply all supplied components, recalculate the official numeric effect, and display every component together in the per-driver review. Never replace one component with another because the case already has a sanction.
+
+New outstanding decisions use outstanding_mode=award. Historical state observations use outstanding_mode=snapshot and must never be replayed as a fresh award. The archived Round 4 observation remains a supplied resulting 2/3 state. It does not establish how many units were awarded in that particular case.
+
+Reset, threshold and enforcement records are written in the same persistent transaction as the accepted award. Before applying an award, check its decision ID against the ledger. Repeated delivery, restart or ACSM retry must not increment the counter or trigger a ban again. Ban service, appeal and reversal remain explicit history events.
 
 Require the organizer to identify a ban's effective scope and target round/league/server set. Execute the supplied approved decision through the actual connected tools when available. If enforcement is pending or fails, show that state accurately and retain the approved decision. Do not claim that a driver is banned until the relevant system acknowledges the action.
 

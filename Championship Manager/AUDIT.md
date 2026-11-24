@@ -74,4 +74,8 @@ Feed metadata now declares direct/carousel presentation. The reference code vali
 
 ## Stewarding extension
 
-The feed now has eleven archived messages, including nine text templates. Stewarding Review is text-only. Organizer decision approval, verified ACSM numeric application and a matching refreshed result fingerprint are checked before a post-race package or announcement can become ready. The actual ACSM write adapter, private history database, ban enforcement and threshold-reset/service rules remain CM integration work. The historical Round 4 outstanding 2/3 is recorded without inventing earlier cases.
+The feed now has eleven archived messages, including nine text templates. Stewarding Review is text-only. Organizer decision approval, verified ACSM numeric application and a matching refreshed result fingerprint are checked before a post-race package or announcement can become ready. The actual ACSM write adapter, private history database, ban enforcement and ban-service records remain CM integration work. The historical Round 4 outstanding 2/3 is recorded without inventing earlier cases.
+
+## Outstanding rule clarified
+
+An award may be 1, 2 or 3. Each threshold of three resets the active counter immediately, with remaining units carried into the next cycle. The first threshold triggers a round ban; the second triggers a league ban. Seconds, outstanding awards and point deductions can coexist for the same case. The archived 2/3 is explicitly a state snapshot, not an award to replay.

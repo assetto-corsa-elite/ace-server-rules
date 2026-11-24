@@ -194,6 +194,25 @@ def validate(root: Path) -> tuple[dict, list[dict]]:
     return catalog, manifests
 
 
+def advance_outstanding(active: int, maximum_events: int, award: int) -> dict:
+    """Pure transition; CM applies it once per unique approved decision in a DB transaction."""
+    if type(active) is not int or active not in {0, 1, 2}:
+        raise FeedError("Active outstanding counter must be 0, 1 or 2")
+    if type(maximum_events) is not int or maximum_events < 0:
+        raise FeedError("Invalid outstanding threshold history")
+    if type(award) is not int or award not in {1, 2, 3}:
+        raise FeedError("Outstanding award must be 1, 2 or 3")
+    thresholds, after = divmod(active + award, 3)
+    events = []
+    for index in range(1, thresholds + 1):
+        reached = maximum_events + index
+        events.append({"maximum_event": reached, "counter_reset_to": 0,
+                       "ban_required": "round_ban" if reached == 1 else ("league_ban" if reached == 2 else None)})
+    return {"active_counter_before": active, "award": award,
+            "active_counter_after": after, "maximum_events_after": maximum_events + thresholds,
+            "threshold_events": events}
+
+
 def validate_stewarding_gate(root: Path, manifest: dict) -> None:
     if manifest["phase"] not in {"post_race", "results_announcement"}:
         return
@@ -222,7 +241,12 @@ def validate_stewarding_gate(root: Path, manifest: dict) -> None:
             numeric = True
         elif kind == "outstanding_penalty":
             if type(value) is not int or value not in {1, 2, 3}:
-                raise FeedError("Outstanding counter must be 1, 2 or 3")
+                raise FeedError("Outstanding award must be 1, 2 or 3")
+            mode = decision.get("outstanding_mode")
+            if review.get("state") != "archived" and mode != "award":
+                raise FeedError("Live outstanding decisions must explicitly award units")
+            if mode not in {"award", "snapshot"}:
+                raise FeedError("Outstanding decision requires award/snapshot semantics")
         elif kind not in {"round_ban", "league_ban", "servers_discord_ban"}:
             raise FeedError("Unknown stewarding decision type")
     if manifest["status"] != "ready":
