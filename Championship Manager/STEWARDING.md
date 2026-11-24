@@ -73,7 +73,7 @@ New outstanding decisions use outstanding_mode=award. Historical state observati
 
 Reset, threshold and enforcement records are written in the same persistent transaction as the accepted award. Before applying an award, check its decision ID against the ledger. Repeated delivery, restart or ACSM retry must not increment the counter or trigger a ban again. Ban service, appeal and reversal remain explicit history events.
 
-Require the organizer to identify a ban's effective scope and target round/league/server set. Ban execution is manual. Record the supplied approved decision and the acknowledged manual enforcement. If enforcement is pending or fails, show that state accurately and retain the approved decision. Do not claim that a driver is banned until the relevant system acknowledges the action.
+Require the organizer to identify a ban's effective scope and target round/league/server set. Record the approved decision and verified enforcement. Execute authorized round and league bans via the existing Blocklist workflow and schedule in [ACSM-Penalties-POST.md](ACSM-Penalties-POST.md). Servers and Discord ban remains manual. If enforcement is pending or fails, show that state accurately and retain the approved decision. Do not claim that a driver is banned until the relevant system acknowledges the action.
 
 ## Durable history
 
