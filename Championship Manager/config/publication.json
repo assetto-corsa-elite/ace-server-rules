@@ -27,6 +27,21 @@
       "categories": [
         "pre_race_briefing"
       ]
+    },
+    "race_day_announcement": {
+      "weekday": "RACE_DAY",
+      "local_time": "09:00",
+      "timezone": "CET",
+      "categories": [
+        "pre_race_announcement"
+      ]
+    },
+    "results_announcement": {
+      "trigger": "after_complete_results_sequence",
+      "categories": [
+        "race_results_announcement"
+      ],
+      "messages": 3
     }
   },
   "schedule_rule": "Each sequence has its own explicit ISO-8601 scheduled_at with UTC offset. Cadences guide production. They never manufacture a message or a date. CET is UTC+01:00 for League 04 winter rounds.",
@@ -38,12 +53,30 @@
     "race_results",
     "race_insights",
     "standings",
-    "next_round_forecast"
+    "next_round_forecast",
+    "pre_race_announcement",
+    "race_results_announcement"
   ],
-  "destination_key": "league-results",
+  "destination_key": "results",
   "max_content_utf16_units": 2000,
   "max_attachments_per_message": 10,
   "late_delivery_rule": "Post due ready sequences until expires_at, if present. Never send archived or cancelled sequences.",
   "producer": "ChatGPT/Codex authors texts, assets, manifests and catalog commits.",
-  "consumer": "Championship Manager fetches validated snapshots and schedules Discord delivery."
+  "consumer": "Championship Manager fetches validated snapshots and schedules Discord delivery.",
+  "channels": {
+    "results": {
+      "ui_label": "Results channel ID",
+      "configured_in": "CM UI / persistent local configuration"
+    },
+    "announcements": {
+      "ui_label": "Announcements channel ID",
+      "configured_in": "CM UI / persistent local configuration"
+    }
+  },
+  "everyone_policy": {
+    "practice_highlights": "first message of practice sequence only",
+    "pre_race_announcement": "first message on race day at 09:00 CET",
+    "race_results_announcement": "first text message only",
+    "all_other_messages": false
+  }
 }

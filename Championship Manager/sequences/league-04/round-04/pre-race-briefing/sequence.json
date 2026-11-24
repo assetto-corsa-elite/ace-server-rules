@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "sequence_id": "league04-r04-pre-race-briefing",
-  "revision": 1,
+  "revision": 2,
   "status": "archived",
   "league_id": "league-04",
   "round": 4,
@@ -18,7 +18,7 @@
       "order": 1,
       "category": "pre_race_briefing",
       "title": "Pre-Race Briefing",
-      "destination_key": "league-results",
+      "destination_key": "results",
       "content": {
         "path": "sequences/league-04/round-04/pre-race-briefing/01-briefing.txt",
         "format": "cm-template-v1",
@@ -41,7 +41,9 @@
           "content_type": "image/png",
           "description": "02 DRIVER TEAM STANDINGS"
         }
-      ]
+      ],
+      "kind": "text",
+      "mention_everyone": false
     }
   ]
 }

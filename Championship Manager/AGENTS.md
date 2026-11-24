@@ -1,6 +1,6 @@
 # Championship Manager feed
 
-Read README.md, PRODUCTION.md and CONSUMER.md before preparing or updating a sequence.
+Read README.md, PRODUCTION.md CONSUMER.md and ANNOUNCEMENTS.md before preparing or updating a sequence.
 
 - Author the actual English posts and PNG assets here. CM consumes them through catalog.json.
 - Retain stable sequence/post IDs across revisions. Update SHA-256 values and revision together.

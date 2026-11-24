@@ -28,7 +28,7 @@ Each sequence carries an explicit timezone-aware `scheduled_at`. The Friday/Sund
 
 ## Available content
 
-Two historical Nordschleife Round 4 sequences are included: the pre-race briefing and the post-race package. They contain six structured text templates and fourteen PNG posters, including the corrected Portimao forecast with its team section.
+Four historical Nordschleife Round 4 sequences are included: the pre-race briefing, the post-race package and the two announcement examples. They contain eight structured text templates and fourteen unique PNG posters, including the corrected Portimao forecast with its team section.
 
 Their status is `archived` because they were already delivered for manual publication in this conversation. CM lists them in its archive view and excludes them from automatic delivery. Historical rendering now uses stable mention tokens and shorter sections. Race figures, supplied review decision and posters remain grounded in the delivered source packages.
 
@@ -52,3 +52,7 @@ The reference program validates hashes, UTF-8, templates, schedule metadata and 
 ChatGPT/Codex adds source-grounded text and PNG assets, updates file SHA-256/byte sizes, then updates the manifest and catalog. The entire update lands in one commit. Stable sequence and post IDs survive revisions. CM keeps its delivery ledger in its own persistent database.
 
 Code and configuration changes to CM itself belong in the later integration work. Discord tokens, credentials, guild/channel IDs and private driver database exports belong in CM's local configuration.
+
+## Announcement routing
+
+See [ANNOUNCEMENTS.md](ANNOUNCEMENTS.md) for race-day announcements at 09:00 CET, the three-message post-results announcement, channel ID configuration and the exact everyone policy. All other sequences use Results.

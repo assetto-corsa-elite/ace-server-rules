@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "sequence_id": "league04-r04-post-race",
-  "revision": 1,
+  "revision": 2,
   "status": "archived",
   "league_id": "league-04",
   "round": 4,
@@ -18,7 +18,7 @@
       "order": 1,
       "category": "qualifying_report",
       "title": "Qualifying Report",
-      "destination_key": "league-results",
+      "destination_key": "results",
       "content": {
         "path": "sequences/league-04/round-04/post-race/01-qualifying_report.txt",
         "format": "cm-template-v1",
@@ -49,14 +49,16 @@
           "content_type": "image/png",
           "description": "Qualifying Report poster 3"
         }
-      ]
+      ],
+      "kind": "text",
+      "mention_everyone": false
     },
     {
       "post_id": "league04-r04-race-results",
       "order": 2,
       "category": "race_results",
       "title": "Race Results",
-      "destination_key": "league-results",
+      "destination_key": "results",
       "content": {
         "path": "sequences/league-04/round-04/post-race/02-race_results.txt",
         "format": "cm-template-v1",
@@ -79,14 +81,16 @@
           "content_type": "image/png",
           "description": "Race Results poster 2"
         }
-      ]
+      ],
+      "kind": "text",
+      "mention_everyone": false
     },
     {
       "post_id": "league04-r04-race-insights",
       "order": 3,
       "category": "race_insights",
       "title": "Race Insights",
-      "destination_key": "league-results",
+      "destination_key": "results",
       "content": {
         "path": "sequences/league-04/round-04/post-race/03-race_insights.txt",
         "format": "cm-template-v1",
@@ -125,14 +129,16 @@
           "content_type": "image/png",
           "description": "Race Insights poster 4"
         }
-      ]
+      ],
+      "kind": "text",
+      "mention_everyone": false
     },
     {
       "post_id": "league04-r04-standings",
       "order": 4,
       "category": "standings",
       "title": "Championship Standings",
-      "destination_key": "league-results",
+      "destination_key": "results",
       "content": {
         "path": "sequences/league-04/round-04/post-race/04-standings.txt",
         "format": "cm-template-v1",
@@ -155,14 +161,16 @@
           "content_type": "image/png",
           "description": "Championship Standings poster 2"
         }
-      ]
+      ],
+      "kind": "text",
+      "mention_everyone": false
     },
     {
       "post_id": "league04-r04-next-round-forecast",
       "order": 5,
       "category": "next_round_forecast",
       "title": "Portimao Forecast",
-      "destination_key": "league-results",
+      "destination_key": "results",
       "content": {
         "path": "sequences/league-04/round-04/post-race/05-next_round_forecast.txt",
         "format": "cm-template-v1",
@@ -177,7 +185,9 @@
           "content_type": "image/png",
           "description": "Portimao Forecast poster 1"
         }
-      ]
+      ],
+      "kind": "text",
+      "mention_everyone": false
     }
   ]
 }

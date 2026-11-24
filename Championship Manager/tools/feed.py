@@ -9,11 +9,12 @@ import re
 from datetime import datetime, timezone
 from pathlib import Path
 
-TOKEN = re.compile(r"\{\{(driver|emoji):([a-z0-9_]+)\}\}")
+TOKEN = re.compile(r"\{\{(driver|emoji|link):([a-z0-9_]+)\}\}")
 SNOWFLAKE = re.compile(r"[0-9]{17,20}\Z")
 STATES = {"draft", "ready", "archived", "cancelled"}
 CATEGORIES = ["practice_highlights", "forecast", "pre_race_briefing", "qualifying_report",
-              "race_results", "race_insights", "standings", "next_round_forecast"]
+              "race_results", "race_insights", "standings", "next_round_forecast",
+              "pre_race_announcement", "race_results_announcement"]
 BAD_TEXT = ("\ufffd", "â€", "Ã©", "Ã¨", "ð\x9f", "&nbsp;", "&#", "\\n")
 
 
@@ -70,7 +71,7 @@ def validate_template(text: str, drivers: dict, emojis: dict) -> None:
     if "@" in text or re.search(r"<a?:|<@[!&]?", text):
         raise FeedError("Templates must use stable driver/emoji tokens")
     for kind, key in TOKEN.findall(text):
-        registry = drivers if kind == "driver" else emojis
+        registry = drivers if kind == "driver" else (emojis if kind == "emoji" else {"results_start": True})
         if key not in registry:
             raise FeedError(f"Unknown {kind} key: {key}")
     plain = TOKEN.sub("", text)
@@ -92,7 +93,8 @@ def validate_template(text: str, drivers: dict, emojis: dict) -> None:
             raise FeedError("Every section must start with the checked emoji token")
     # Validate against maximum-length IDs before a CM database is connected.
     conservative = TOKEN.sub(lambda match: "<@12345678901234567890>" if match[1] == "driver"
-                             else "<:d_:12345678901234567890>", text)
+                             else ("<:d_:12345678901234567890>" if match[1] == "emoji" else
+                                   "https://discord.com/channels/12345678901234567890/12345678901234567890/12345678901234567890"), text)
     if utf16_units(conservative) > 2000:
         raise FeedError("Rendered post would exceed 2,000 UTF-16 units")
 
@@ -141,12 +143,18 @@ def validate(root: Path) -> tuple[dict, list[dict]]:
             if post["post_id"] in post_ids:
                 raise FeedError("Post IDs must be globally unique")
             post_ids.add(post["post_id"])
-            if post["content"]["format"] != "cm-template-v1":
-                raise FeedError("Unsupported content format")
-            content = checked_bytes(root, post["content"]).decode("utf-8")
-            validate_template(content, drivers, emojis)
-            if not 1 <= len(post["attachments"]) <= 10:
-                raise FeedError("Each post requires 1 to 10 ordered attachments")
+            validate_post_policy(post)
+            if post["kind"] == "text":
+                if post["content"]["format"] != "cm-template-v1":
+                    raise FeedError("Unsupported content format")
+                content = checked_bytes(root, post["content"]).decode("utf-8")
+                validate_template(content, drivers, emojis)
+                if post["category"] == "race_results_announcement" and "{{link:results_start}}" not in content:
+                    raise FeedError("Results announcement requires its complete-results link")
+            elif post["content"] is not None or not post["attachments"]:
+                raise FeedError("Media post requires images and null content")
+            if not 0 <= len(post["attachments"]) <= 10:
+                raise FeedError("A post permits at most 10 ordered attachments")
             filenames = set()
             for attachment in post["attachments"]:
                 data = checked_bytes(root, attachment)
@@ -160,11 +168,38 @@ def validate(root: Path) -> tuple[dict, list[dict]]:
         for dependency in manifest.get("requires_sequences", []):
             if dependency not in sequence_ids or dependency == manifest["sequence_id"]:
                 raise FeedError("Unknown or self-referencing sequence prerequisite")
+        if manifest["phase"] == "results_announcement":
+            posts = manifest["posts"]
+            if len(posts) != 3 or [p["kind"] for p in posts] != ["text", "media", "media"]:
+                raise FeedError("Results announcement requires text, result posters, remaining posters")
+            target = manifest.get("link_targets", {}).get("results_start", {})
+            source = next((m for m in manifests if m["sequence_id"] == target.get("sequence_id")), None)
+            if source is None or target.get("post_id") != source["posts"][0]["post_id"]:
+                raise FeedError("Results link must target the first source-sequence message")
+            if source["sequence_id"] not in manifest.get("requires_sequences", []):
+                raise FeedError("Results announcement must wait for its full source sequence")
     return catalog, manifests
+
+
+def validate_post_policy(post: dict) -> None:
+    if post.get("kind") not in {"text", "media"}:
+        raise FeedError("Unknown message kind")
+    announcement = post["category"] in {"pre_race_announcement", "race_results_announcement"}
+    if post["destination_key"] != ("announcements" if announcement else "results"):
+        raise FeedError("Message routed to the wrong logical channel")
+    must_ping = post["order"] == 1 and post["category"] in {
+        "practice_highlights", "pre_race_announcement", "race_results_announcement"}
+    if post.get("mention_everyone") is not must_ping:
+        raise FeedError("Invalid everyone policy")
+    if post["kind"] == "media" and post["mention_everyone"]:
+        raise FeedError("Media follow-ups cannot ping everyone")
 
 
 def render(root: Path, post: dict, bindings: dict) -> dict:
     """Bindings come from CM's existing driver DB and destination guild emoji lookup."""
+    validate_post_policy(post)
+    if post["kind"] == "media":
+        return {"content": "", "allowed_mentions": {"parse": [], "users": [], "roles": [], "replied_user": False}}
     identities = read_json(root / "config/identities.json")["drivers"]
     emoji_registry = read_json(root / "config/emojis.json")["emojis"]
     content = checked_bytes(root, post["content"]).decode("utf-8")
@@ -179,6 +214,11 @@ def render(root: Path, post: dict, bindings: dict) -> dict:
                 raise FeedError(f"Resolve driver in CM database: {key}")
             mentioned_users.add(value)
             return f"<@{value}>"
+        if kind == "link":
+            value = bindings.get("links", {}).get(key)
+            if not isinstance(value, str) or not re.fullmatch(r"https://discord\.com/channels/[0-9]{17,20}/[0-9]{17,20}/[0-9]{17,20}", value):
+                raise FeedError("Resolve results_start from the delivery ledger")
+            return value
         value = bindings.get("emojis", {}).get(key, {})
         emoji_id = value.get("id")
         name = value.get("name")
@@ -189,10 +229,12 @@ def render(root: Path, post: dict, bindings: dict) -> dict:
 
     # Tokens are substituted last. No subsequent Markdown conversion or escaping.
     content = TOKEN.sub(replacement, content)
+    if post["mention_everyone"]:
+        content = "@everyone\n" + content
     if utf16_units(content) > 2000:
         raise FeedError("Rendered Discord content exceeds 2,000 UTF-16 units")
     return {"content": content,
-            "allowed_mentions": {"parse": [], "users": sorted(mentioned_users), "roles": [], "replied_user": False}}
+            "allowed_mentions": {"parse": ["everyone"] if post["mention_everyone"] else [], "users": sorted(mentioned_users), "roles": [], "replied_user": False}}
 
 
 def delivery_key(guild_id: str, channel_id: str, sequence_id: str, post_id: str) -> str:

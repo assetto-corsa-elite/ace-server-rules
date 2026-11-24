@@ -52,7 +52,9 @@
       "enum": [
         "pre_race",
         "pre_race_briefing",
-        "post_race"
+        "post_race",
+        "race_day_announcement",
+        "results_announcement"
       ]
     },
     "title": {
@@ -98,7 +100,9 @@
           "title",
           "destination_key",
           "content",
-          "attachments"
+          "attachments",
+          "kind",
+          "mention_everyone"
         ],
         "properties": {
           "post_id": {
@@ -118,7 +122,9 @@
               "race_results",
               "race_insights",
               "standings",
-              "next_round_forecast"
+              "next_round_forecast",
+              "pre_race_announcement",
+              "race_results_announcement"
             ]
           },
           "title": {
@@ -126,33 +132,42 @@
             "minLength": 1
           },
           "destination_key": {
-            "type": "string",
-            "minLength": 1
+            "enum": [
+              "results",
+              "announcements"
+            ]
           },
           "content": {
-            "type": "object",
-            "required": [
-              "path",
-              "sha256",
-              "format"
-            ],
-            "properties": {
-              "path": {
-                "type": "string",
-                "minLength": 1
+            "anyOf": [
+              {
+                "type": "object",
+                "required": [
+                  "path",
+                  "sha256",
+                  "format"
+                ],
+                "properties": {
+                  "path": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "sha256": {
+                    "type": "string",
+                    "pattern": "^[a-f0-9]{64}$"
+                  },
+                  "format": {
+                    "const": "cm-template-v1"
+                  }
+                }
               },
-              "sha256": {
-                "type": "string",
-                "pattern": "^[a-f0-9]{64}$"
-              },
-              "format": {
-                "const": "cm-template-v1"
+              {
+                "type": "null"
               }
-            }
+            ]
           },
           "attachments": {
             "type": "array",
-            "minItems": 1,
+            "minItems": 0,
             "maxItems": 10,
             "items": {
               "type": "object",
@@ -189,8 +204,73 @@
                 }
               }
             }
+          },
+          "kind": {
+            "enum": [
+              "text",
+              "media"
+            ]
+          },
+          "mention_everyone": {
+            "type": "boolean"
           }
-        }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "kind": {
+                  "const": "media"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "content": {
+                  "type": "null"
+                },
+                "attachments": {
+                  "minItems": 1
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "kind": {
+                  "const": "text"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "content": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "link_targets": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "sequence_id",
+          "post_id"
+        ],
+        "properties": {
+          "sequence_id": {
+            "type": "string"
+          },
+          "post_id": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
       }
     }
   },

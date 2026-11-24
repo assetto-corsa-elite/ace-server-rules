@@ -8,7 +8,7 @@
 4. Keep the previously validated snapshot available if an import fails. Mark the new snapshot as invalid in CM and retry fetching. Never combine files from two commits.
 5. Display ready, draft, archived and cancelled sequences separately. Show track, round, scheduled local date/time, revision, ordered posts, text preview, ordered image thumbnails, validation errors and delivery status.
 
-The catalog is a directory of content. Every message is a manifest post, containing one text template and its ordered attachments. A message with four posters is one Discord message with four files. The next post follows only after successful completion of the previous post.
+The catalog is a directory of content. Every message is a manifest post with `kind=text` or `kind=media`. Text posts contain a template and zero to ten ordered attachments. Media posts have null content and one to ten ordered attachments. A message with four posters is one Discord message with four files. The next post follows only after successful completion of the previous post.
 
 ## Identity and emoji rendering
 
@@ -31,7 +31,7 @@ Render to `<@USER_ID>` and `<:d_:EMOJI_ID>` or `<a:d_:EMOJI_ID>`. Perform token 
 
 Use the reference `render` function with a validated snapshot. A missing driver or checked-emoji binding produces a clear CM mapping error for that message. CM can still show a template preview and its unresolved identities. Before a sequence starts, resolve all bindings and validate all rendered messages. Enforce the 2,000 UTF-16-unit content limit after substitution.
 
-Send `allowed_mentions` with `parse: []`, an explicit `users` list from the rendered tokens, `roles: []` and `replied_user: false`. A driver's display name may change on Discord; their snowflake and stable mapping remain the same.
+For ordinary posts, send `allowed_mentions` with `parse: []`, an explicit `users` list from the rendered tokens, `roles: []` and `replied_user: false`. A driver's display name may change on Discord; their snowflake and stable mapping remain the same.
 
 ## Scheduling and order
 
@@ -59,9 +59,13 @@ If an already-sent post changes in GitHub, show `content_changed` beside the sto
 
 ## First connection
 
-CM imports the two historical sequences into its archive view. The current catalog contains zero ready sequences, so initial connection has nothing scheduled to send. Channel mapping, guild emoji binding and driver bindings are completed during CM integration. The repository contains publication data and a reference reader; Discord sending and scheduling will run in CM after that integration.
+CM imports the four historical sequences into its archive view. The current catalog contains zero ready sequences, so initial connection has nothing scheduled to send. Channel mapping, guild emoji binding and driver bindings are completed during CM integration. The repository contains publication data and a reference reader; Discord sending and scheduling will run in CM after that integration.
 
 ## Reference sources
 
 - [Discord message resource, mentions and create-message fields](https://docs.discord.com/developers/resources/message)
 - [Discord formatting reference](https://docs.discord.com/developers/reference#message-formatting)
+
+## Announcement extension
+
+[ANNOUNCEMENTS.md](ANNOUNCEMENTS.md) defines the two logical channels, runtime Results jump link, image-only message kinds and the authorized everyone exceptions. This extension governs notification permissions and announcement ordering. The reference renderer returns the correct allowlist for each kind.

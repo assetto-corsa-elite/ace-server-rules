@@ -1,33 +1,55 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-24T11:11:14.823618+00:00",
+  "generated_at": "2026-11-24T11:33:37.880967+00:00",
   "sequences": [
     {
-      "sequence_id": "league04-r04-post-race",
+      "sequence_id": "league04-r04-race-day-announcement",
       "revision": 1,
+      "status": "archived",
+      "phase": "race_day_announcement",
+      "league_id": "league-04",
+      "round": 4,
+      "scheduled_at": "2026-11-21T09:00:00+01:00",
+      "path": "sequences/league-04/round-04/announcements/pre-race.sequence.json",
+      "sha256": "7ca45df4d7ae6fe827916fd3967df6ec0fbfc192a30df98b7b82580ade9bda03"
+    },
+    {
+      "sequence_id": "league04-r04-results-announcement",
+      "revision": 1,
+      "status": "archived",
+      "phase": "results_announcement",
+      "league_id": "league-04",
+      "round": 4,
+      "scheduled_at": "2026-11-22T20:00:00+01:00",
+      "path": "sequences/league-04/round-04/announcements/results.sequence.json",
+      "sha256": "a1823082f871dd813bb4a911cbe551345aaea409aaffb0df14029650066cb129"
+    },
+    {
+      "sequence_id": "league04-r04-post-race",
+      "revision": 2,
       "status": "archived",
       "phase": "post_race",
       "league_id": "league-04",
       "round": 4,
       "scheduled_at": "2026-11-22T20:00:00+01:00",
       "path": "sequences/league-04/round-04/post-race/sequence.json",
-      "sha256": "772ebff7227eaee871fa5ee92f6e23a02eae8a026d338891b5794b0d2d77ac32"
+      "sha256": "38be5e8ada1209ec9ec5c29578d8cb5b010a8b4c8eca1326648134a2fe3aecda"
     },
     {
       "sequence_id": "league04-r04-pre-race-briefing",
-      "revision": 1,
+      "revision": 2,
       "status": "archived",
       "phase": "pre_race_briefing",
       "league_id": "league-04",
       "round": 4,
       "scheduled_at": null,
       "path": "sequences/league-04/round-04/pre-race-briefing/sequence.json",
-      "sha256": "d0030efe6c4f0a2f9d25ca8667a057415e0abccdfef8f37ada93d7812215f581"
+      "sha256": "3f588b80bae74910843c6e9970937410a95d33748a6714c86c6ecc1f76343c85"
     }
   ],
   "config_sha256": {
     "config/emojis.json": "eab5084336a0781cb9422153171c371ab1fd59a455c67f7dadda8fe753a948dd",
     "config/identities.json": "54100039e6774d615d0884665726d142d3b5346b1e0d2509cda4f39829561d4d",
-    "config/publication.json": "34e634128cb9a5219b187e8436f19549827880eb90257643b4a8c530bfb5c54f"
+    "config/publication.json": "4d325f14cc54b8677b86564a5e4fdbce978fe9655f99b14150367f64f68e56c6"
   }
 }

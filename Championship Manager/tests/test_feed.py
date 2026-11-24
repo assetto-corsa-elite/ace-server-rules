@@ -20,11 +20,11 @@ class FeedRegressionTests(unittest.TestCase):
         cls.drivers = feed.read_json(ROOT / 'config/identities.json')['drivers']
         cls.emojis = feed.read_json(ROOT / 'config/emojis.json')['emojis']
         cls.bindings = {'drivers': {key: str(123456789012345670 + i) for i, key in enumerate(cls.drivers)},
-                        'emojis': {'checked': {'id': '234567890123456789', 'name': 'd_', 'animated': False}}}
+                        'emojis': {'checked': {'id': '234567890123456789', 'name': 'd_', 'animated': False}}, 'links': {'results_start': 'https://discord.com/channels/123456789012345678/234567890123456789/345678901234567890'}}
 
     def test_catalog_and_all_assets(self):
-        self.assertEqual(sum(len(m['posts']) for m in self.manifests), 6)
-        self.assertEqual(sum(len(p['attachments']) for m in self.manifests for p in m['posts']), 14)
+        self.assertEqual(sum(len(m['posts']) for m in self.manifests), 10)
+        self.assertEqual(sum(len(p['attachments']) for m in self.manifests for p in m['posts']), 28)
 
     def test_historical_import_cannot_repost_on_first_connection(self):
         self.assertEqual(feed.due_sequences(self.manifests, feed.timestamp('2026-11-29T23:00:00+01:00')), [])
@@ -61,6 +61,8 @@ class FeedRegressionTests(unittest.TestCase):
         expected = '<@' + self.bindings['drivers']['lilcoughdrop'] + '>'
         for manifest in self.manifests:
             for post in manifest['posts']:
+                if post['kind'] == 'media':
+                    continue
                 rendered = feed.render(ROOT, post, self.bindings)['content']
                 self.assertIn(expected, rendered)
                 self.assertLessEqual(feed.utf16_units(rendered), 2000)
@@ -109,9 +111,49 @@ class FeedRegressionTests(unittest.TestCase):
             orders = [post['order'] for post in manifest['posts']]
             self.assertEqual(orders, list(range(1, len(orders) + 1)))
             for post in manifest['posts']:
+                if post['kind'] == 'media':
+                    continue
                 body = feed.checked_bytes(ROOT, post['content']).decode()
                 self.assertFalse(body.startswith('\ufeff'))
                 feed.validate_template(body, self.drivers, self.emojis)
+
+
+class AnnouncementTests(FeedRegressionTests):
+    def test_everyone_exactly_on_authorized_messages(self):
+        for manifest in self.manifests:
+            for post in manifest['posts']:
+                payload = feed.render(ROOT, post, self.bindings)
+                self.assertEqual(payload['content'].startswith('@everyone'), post['mention_everyone'])
+                self.assertEqual('everyone' in payload['allowed_mentions']['parse'], post['mention_everyone'])
+
+    def test_results_link_resolves_from_ledger(self):
+        announcement = next(m for m in self.manifests if m['phase'] == 'results_announcement')
+        payload = feed.render(ROOT, announcement['posts'][0], self.bindings)
+        self.assertIn(self.bindings['links']['results_start'], payload['content'])
+        bad = copy.deepcopy(self.bindings)
+        bad.pop('links')
+        with self.assertRaises(feed.FeedError):
+            feed.render(ROOT, announcement['posts'][0], bad)
+
+    def test_media_posts_are_image_only_and_cover_every_poster(self):
+        announcement = next(m for m in self.manifests if m['phase'] == 'results_announcement')
+        self.assertEqual([len(p['attachments']) for p in announcement['posts']], [0, 2, 10])
+        images = [a['path'] for p in announcement['posts'] for a in p['attachments']]
+        source = [a['path'] for p in self.sequence['posts'] for a in p['attachments']]
+        self.assertEqual(sorted(images), sorted(source))
+        self.assertEqual(len(images), len(set(images)))
+        for post in announcement['posts'][1:]:
+            self.assertEqual(feed.render(ROOT, post, self.bindings)['content'], '')
+
+    def test_forbidden_ping_and_wrong_channel_fail(self):
+        wrong = copy.deepcopy(self.post)
+        wrong['mention_everyone'] = True
+        with self.assertRaises(feed.FeedError):
+            feed.render(ROOT, wrong, self.bindings)
+        wrong = copy.deepcopy(self.post)
+        wrong['destination_key'] = 'announcements'
+        with self.assertRaises(feed.FeedError):
+            feed.render(ROOT, wrong, self.bindings)
 
 
 if __name__ == '__main__':
