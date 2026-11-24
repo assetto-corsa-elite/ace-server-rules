@@ -1,0 +1,164 @@
+{
+  "schema_version": 1,
+  "resolution": "CM database by stable key; explicit alias mapping only",
+  "drivers": {
+    "lilcoughdrop": {
+      "display_name": "LilCoughDrop",
+      "in_game_aliases": [
+        "LilCoughDrop",
+        "Rawest Sauce"
+      ],
+      "known_discord_handle": "lilcoughdrop",
+      "discord_user_id": null
+    },
+    "eugene": {
+      "display_name": "Eugene Mulin",
+      "in_game_aliases": [
+        "Eugene Mulin"
+      ],
+      "known_discord_handle": "eugene8735",
+      "discord_user_id": null
+    },
+    "versthappening": {
+      "display_name": "Versthappening",
+      "in_game_aliases": [
+        "Versthappening"
+      ],
+      "known_discord_handle": ".liba",
+      "discord_user_id": null
+    },
+    "kaas": {
+      "display_name": "Kaasglenneman",
+      "in_game_aliases": [
+        "Kaasglenneman",
+        "kaasglenneman"
+      ],
+      "known_discord_handle": "kaasglenneman",
+      "discord_user_id": null
+    },
+    "dragos": {
+      "display_name": "Dragos56",
+      "in_game_aliases": [
+        "Dragos56"
+      ],
+      "known_discord_handle": "dragos56",
+      "discord_user_id": null
+    },
+    "otherside": {
+      "display_name": "Otherside",
+      "in_game_aliases": [
+        "Otherside",
+        "Otherside The Pooh"
+      ],
+      "known_discord_handle": "otherside82",
+      "discord_user_id": null
+    },
+    "old_fella": {
+      "display_name": "Old_Fella",
+      "in_game_aliases": [
+        "Old_Fella"
+      ],
+      "known_discord_handle": "thatoldfella",
+      "discord_user_id": null
+    },
+    "banana": {
+      "display_name": "BananaBreeze",
+      "in_game_aliases": [
+        "BananaBreeze"
+      ],
+      "known_discord_handle": "bananabreeze8",
+      "discord_user_id": null
+    },
+    "vanilla": {
+      "display_name": "Vani11a_1ce",
+      "in_game_aliases": [
+        "Vani11a_1ce"
+      ],
+      "known_discord_handle": "vani11a_1ce_06399",
+      "discord_user_id": null
+    },
+    "bluee": {
+      "display_name": "bluee",
+      "in_game_aliases": [
+        "bluee"
+      ],
+      "known_discord_handle": "bluee_.",
+      "discord_user_id": null
+    },
+    "vern": {
+      "display_name": "Vern7",
+      "in_game_aliases": [
+        "Vern7"
+      ],
+      "known_discord_handle": "vrn7",
+      "discord_user_id": null
+    },
+    "noob_doc": {
+      "display_name": "THE_NOOB_DOC",
+      "in_game_aliases": [
+        "THE_NOOB_DOC",
+        "Noob Doc"
+      ],
+      "known_discord_handle": "nawfaltsouli4a",
+      "discord_user_id": null
+    },
+    "muchacho": {
+      "display_name": "Muchacho_AC",
+      "in_game_aliases": [
+        "Muchacho_AC",
+        "Muchacho_AC | 🤡",
+        "⚡Muchacho_ACE⚡"
+      ],
+      "known_discord_handle": null,
+      "discord_user_id": null
+    },
+    "andy_thompson": {
+      "display_name": "Andy Thompson",
+      "in_game_aliases": [
+        "Andy Thompson"
+      ],
+      "known_discord_handle": null,
+      "discord_user_id": null
+    },
+    "moises": {
+      "display_name": "Moises B",
+      "in_game_aliases": [
+        "Moises B"
+      ],
+      "known_discord_handle": null,
+      "discord_user_id": null
+    },
+    "saturn": {
+      "display_name": "Saturn",
+      "in_game_aliases": [
+        "Saturn"
+      ],
+      "known_discord_handle": null,
+      "discord_user_id": null
+    },
+    "cyber": {
+      "display_name": "Cyber",
+      "in_game_aliases": [
+        "Cyber"
+      ],
+      "known_discord_handle": null,
+      "discord_user_id": null
+    },
+    "hector": {
+      "display_name": "EAO Hector",
+      "in_game_aliases": [
+        "EAO Hector"
+      ],
+      "known_discord_handle": null,
+      "discord_user_id": null
+    },
+    "greez": {
+      "display_name": "GreEZ",
+      "in_game_aliases": [
+        "GreEZ"
+      ],
+      "known_discord_handle": null,
+      "discord_user_id": null
+    }
+  }
+}

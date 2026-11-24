@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-11-24T11:11:14.823618+00:00",
+  "sequences": [
+    {
+      "sequence_id": "league04-r04-post-race",
+      "revision": 1,
+      "status": "archived",
+      "phase": "post_race",
+      "league_id": "league-04",
+      "round": 4,
+      "scheduled_at": "2026-11-22T20:00:00+01:00",
+      "path": "sequences/league-04/round-04/post-race/sequence.json",
+      "sha256": "772ebff7227eaee871fa5ee92f6e23a02eae8a026d338891b5794b0d2d77ac32"
+    },
+    {
+      "sequence_id": "league04-r04-pre-race-briefing",
+      "revision": 1,
+      "status": "archived",
+      "phase": "pre_race_briefing",
+      "league_id": "league-04",
+      "round": 4,
+      "scheduled_at": null,
+      "path": "sequences/league-04/round-04/pre-race-briefing/sequence.json",
+      "sha256": "d0030efe6c4f0a2f9d25ca8667a057415e0abccdfef8f37ada93d7812215f581"
+    }
+  ],
+  "config_sha256": {
+    "config/emojis.json": "eab5084336a0781cb9422153171c371ab1fd59a455c67f7dadda8fe753a948dd",
+    "config/identities.json": "54100039e6774d615d0884665726d142d3b5346b1e0d2509cda4f39829561d4d",
+    "config/publication.json": "34e634128cb9a5219b187e8436f19549827880eb90257643b4a8c530bfb5c54f"
+  }
+}

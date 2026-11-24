@@ -1,0 +1,235 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ACE Championship Manager sequence v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "sequence_id",
+    "revision",
+    "status",
+    "league_id",
+    "round",
+    "track",
+    "phase",
+    "title",
+    "scheduled_at",
+    "expires_at",
+    "race_review_complete",
+    "posts"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "sequence_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$"
+    },
+    "revision": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "status": {
+      "enum": [
+        "draft",
+        "ready",
+        "archived",
+        "cancelled"
+      ]
+    },
+    "league_id": {
+      "type": "string"
+    },
+    "round": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "track": {
+      "type": "string"
+    },
+    "phase": {
+      "enum": [
+        "pre_race",
+        "pre_race_briefing",
+        "post_race"
+      ]
+    },
+    "title": {
+      "type": "string"
+    },
+    "scheduled_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "expires_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "race_review_complete": {
+      "type": "boolean"
+    },
+    "archive_reason": {
+      "type": "string"
+    },
+    "requires_sequences": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string"
+      }
+    },
+    "posts": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "post_id",
+          "order",
+          "category",
+          "title",
+          "destination_key",
+          "content",
+          "attachments"
+        ],
+        "properties": {
+          "post_id": {
+            "type": "string",
+            "pattern": "^[a-z0-9-]+$"
+          },
+          "order": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "category": {
+            "enum": [
+              "practice_highlights",
+              "forecast",
+              "pre_race_briefing",
+              "qualifying_report",
+              "race_results",
+              "race_insights",
+              "standings",
+              "next_round_forecast"
+            ]
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "destination_key": {
+            "type": "string",
+            "minLength": 1
+          },
+          "content": {
+            "type": "object",
+            "required": [
+              "path",
+              "sha256",
+              "format"
+            ],
+            "properties": {
+              "path": {
+                "type": "string",
+                "minLength": 1
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              },
+              "format": {
+                "const": "cm-template-v1"
+              }
+            }
+          },
+          "attachments": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 10,
+            "items": {
+              "type": "object",
+              "required": [
+                "path",
+                "sha256",
+                "filename",
+                "size_bytes",
+                "content_type",
+                "description"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "sha256": {
+                  "type": "string",
+                  "pattern": "^[a-f0-9]{64}$"
+                },
+                "filename": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "size_bytes": {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "content_type": {
+                  "const": "image/png"
+                },
+                "description": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "ready"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "scheduled_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "ready"
+          },
+          "phase": {
+            "const": "post_race"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "race_review_complete": {
+            "const": true
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "sequence_id": "league04-r04-pre-race-briefing",
+  "revision": 1,
+  "status": "archived",
+  "league_id": "league-04",
+  "round": 4,
+  "track": "Nordschleife Endurance",
+  "phase": "pre_race_briefing",
+  "title": "Round 4 - Pre-race briefing",
+  "scheduled_at": null,
+  "expires_at": null,
+  "race_review_complete": true,
+  "archive_reason": "Historical briefing already delivered before Round 4. Automatic delivery excluded.",
+  "posts": [
+    {
+      "post_id": "league04-r04-pre-race-briefing",
+      "order": 1,
+      "category": "pre_race_briefing",
+      "title": "Pre-Race Briefing",
+      "destination_key": "league-results",
+      "content": {
+        "path": "sequences/league-04/round-04/pre-race-briefing/01-briefing.txt",
+        "format": "cm-template-v1",
+        "sha256": "da7979a5235aed2c343f94c40d38562f70f77d74fbfb19ef9b3ae856089cb67f"
+      },
+      "attachments": [
+        {
+          "path": "sequences/league-04/round-04/pre-race-briefing/assets/01_RACE_ESSENTIALS.png",
+          "filename": "01_RACE_ESSENTIALS.png",
+          "sha256": "f8b56a40cce06720377ebb551ed7fd25e84471389a1e018b23768eb547b7c415",
+          "size_bytes": 1078563,
+          "content_type": "image/png",
+          "description": "01 RACE ESSENTIALS"
+        },
+        {
+          "path": "sequences/league-04/round-04/pre-race-briefing/assets/02_DRIVER_TEAM_STANDINGS.png",
+          "filename": "02_DRIVER_TEAM_STANDINGS.png",
+          "sha256": "f9c9696634381d4facf4360cb12389a27a941a0c0e4bac62f786c6ff85d5778b",
+          "size_bytes": 1136167,
+          "content_type": "image/png",
+          "description": "02 DRIVER TEAM STANDINGS"
+        }
+      ]
+    }
+  ]
+}

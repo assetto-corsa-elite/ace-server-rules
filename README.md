@@ -62,3 +62,12 @@ Après une connexion, ouvrir `%USERPROFILE%\Documents\Assetto Corsa\logs\custom_
 | `playback started` et `overlay drawn` | Vérifier visuellement la lecture, la netteté, le son et les deux modes de fermeture en jeu. |
 
 Si un remplacement du MP4 pose problème, annuler le commit qui a remplacé le fichier avec `git revert`, pousser sur `main` et vérifier de nouveau l’URL publique. Le lien CSP reste identique.
+
+## Championship Manager
+
+Le catalogue des posts de ligue, les textes, les posters et le contrat de lecture pour le bot sont dans [Championship Manager](Championship%20Manager/README.md).
+
+- [Catalogue des séquences](Championship%20Manager/catalog.json)
+- [Contrat d’intégration CM](Championship%20Manager/CONSUMER.md)
+- [Règles de production](Championship%20Manager/PRODUCTION.md)
+

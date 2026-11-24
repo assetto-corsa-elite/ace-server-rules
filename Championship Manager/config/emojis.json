@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "emojis": {
+    "checked": {
+      "name": "d_",
+      "discord_emoji_id": null,
+      "animated": false,
+      "must_resolve": true
+    }
+  },
+  "resolution": "CM verifies emoji name and ID in the destination guild before rendering."
+}

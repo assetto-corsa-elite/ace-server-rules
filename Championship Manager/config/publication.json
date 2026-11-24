@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "timezone": "Europe/Paris",
+  "cadences": {
+    "pre_race": {
+      "weekday": "FRIDAY",
+      "local_time": "19:00",
+      "categories": [
+        "practice_highlights",
+        "forecast"
+      ]
+    },
+    "post_race": {
+      "weekday": "SUNDAY",
+      "local_time": "20:00",
+      "categories": [
+        "qualifying_report",
+        "race_results",
+        "race_insights",
+        "standings",
+        "next_round_forecast"
+      ]
+    },
+    "pre_race_briefing": {
+      "weekday": null,
+      "local_time": null,
+      "categories": [
+        "pre_race_briefing"
+      ]
+    }
+  },
+  "schedule_rule": "Each sequence has its own explicit ISO-8601 scheduled_at with UTC offset. Cadences guide production. They never manufacture a message or a date. CET is UTC+01:00 for League 04 winter rounds.",
+  "category_order": [
+    "practice_highlights",
+    "forecast",
+    "pre_race_briefing",
+    "qualifying_report",
+    "race_results",
+    "race_insights",
+    "standings",
+    "next_round_forecast"
+  ],
+  "destination_key": "league-results",
+  "max_content_utf16_units": 2000,
+  "max_attachments_per_message": 10,
+  "late_delivery_rule": "Post due ready sequences until expires_at, if present. Never send archived or cancelled sequences.",
+  "producer": "ChatGPT/Codex authors texts, assets, manifests and catalog commits.",
+  "consumer": "Championship Manager fetches validated snapshots and schedules Discord delivery."
+}
