@@ -1,5 +1,7 @@
 # Automatic Result Post production requirements
 
+Apply the narrative, whole-field coverage, team storytelling and caustic humour requirements in [EDITORIAL.md](EDITORIAL.md) to every new package.
+
 ## Sequence and composition
 
 | Stage | Text content | Posters |

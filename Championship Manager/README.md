@@ -60,3 +60,7 @@ See [ANNOUNCEMENTS.md](ANNOUNCEMENTS.md) for race-day announcements at 09:00 CET
 ## Audit and implementation status
 
 [AUDIT.md](AUDIT.md) distinguishes repository checks from pending producer scheduling, CM integration and real Discord acceptance tests. Text can be detailed; short sentences, line breaks and readable list structure are required.
+
+## Editorial direction
+
+[EDITORIAL.md](EDITORIAL.md) defines distinct roles for each post, a round-specific storyline, whole-field and team coverage, contextualized statistics and sharper, varied humour. Detailed content is retained through readable structure and successive messages.

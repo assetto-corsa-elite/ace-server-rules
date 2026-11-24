@@ -12,3 +12,5 @@ Read README.md, PRODUCTION.md CONSUMER.md and ANNOUNCEMENTS.md before preparing 
 - Keep changes scoped to this directory and the repository's navigation link. The CSP video and server settings have separate instructions.
 
 Preserve editorial detail. The user identified indentation and dense paragraphs as the issue, not overall volume. Follow the audit status in AUDIT.md and never describe documented cadence as an active generation or delivery service.
+
+Read EDITORIAL.md for every new production. Give stages distinct editorial purposes, maintain a fact-based round storyline, cover relevant teams and midfield progress, and use fresh caustic humour. Preserve information through structure rather than shortening the package by default.
