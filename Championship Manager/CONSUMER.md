@@ -3,7 +3,7 @@
 ## Fetch and preview
 
 1. Resolve `main` to a commit SHA. A git pull/checkout or GitHub API fetch is supported. Pin that SHA for the complete import.
-2. Read `Championship Manager/catalog.json`, then the listed manifests at that SHA. Verify each manifest hash and the three configuration hashes. Use conditional requests or a sparse checkout so CM fetches this content directory without repeatedly downloading the repository's large video assets.
+2. Read `Championship Manager/catalog.json`, then the listed manifests at that SHA. Verify each manifest hash and all runtime configuration hashes. Use conditional requests or a sparse checkout so CM fetches this content directory without repeatedly downloading the repository's large video assets.
 3. Validate the manifest schema, content SHA-256, PNG SHA-256, declared byte sizes and PNG signatures. Download the complete sequence before delivery. Check the destination guild's current attachment size limits.
 4. Keep the previously validated snapshot available if an import fails. Mark the new snapshot as invalid in CM and retry fetching. Never combine files from two commits.
 5. Display ready, draft, archived and cancelled sequences separately. Show track, round, scheduled local date/time, revision, ordered posts, text preview, ordered image thumbnails, validation errors and delivery status.
@@ -37,7 +37,7 @@ For ordinary posts, send `allowed_mentions` with `parse: []`, an explicit `users
 
 `status=ready` and a due `scheduled_at` make a sequence eligible. `draft`, `archived` and `cancelled` are excluded. Optional `expires_at` is an absolute cutoff. When CM returns after downtime, catch up eligible undelivered messages until that cutoff. With no cutoff, retain overdue messages in the queue.
 
-Use ISO-8601 offsets as the scheduling authority. The production cadence is Friday 19:00 CET and Sunday 20:00 CET for League 04 winter rounds. Dates/times in Discord text use Unix timestamps with `t` or `F`. PNG schedules must state their timezone.
+Use ISO-8601 offsets as the scheduling authority. The production cadence is Friday 19:00 CET and verified-final-stewarding release by Sunday 23:00 CET for League 04 winter rounds. Dates/times in Discord text use Unix timestamps with `t` or `F`. PNG schedules must state their timezone.
 
 A post-race sequence requires `race_review_complete=true` when made ready. This records the organizer's review completion. Pre-race briefing cadence remains unset; its producer must supply an explicit publication time when preparing a live sequence.
 
@@ -77,3 +77,7 @@ Apply [CAROUSELS.md](CAROUSELS.md) at the post's existing sequence position. Rea
 ## Stewarding Review
 
 Apply [STEWARDING.md](STEWARDING.md): add a text-only review after Race Results, include its condensed decisions in the announcement, and gate all post-race release on organizer-supplied decisions plus verified ACSM numeric adjustments and refreshed publication data. Preserve the durable decision history.
+
+## Automated steward workflow
+
+[STEWARDING_WORKFLOW.md](STEWARDING_WORKFLOW.md) specifies Sunday 15:00 CET report cutoff, Sunday 23:00 CET finalization, the role-authorized permanent panel, ENTRANTS-backed sanction wizard, automatic verified ACSM application and organizer-tagged results-ready notification. This deadline replaces the prior Sunday 20:00 rule for future live results.

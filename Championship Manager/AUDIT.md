@@ -79,3 +79,7 @@ The feed now has eleven archived messages, including nine text templates. Stewar
 ## Outstanding rule clarified
 
 An award may be 1, 2 or 3. Each threshold of three resets the active counter immediately, with remaining units carried into the next cycle. The first threshold triggers a round ban; the second triggers a league ban. Seconds, outstanding awards and point deductions can coexist for the same case. The archived 2/3 is explicitly a state snapshot, not an award to replay.
+
+## Automated steward workflow specification
+
+New live results release follows verified final stewarding, with Sunday 15:00 CET report cutoff and Sunday 23:00 CET finalization deadline. Machine-readable config/stewarding.json defines the exact seven incident types, nine sanction choices, required reason modals, authorized role keys, ENTRANTS source and organizer notifications. The implementation of the permanent Discord panel, its wizard, report intake/deadline monitor, final-review completion state and automatic ACSM adapter remains the next CM integration stage. Historical archives retain their original publication timestamps.

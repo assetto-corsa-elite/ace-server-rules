@@ -1,0 +1,120 @@
+{
+  "schema_version": 1,
+  "report_cutoff": {
+    "weekday": "SUNDAY",
+    "hour": 15,
+    "minute": 0,
+    "utc_offset": "+01:00",
+    "inclusive": true
+  },
+  "finalization_deadline": {
+    "weekday": "SUNDAY",
+    "hour": 23,
+    "minute": 0,
+    "utc_offset": "+01:00"
+  },
+  "release_trigger": "verified_final_stewarding_ready",
+  "authorized_role_keys": [
+    "league-stewards",
+    "super-admins"
+  ],
+  "entrant_source": "CM_ENTRANTS",
+  "incident_types": [
+    "Unsafe race start",
+    "Squeezing a driver",
+    "Divebombing",
+    "Blueflag infraction",
+    "Weaving (multiple defense moves)",
+    "Brake checking",
+    "Unsafe pit exit"
+  ],
+  "sanctions": [
+    {
+      "key": "time-5",
+      "type": "time_penalty",
+      "value": 5,
+      "label": "5 seconds",
+      "reason_required": false
+    },
+    {
+      "key": "time-20",
+      "type": "time_penalty",
+      "value": 20,
+      "label": "20 seconds",
+      "reason_required": false
+    },
+    {
+      "key": "points-10",
+      "type": "points_deduction",
+      "value": 10,
+      "label": "10 points deduction",
+      "reason_required": false
+    },
+    {
+      "key": "outstanding-1",
+      "type": "outstanding_penalty",
+      "value": 1,
+      "outstanding_mode": "award",
+      "label": "1 outstanding penalty",
+      "reason_required": true
+    },
+    {
+      "key": "outstanding-2",
+      "type": "outstanding_penalty",
+      "value": 2,
+      "outstanding_mode": "award",
+      "label": "2 outstanding penalties",
+      "reason_required": true
+    },
+    {
+      "key": "outstanding-3",
+      "type": "outstanding_penalty",
+      "value": 3,
+      "outstanding_mode": "award",
+      "label": "3 outstanding penalties",
+      "reason_required": true
+    },
+    {
+      "key": "round-ban",
+      "type": "round_ban",
+      "label": "Round ban",
+      "reason_required": true,
+      "scope_required": true
+    },
+    {
+      "key": "league-ban",
+      "type": "league_ban",
+      "label": "League ban",
+      "reason_required": true,
+      "scope_required": true
+    },
+    {
+      "key": "servers-discord-ban",
+      "type": "servers_discord_ban",
+      "label": "Servers and Discord ban",
+      "reason_required": true,
+      "scope_required": true
+    }
+  ],
+  "wizard": [
+    "select_driver",
+    "select_incident_type",
+    "select_sanction",
+    "reason_modal_when_required",
+    "review_bundle"
+  ],
+  "review_buttons": [
+    "Add another penalty",
+    "Apply"
+  ],
+  "permanent_button": "Apply a penalty",
+  "summary_channel_key": "sanction-summaries",
+  "panel_channel_key": "stewarding-panel",
+  "ready_notification": {
+    "channel_key": "results-ready-alerts",
+    "mention_target": "organizer_user_id_from_CM_UI",
+    "mention_everyone": false,
+    "include_all_current_penalties": true
+  },
+  "round_completion": "Explicit final review including zero penalties; no unresolved applicable reports or numeric writes."
+}

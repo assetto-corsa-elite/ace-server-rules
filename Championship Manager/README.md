@@ -22,7 +22,7 @@ Read `catalog.json` at a resolved commit SHA. Fetch every manifest, text and att
 
 1. Practice Highlights and Forecast, Friday at 19:00 CET.
 2. Pre-Race Briefing, at the explicit time set for that round.
-3. Qualifying Report, Race Results, Stewarding Review, Race Insights, Driver/Team Standings and Next-Round Forecast, Sunday at 20:00 CET, after race review.
+3. Qualifying Report, Race Results, Stewarding Review, Race Insights, Driver/Team Standings and Next-Round Forecast, after verified final stewarding, due by Sunday 23:00 CET.
 
 Each sequence carries an explicit timezone-aware `scheduled_at`. The Friday/Sunday settings guide production; they do not create missing content. Pre-race briefing time is still unset because ACE has not supplied a recurring time for it.
 
@@ -70,3 +70,7 @@ See [CAROUSELS.md](CAROUSELS.md) for native embed poster viewers, persistent Pre
 ## Stewarding Review
 
 Apply [STEWARDING.md](STEWARDING.md): add a text-only review after Race Results, include its condensed decisions in the announcement, and gate all post-race release on organizer-supplied decisions plus verified ACSM numeric adjustments and refreshed publication data. Preserve the durable decision history.
+
+## Automated steward workflow
+
+[STEWARDING_WORKFLOW.md](STEWARDING_WORKFLOW.md) specifies Sunday 15:00 CET report cutoff, Sunday 23:00 CET finalization, the role-authorized permanent panel, ENTRANTS-backed sanction wizard, automatic verified ACSM application and organizer-tagged results-ready notification. This deadline replaces the prior Sunday 20:00 rule for future live results.

@@ -107,7 +107,7 @@ def validate(root: Path) -> tuple[dict, list[dict]]:
     catalog = read_json(root / "catalog.json")
     if catalog.get("schema_version") != 1:
         raise FeedError("Unsupported catalog version")
-    required_configs = {"config/publication.json", "config/identities.json", "config/emojis.json"}
+    required_configs = {"config/publication.json", "config/identities.json", "config/emojis.json", "config/stewarding.json"}
     if set(catalog.get("config_sha256", {})) != required_configs:
         raise FeedError("Catalog must pin every runtime configuration")
     for name, expected in catalog["config_sha256"].items():

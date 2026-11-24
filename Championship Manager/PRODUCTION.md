@@ -57,3 +57,7 @@ See [CAROUSELS.md](CAROUSELS.md) for native embed poster viewers, persistent Pre
 ## Stewarding Review
 
 Apply [STEWARDING.md](STEWARDING.md): add a text-only review after Race Results, include its condensed decisions in the announcement, and gate all post-race release on organizer-supplied decisions plus verified ACSM numeric adjustments and refreshed publication data. Preserve the durable decision history.
+
+## Automated steward workflow
+
+[STEWARDING_WORKFLOW.md](STEWARDING_WORKFLOW.md) specifies Sunday 15:00 CET report cutoff, Sunday 23:00 CET finalization, the role-authorized permanent panel, ENTRANTS-backed sanction wizard, automatic verified ACSM application and organizer-tagged results-ready notification. This deadline replaces the prior Sunday 20:00 rule for future live results.

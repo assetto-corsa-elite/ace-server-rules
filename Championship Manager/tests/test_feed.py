@@ -331,5 +331,31 @@ class OutstandingTests(unittest.TestCase):
         StewardingTests.check_gate(self, review)
 
 
+class StewardWorkflowConfigurationTests(unittest.TestCase):
+    def test_deadlines_and_exact_incident_choices(self):
+        config = feed.read_json(ROOT / 'config/stewarding.json')
+        self.assertEqual(config['report_cutoff']['hour'], 15)
+        self.assertEqual(config['finalization_deadline']['hour'], 23)
+        self.assertEqual(len(config['incident_types']), 7)
+        self.assertIn('Blueflag infraction', config['incident_types'])
+        self.assertEqual(config['entrant_source'], 'CM_ENTRANTS')
+
+    def test_reason_modals_and_authorized_roles(self):
+        config = feed.read_json(ROOT / 'config/stewarding.json')
+        self.assertEqual(config['authorized_role_keys'], ['league-stewards', 'super-admins'])
+        self.assertEqual(len(config['sanctions']), 9)
+        for sanction in config['sanctions']:
+            if sanction['type'] in ['outstanding_penalty', 'round_ban', 'league_ban', 'servers_discord_ban']:
+                self.assertTrue(sanction['reason_required'])
+        self.assertFalse(config['ready_notification']['mention_everyone'])
+
+    def test_results_are_review_triggered(self):
+        config = feed.read_json(ROOT / 'config/publication.json')
+        cadence = config['cadences']['post_race']
+        self.assertEqual(cadence['trigger'], 'verified_final_stewarding_ready')
+        self.assertNotIn('local_time', cadence)
+        self.assertEqual(cadence['finalization_deadline'], '23:00')
+
+
 if __name__ == '__main__':
     unittest.main()

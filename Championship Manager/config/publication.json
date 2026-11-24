@@ -12,7 +12,6 @@
     },
     "post_race": {
       "weekday": "SUNDAY",
-      "local_time": "20:00",
       "categories": [
         "qualifying_report",
         "race_results",
@@ -20,7 +19,10 @@
         "race_insights",
         "standings",
         "next_round_forecast"
-      ]
+      ],
+      "trigger": "verified_final_stewarding_ready",
+      "finalization_deadline": "23:00",
+      "timezone": "CET"
     },
     "pre_race_briefing": {
       "weekday": null,
@@ -45,7 +47,7 @@
       "messages": 3
     }
   },
-  "schedule_rule": "Each sequence has its own explicit ISO-8601 scheduled_at with UTC offset. Cadences guide production. They never manufacture a message or a date. CET is UTC+01:00 for League 04 winter rounds.",
+  "schedule_rule": "Friday production/publication follows its explicit timestamp. Post-race publication is triggered by the verified final review; Sunday 23:00 CET is its finalization deadline. Results announcements wait for the complete Results sequence. Each ready sequence retains an explicit scheduled_at equal to its earliest permitted release.",
   "category_order": [
     "practice_highlights",
     "forecast",
@@ -81,5 +83,30 @@
     "race_results_announcement": "first text message only",
     "all_other_messages": false
   },
-  "post_race_release_gate": "Organizer-supplied approved final decisions; verified ACSM time/points application; refreshed official snapshots and dependent content."
+  "post_race_release_gate": "Organizer-supplied approved final decisions; verified ACSM time/points application; refreshed official snapshots and dependent content.",
+  "stewarding_deadlines": {
+    "report_cutoff": {
+      "weekday": "SUNDAY",
+      "local_time": "15:00",
+      "timezone": "CET"
+    },
+    "finalization": {
+      "weekday": "SUNDAY",
+      "local_time": "23:00",
+      "timezone": "CET"
+    }
+  },
+  "stewarding_ui": {
+    "channel_keys": [
+      "stewarding-panel",
+      "sanction-summaries",
+      "results-ready-alerts"
+    ],
+    "role_keys": [
+      "league-stewards",
+      "super-admins"
+    ],
+    "organizer_user_id": "configured in CM UI",
+    "entrant_source": "existing CM ENTRANTS database"
+  }
 }

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-24T12:17:17.399072+00:00",
+  "generated_at": "2026-11-24T12:39:13.857826+00:00",
   "sequences": [
     {
       "sequence_id": "league04-r04-race-day-announcement",
@@ -50,7 +50,8 @@
   "config_sha256": {
     "config/emojis.json": "eab5084336a0781cb9422153171c371ab1fd59a455c67f7dadda8fe753a948dd",
     "config/identities.json": "54100039e6774d615d0884665726d142d3b5346b1e0d2509cda4f39829561d4d",
-    "config/publication.json": "9d14acab2bfb0f9c67fd52c50c149cdf8820c0a28d0c598c40ef974c66f63644"
+    "config/publication.json": "4614ac90e17ffd7efd2f4f5b9fc7d1509b9edf79c84b885e858d2c0356d723ee",
+    "config/stewarding.json": "8e14e8d787893206bb95c65cb17f9ec20b4f93c596769849850a38064e8c9f0e"
   },
   "stewarding_history": {
     "path": "stewarding/history.json",

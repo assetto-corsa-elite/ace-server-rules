@@ -89,3 +89,7 @@ CM stores the authoritative ledger in its persistent database. Retain a record p
 Corrections append superseding events. Keep prior decisions and receipts. The public repository contains the approved publishable review and its release metadata; private reports, credentials and moderator evidence remain in CM's controlled storage.
 
 `stewarding/league-04/round-04.json` preserves the known historical Nordschleife decision as an archival observation. Its supplied 2/3 state is recorded directly, with no invented earlier incidents, resets, numeric adjustments or ban execution. It is not a new approved live action for CM to execute.
+
+## Automated steward workflow
+
+[STEWARDING_WORKFLOW.md](STEWARDING_WORKFLOW.md) specifies Sunday 15:00 CET report cutoff, Sunday 23:00 CET finalization, the role-authorized permanent panel, ENTRANTS-backed sanction wizard, automatic verified ACSM application and organizer-tagged results-ready notification. This deadline replaces the prior Sunday 20:00 rule for future live results.
