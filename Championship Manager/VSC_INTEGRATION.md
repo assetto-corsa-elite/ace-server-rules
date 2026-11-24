@@ -4,7 +4,7 @@
 
 ## Read first
 
-Read this file, then OWNER_DECISIONS.md, CONSUMER.md, ANNOUNCEMENTS.md, CAROUSELS.md, STEWARDING.md and STEWARDING_WORKFLOW.md in full. Read schemas/sequence.schema.json, schemas/stewarding.schema.json and config/*.json for the data contract. PRODUCTION.md and EDITORIAL.md govern authored content. README.md identifies the reference validation commands.
+Read this file, then OWNER_DECISIONS.md, CONSUMER.md, ANNOUNCEMENTS.md, CAROUSELS.md, STEWARDING.md and STEWARDING_WORKFLOW.md in full. Read [ACSM-Penalties-POST.md](ACSM-Penalties-POST.md) before implementing the ACSM adapter. Read schemas/sequence.schema.json, schemas/stewarding.schema.json and config/*.json for the data contract. PRODUCTION.md and EDITORIAL.md govern authored content. README.md identifies the reference validation commands.
 
 OWNER_DECISIONS.md governs permissions, manual bans, owner finalization and publication approval. This handoff adds the native CM interface and assigns integration responsibilities; it does not remove existing publication gates.
 
@@ -141,7 +141,7 @@ Stewarding opens on the selected championship/round with a decision table showin
 
 Native forms call the same service as Discord handlers. They must not simulate Discord clicks, duplicate application logic or require a Discord summary message ID as the decision's primary key. Show success in CM immediately after durable acceptance, then update verified application status asynchronously.
 
-Outstanding threshold/reset, surplus, completed maximum history and manual ban handling follow OWNER_DECISIONS.md. Show active counter X/3, Max outstanding reached X/2, relevant history and manual enforcement status. Practice remains permitted under a round ban. No automatic ban adapter is required.
+Outstanding threshold/reset, surplus, completed maximum history and manual ban handling follow OWNER_DECISIONS.md. Show active counter X/3, Max outstanding reached X/2, relevant history and manual enforcement status. Execute authorized round and league bans via the existing Blocklist workflow on the schedule in [ACSM-Penalties-POST.md](ACSM-Penalties-POST.md). Practice is permitted before the round-ban window. Servers and Discord ban keeps its manual enforcement workflow.
 
 ## Histories
 
@@ -190,7 +190,7 @@ Verify at least:
 3. First import lists historical archives without publishing them; malformed imports retain the prior valid snapshot.
 4. Native Apply and Cancel work without Discord interaction, with shared history and no repeated numeric writes.
 5. Role removal, unauthorized users, two actors, repeated clicks and restart do not bypass permissions or duplicate effects.
-6. Combined sanctions, threshold resets, cancellation and manual ban states are correct; practice remains allowed.
+6. Combined sanctions, threshold resets, cancellation and ban states are correct, including scheduled Blocklist enforcement and expiry, restart recovery, overlapping bans and practice access before the round-ban window.
 7. Owner can finalize zero penalties and hold/approve from CM; timer responds to CM and Discord decisions and survives restart.
 8. Stale results or failed ACSM writes block release; updated verified content invalidates prior timer/approval.
 9. Actual ordered test delivery, real announcement jump link, permitted mentions only and working persistent poster navigation.
