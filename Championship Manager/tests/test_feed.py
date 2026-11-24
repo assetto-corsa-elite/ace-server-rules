@@ -336,7 +336,7 @@ class StewardWorkflowConfigurationTests(unittest.TestCase):
         config = feed.read_json(ROOT / 'config/stewarding.json')
         self.assertEqual(config['report_cutoff']['hour'], 15)
         self.assertEqual(config['finalization_deadline']['hour'], 23)
-        self.assertEqual(len(config['incident_types']), 7)
+        self.assertEqual(len(config['incident_types']), 10)
         self.assertIn('Blueflag infraction', config['incident_types'])
         self.assertEqual(config['entrant_source'], 'CM_ENTRANTS')
 

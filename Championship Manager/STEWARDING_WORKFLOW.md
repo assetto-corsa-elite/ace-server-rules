@@ -59,13 +59,16 @@ Show **SELECT A DRIVER** and a dropdown populated from the current round's ENTRA
 
 Show **SELECT INCIDENT TYPE** with these exact choices:
 
-- Unsafe race start
+- Unsafe race start leading to a crash
 - Squeezing a driver
 - Divebombing
 - Blueflag infraction
 - Weaving (multiple defense moves)
 - Brake checking
-- Unsafe pit exit
+- Unsafe pit exit into drivers
+- Unsafe track re-entry into drivers
+- Any unnecessary reckless move leading to a crash
+- Flipping @Vern7 upside down against his consent
 
 This field records the incident classification. It does not determine a sanction automatically.
 
@@ -83,7 +86,7 @@ Show **SELECT SANCTION** with these choices:
 - League ban
 - Servers and Discord ban
 
-For outstanding penalties and all ban choices, open a modal with a required **Reason** text field. For numeric time/points sanctions, retain the selected incident type and permit a factual optional detail. Bind the modal to the draft and actor. For bans, obtain the target round or explicit league/server/guild scope and retain the supplied reason. Describe severe/behavioral conduct through that reason field; preserve the seven incident-type choices above.
+For outstanding penalties and all ban choices, open a modal with a required **Reason** text field. For numeric time/points sanctions, retain the selected incident type and permit a factual optional detail. Bind the modal to the draft and actor. For bans, obtain the target round or explicit league/server/guild scope and retain the supplied reason. Describe severe/behavioral conduct through that reason field; preserve the ten incident-type choices above.
 
 ### 4. Review accumulated sanctions
 
@@ -142,3 +145,5 @@ Test role removal between form steps, two simultaneous stewards, entrants update
 ## Authoritative owner decisions
 
 [OWNER_DECISIONS.md](OWNER_DECISIONS.md) supersedes earlier recommendations on review finalization, publication control, cancellation, MEE6 report scope, manual bans and the one-hour owner-response timeout. Apply those decisions before implementing this workflow.
+
+The final offense label is intentionally humorous and remains a selectable supplied classification. It creates no automatic sanction and makes no claim about an actual incident. In menus, @Vern7 is a plain-text label. Any actual public driver mention must use the stable CM identity binding, without bold wrapping; never guess a Discord ID from this label. Preserve original labels on historical decisions when the current offense list changes.

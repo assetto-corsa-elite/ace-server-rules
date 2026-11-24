@@ -20,13 +20,16 @@
   ],
   "entrant_source": "CM_ENTRANTS",
   "incident_types": [
-    "Unsafe race start",
+    "Unsafe race start leading to a crash",
     "Squeezing a driver",
     "Divebombing",
     "Blueflag infraction",
     "Weaving (multiple defense moves)",
     "Brake checking",
-    "Unsafe pit exit"
+    "Unsafe pit exit into drivers",
+    "Unsafe track re-entry into drivers",
+    "Any unnecessary reckless move leading to a crash",
+    "Flipping @Vern7 upside down against his consent"
   ],
   "sanctions": [
     {

@@ -125,7 +125,7 @@ Stewarding opens on the selected championship/round with a decision table showin
 **Apply a penalty** opens this wizard:
 
 1. Select driver from current championship ENTRANTS. Display in-game name, team and linked Discord identity. Handle refreshed entrants and retain historical identities.
-2. Select incident type: Unsafe race start; Squeezing a driver; Divebombing; Blueflag infraction; Weaving (multiple defense moves); Brake checking; Unsafe pit exit.
+2. Select incident type from config/stewarding.json, in its exact current order: Unsafe race start leading to a crash; Squeezing a driver; Divebombing; Blueflag infraction; Weaving (multiple defense moves); Brake checking; Unsafe pit exit into drivers; Unsafe track re-entry into drivers; Any unnecessary reckless move leading to a crash; Flipping @Vern7 upside down against his consent. Preserve historical labels. The last label is intentionally humorous; menu text does not trigger a Discord mention or select a sanction automatically.
 3. Select sanction: 5 seconds; 20 seconds; 10 points deduction; 1, 2 or 3 outstanding penalties; Round ban; League ban; Servers and Discord ban.
 4. Require Reason for outstanding and all bans. Require affected-round/scope for bans. Native CM uses a labelled text field equivalent to the Discord modal.
 5. Show bundle preview with driver, round, incident(s), reasons and projected effects. Add another penalty returns to incident/sanction selection for the same driver/case. Allow combined seconds, points and outstanding.
