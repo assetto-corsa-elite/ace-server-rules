@@ -16,6 +16,7 @@
       "categories": [
         "qualifying_report",
         "race_results",
+        "stewarding_review",
         "race_insights",
         "standings",
         "next_round_forecast"
@@ -51,6 +52,7 @@
     "pre_race_briefing",
     "qualifying_report",
     "race_results",
+    "stewarding_review",
     "race_insights",
     "standings",
     "next_round_forecast",
@@ -78,5 +80,6 @@
     "pre_race_announcement": "first message on race day at 09:00 CET",
     "race_results_announcement": "first text message only",
     "all_other_messages": false
-  }
+  },
+  "post_race_release_gate": "Organizer-supplied approved final decisions; verified ACSM time/points application; refreshed official snapshots and dependent content."
 }

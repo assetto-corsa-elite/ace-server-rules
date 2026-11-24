@@ -23,7 +23,7 @@ class FeedRegressionTests(unittest.TestCase):
                         'emojis': {'checked': {'id': '234567890123456789', 'name': 'd_', 'animated': False}}, 'links': {'results_start': 'https://discord.com/channels/123456789012345678/234567890123456789/345678901234567890'}}
 
     def test_catalog_and_all_assets(self):
-        self.assertEqual(sum(len(m['posts']) for m in self.manifests), 10)
+        self.assertEqual(sum(len(m['posts']) for m in self.manifests), 11)
         self.assertEqual(sum(len(p['attachments']) for m in self.manifests for p in m['posts']), 28)
 
     def test_historical_import_cannot_repost_on_first_connection(self):
@@ -64,7 +64,9 @@ class FeedRegressionTests(unittest.TestCase):
                 if post['kind'] == 'media':
                     continue
                 rendered = feed.render(ROOT, post, self.bindings)['content']
-                self.assertIn(expected, rendered)
+                source = feed.checked_bytes(ROOT, post['content']).decode()
+                if '{{driver:lilcoughdrop}}' in source:
+                    self.assertIn(expected, rendered)
                 self.assertLessEqual(feed.utf16_units(rendered), 2000)
 
     def test_missing_mapping_and_wrong_emoji_fail_clearly(self):
@@ -244,6 +246,63 @@ class CarouselTests(unittest.TestCase):
         self.assertEqual(m['posts'][2]['presentation']['mode'], 'carousel')
         self.assertEqual(len(m['posts'][2]['presentation']['screens']), 10)
         feed.validate_presentation(m['posts'][2])
+
+
+class StewardingTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        FeedRegressionTests.setUpClass.__func__(cls)
+
+    def check_gate(self, review, expected_error=False):
+        with tempfile.TemporaryDirectory() as name:
+            root = Path(name)
+            data = json.dumps(review).encode()
+            (root / 'review.json').write_bytes(data)
+            manifest = copy.deepcopy(self.sequence)
+            manifest.update(status='ready', result_snapshot_sha256='a' * 64,
+                            stewarding_review={'path': 'review.json', 'sha256': feed.digest(data)})
+            if expected_error:
+                with self.assertRaises(feed.FeedError):
+                    feed.validate_stewarding_gate(root, manifest)
+            else:
+                feed.validate_stewarding_gate(root, manifest)
+
+    def approved(self):
+        return {'league_id': 'league-04', 'round': 4, 'state': 'approved',
+                'organizer_supplied': True, 'approval_reference': 'test-organizer-confirmation',
+                'numeric_application_state': 'not_required', 'result_snapshot_sha256': 'a' * 64,
+                'decisions': []}
+
+    def test_explicit_zero_penalties_and_approval(self):
+        review = self.approved()
+        self.check_gate(review)
+        review['organizer_supplied'] = False
+        self.check_gate(review, True)
+
+    def test_numeric_adjustment_requires_verified_acsm(self):
+        review = self.approved()
+        review['decisions'] = [{'decision_id': 'test-time', 'type': 'time_penalty', 'value': 5}]
+        self.check_gate(review, True)
+        review['numeric_application_state'] = 'acsm_verified'
+        self.check_gate(review)
+        review['decisions'][0].update(type='points_deduction', value=10)
+        self.check_gate(review)
+
+    def test_changed_results_and_duplicate_decisions_fail(self):
+        review = self.approved()
+        review['result_snapshot_sha256'] = 'b' * 64
+        self.check_gate(review, True)
+        review['result_snapshot_sha256'] = 'a' * 64
+        decision = {'decision_id': 'same-decision', 'type': 'outstanding_penalty', 'value': 2}
+        review['decisions'] = [decision, decision.copy()]
+        self.check_gate(review, True)
+
+    def test_stewarding_is_text_only_without_notification(self):
+        post = next(p for p in self.sequence['posts'] if p['category'] == 'stewarding_review')
+        self.assertEqual(post['attachments'], [])
+        self.assertEqual(post['presentation']['mode'], 'direct')
+        self.assertFalse(post['mention_everyone'])
+        self.assertEqual(post['destination_key'], 'results')
 
 
 if __name__ == '__main__':

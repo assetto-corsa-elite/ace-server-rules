@@ -71,3 +71,7 @@ The volume of information is not the problem. Do not remove pertinent analysis o
 ## Carousel extension
 
 Feed metadata now declares direct/carousel presentation. The reference code validates screen coverage and builds one-image embeds with Previous/Next buttons. The actual persistent handlers, edit operations and real-guild checks belong to the pending CM implementation. See CAROUSELS.md.
+
+## Stewarding extension
+
+The feed now has eleven archived messages, including nine text templates. Stewarding Review is text-only. Organizer decision approval, verified ACSM numeric application and a matching refreshed result fingerprint are checked before a post-race package or announcement can become ready. The actual ACSM write adapter, private history database, ban enforcement and threshold-reset/service rules remain CM integration work. The historical Round 4 outstanding 2/3 is recorded without inventing earlier cases.

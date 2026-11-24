@@ -13,7 +13,7 @@ TOKEN = re.compile(r"\{\{(driver|emoji|link):([a-z0-9_]+)\}\}")
 SNOWFLAKE = re.compile(r"[0-9]{17,20}\Z")
 STATES = {"draft", "ready", "archived", "cancelled"}
 CATEGORIES = ["practice_highlights", "forecast", "pre_race_briefing", "qualifying_report",
-              "race_results", "race_insights", "standings", "next_round_forecast",
+              "race_results", "stewarding_review", "race_insights", "standings", "next_round_forecast",
               "pre_race_announcement", "race_results_announcement"]
 BAD_TEXT = ("\ufffd", "â€", "Ã©", "Ã¨", "ð\x9f", "&nbsp;", "&#", "\\n")
 
@@ -113,6 +113,10 @@ def validate(root: Path) -> tuple[dict, list[dict]]:
     for name, expected in catalog["config_sha256"].items():
         if digest(asset_path(root, name).read_bytes()) != expected:
             raise FeedError(f"Configuration digest mismatch: {name}")
+    if catalog.get("stewarding_history"):
+        history = json.loads(checked_bytes(root, catalog["stewarding_history"]).decode("utf-8"))
+        for entry in history["reviews"]:
+            checked_bytes(root, entry)
     drivers = read_json(root / "config/identities.json")["drivers"]
     emojis = read_json(root / "config/emojis.json")["emojis"]
     sequence_ids, post_ids, manifests = set(), set(), []
@@ -122,6 +126,7 @@ def validate(root: Path) -> tuple[dict, list[dict]]:
             if manifest[field] != entry[field]:
                 raise FeedError(f"Catalog/manifest disagreement: {field}")
         validate_sequence_metadata(manifest)
+        validate_stewarding_gate(root, manifest)
         sid = manifest["sequence_id"]
         if sid in sequence_ids or manifest["status"] not in STATES:
             raise FeedError("Duplicate sequence or invalid status")
@@ -189,11 +194,56 @@ def validate(root: Path) -> tuple[dict, list[dict]]:
     return catalog, manifests
 
 
+def validate_stewarding_gate(root: Path, manifest: dict) -> None:
+    if manifest["phase"] not in {"post_race", "results_announcement"}:
+        return
+    reference = manifest.get("stewarding_review")
+    if reference is None:
+        if manifest["status"] == "ready":
+            raise FeedError("Final organizer stewarding decision set is required before publication")
+        return
+    review = json.loads(checked_bytes(root, reference).decode("utf-8"))
+    if (review["league_id"], review["round"]) != (manifest["league_id"], manifest["round"]):
+        raise FeedError("Stewarding review belongs to a different round")
+    identifiers = set()
+    numeric = False
+    for decision in review["decisions"]:
+        if decision["decision_id"] in identifiers:
+            raise FeedError("Duplicate stewarding decision ID")
+        identifiers.add(decision["decision_id"])
+        kind, value = decision["type"], decision.get("value")
+        if kind == "time_penalty":
+            if type(value) is not int or value not in {5, 20}:
+                raise FeedError("Time penalty must be 5 or 20 seconds")
+            numeric = True
+        elif kind == "points_deduction":
+            if type(value) is not int or value != 10:
+                raise FeedError("Points deduction must be 10")
+            numeric = True
+        elif kind == "outstanding_penalty":
+            if type(value) is not int or value not in {1, 2, 3}:
+                raise FeedError("Outstanding counter must be 1, 2 or 3")
+        elif kind not in {"round_ban", "league_ban", "servers_discord_ban"}:
+            raise FeedError("Unknown stewarding decision type")
+    if manifest["status"] != "ready":
+        return
+    if review.get("state") != "approved" or review.get("organizer_supplied") is not True or not review.get("approval_reference"):
+        raise FeedError("Organizer must supply and approve the final decision set, including an empty set")
+    state = review.get("numeric_application_state")
+    if numeric and state != "acsm_verified":
+        raise FeedError("ACSM numeric penalties must be verified before publication")
+    if not numeric and state not in {"not_required", "acsm_verified"}:
+        raise FeedError("Stewarding reconciliation remains incomplete")
+    snapshot = review.get("result_snapshot_sha256")
+    if not isinstance(snapshot, str) or not re.fullmatch(r"[a-f0-9]{64}", snapshot) or snapshot != manifest.get("result_snapshot_sha256"):
+        raise FeedError("Publication must be regenerated from the verified final result snapshot")
+
+
 def validate_sequence_metadata(manifest: dict) -> None:
     expected = {
         "pre_race": ["practice_highlights", "forecast"],
         "pre_race_briefing": ["pre_race_briefing"],
-        "post_race": ["qualifying_report", "race_results", "race_insights", "standings", "next_round_forecast"],
+        "post_race": ["qualifying_report", "race_results", "stewarding_review", "race_insights", "standings", "next_round_forecast"],
         "race_day_announcement": ["pre_race_announcement"],
         "results_announcement": ["race_results_announcement"],
     }

@@ -53,3 +53,7 @@ Keep screenshots, admin credentials, private chat logs and raw driver database e
 Add the race-day 09:00 CET briefing announcement and the three-message results announcement described in [ANNOUNCEMENTS.md](ANNOUNCEMENTS.md). Every Results package must link its announcement posters explicitly. The full Results sequence remains the source of truth, and the announcement links back to its first delivered message.
 
 See [CAROUSELS.md](CAROUSELS.md) for native embed poster viewers, persistent Previous/Next navigation and the categories whose posters remain directly visible.
+
+## Stewarding Review
+
+Apply [STEWARDING.md](STEWARDING.md): add a text-only review after Race Results, include its condensed decisions in the announcement, and gate all post-race release on organizer-supplied decisions plus verified ACSM numeric adjustments and refreshed publication data. Preserve the durable decision history.

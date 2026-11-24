@@ -16,3 +16,7 @@ Preserve editorial detail. The user identified indentation and dense paragraphs 
 Read EDITORIAL.md for every new production. Give stages distinct editorial purposes, maintain a fact-based round storyline, cover relevant teams and midfield progress, and use fresh caustic humour. Preserve information through structure rather than shortening the package by default.
 
 See [CAROUSELS.md](CAROUSELS.md) for native embed poster viewers, persistent Previous/Next navigation and the categories whose posters remain directly visible.
+
+## Stewarding Review
+
+Apply [STEWARDING.md](STEWARDING.md): add a text-only review after Race Results, include its condensed decisions in the announcement, and gate all post-race release on organizer-supplied decisions plus verified ACSM numeric adjustments and refreshed publication data. Preserve the durable decision history.

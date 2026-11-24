@@ -22,13 +22,13 @@ Read `catalog.json` at a resolved commit SHA. Fetch every manifest, text and att
 
 1. Practice Highlights and Forecast, Friday at 19:00 CET.
 2. Pre-Race Briefing, at the explicit time set for that round.
-3. Qualifying Report, Race Results, Race Insights, Driver/Team Standings and Next-Round Forecast, Sunday at 20:00 CET, after race review.
+3. Qualifying Report, Race Results, Stewarding Review, Race Insights, Driver/Team Standings and Next-Round Forecast, Sunday at 20:00 CET, after race review.
 
 Each sequence carries an explicit timezone-aware `scheduled_at`. The Friday/Sunday settings guide production; they do not create missing content. Pre-race briefing time is still unset because ACE has not supplied a recurring time for it.
 
 ## Available content
 
-Four historical Nordschleife Round 4 sequences are included: the pre-race briefing, the post-race package and the two announcement examples. They contain eight structured text templates and fourteen unique PNG posters, including the corrected Portimao forecast with its team section.
+Four historical Nordschleife Round 4 sequences are included: the pre-race briefing, the post-race package and the two announcement examples. They contain nine structured text templates and fourteen unique PNG posters, including the corrected Portimao forecast with its team section.
 
 Their status is `archived` because they were already delivered for manual publication in this conversation. CM lists them in its archive view and excludes them from automatic delivery. Historical rendering now uses stable mention tokens and structured sections. Race figures, supplied review decision and posters remain grounded in the delivered source packages.
 
@@ -66,3 +66,7 @@ See [ANNOUNCEMENTS.md](ANNOUNCEMENTS.md) for race-day announcements at 09:00 CET
 [EDITORIAL.md](EDITORIAL.md) defines distinct roles for each post, a round-specific storyline, whole-field and team coverage, contextualized statistics and sharper, varied humour. Detailed content is retained through readable structure and successive messages.
 
 See [CAROUSELS.md](CAROUSELS.md) for native embed poster viewers, persistent Previous/Next navigation and the categories whose posters remain directly visible.
+
+## Stewarding Review
+
+Apply [STEWARDING.md](STEWARDING.md): add a text-only review after Race Results, include its condensed decisions in the announcement, and gate all post-race release on organizer-supplied decisions plus verified ACSM numeric adjustments and refreshed publication data. Preserve the durable decision history.

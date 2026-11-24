@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "revision": 3,
+  "revision": 4,
   "status": "archived",
   "league_id": "league-04",
   "round": 4,
@@ -212,5 +212,10 @@
       }
     }
   ],
-  "race_date": "2026-11-21"
+  "race_date": "2026-11-21",
+  "stewarding_review": {
+    "path": "stewarding/league-04/round-04.json",
+    "sha256": "bef6859a1876baa42713a1db104ee99770857970b55f3adb8dbf95b044cdbf34"
+  },
+  "result_snapshot_sha256": null
 }

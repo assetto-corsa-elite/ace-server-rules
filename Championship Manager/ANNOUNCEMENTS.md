@@ -45,3 +45,7 @@ The URL is runtime data. Never guess a message ID or substitute a channel-only l
 `mention_everyone` is explicit in every post. The renderer inserts the literal `@everyone` only for the authorized first messages and enables `allowed_mentions.parse=["everyone"]` only for those messages. Other messages use an empty parse list. Driver mentions retain their explicit user allowlist. Do not add a role mention or a ping in media follow-ups. Preview the notification intent in CM's UI.
 
 Two archived Round 4 announcement examples demonstrate all fields, attachment references and the source link dependency. They are excluded from automatic sending like the other historical imports.
+
+## Stewarding Review
+
+Apply [STEWARDING.md](STEWARDING.md): add a text-only review after Race Results, include its condensed decisions in the announcement, and gate all post-race release on organizer-supplied decisions plus verified ACSM numeric adjustments and refreshed publication data. Preserve the durable decision history.

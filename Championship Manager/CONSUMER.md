@@ -73,3 +73,7 @@ CM imports the four historical sequences into its archive view. The current cata
 ## Poster presentation
 
 Apply [CAROUSELS.md](CAROUSELS.md) at the post's existing sequence position. Read presentation.mode before building Discord files. Persist carousel views and use the reference screen renderer for embed/button payloads. Protect the direct individual/team posters and practice highlights.
+
+## Stewarding Review
+
+Apply [STEWARDING.md](STEWARDING.md): add a text-only review after Race Results, include its condensed decisions in the announcement, and gate all post-race release on organizer-supplied decisions plus verified ACSM numeric adjustments and refreshed publication data. Preserve the durable decision history.

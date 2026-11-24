@@ -1,0 +1,106 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Stewarding Review snapshot",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "review_id",
+    "revision",
+    "league_id",
+    "round",
+    "state",
+    "organizer_supplied",
+    "approval_reference",
+    "numeric_application_state",
+    "result_snapshot_sha256",
+    "decisions"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "review_id": {
+      "type": "string"
+    },
+    "revision": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "league_id": {
+      "type": "string"
+    },
+    "round": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "state": {
+      "enum": [
+        "draft",
+        "approved",
+        "archived"
+      ]
+    },
+    "organizer_supplied": {
+      "type": "boolean"
+    },
+    "approval_reference": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "numeric_application_state": {
+      "enum": [
+        "pending",
+        "acsm_verified",
+        "not_required"
+      ]
+    },
+    "result_snapshot_sha256": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "decisions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "decision_id",
+          "driver_key",
+          "type",
+          "reason"
+        ],
+        "properties": {
+          "decision_id": {
+            "type": "string"
+          },
+          "driver_key": {
+            "type": "string"
+          },
+          "type": {
+            "enum": [
+              "time_penalty",
+              "points_deduction",
+              "outstanding_penalty",
+              "round_ban",
+              "league_ban",
+              "servers_discord_ban"
+            ]
+          },
+          "value": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "reason": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

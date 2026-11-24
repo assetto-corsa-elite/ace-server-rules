@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "reviews": [
+    {
+      "review_id": "league04-r04-stewarding",
+      "revision": 1,
+      "path": "stewarding/league-04/round-04.json",
+      "sha256": "bef6859a1876baa42713a1db104ee99770857970b55f3adb8dbf95b044cdbf34",
+      "state": "archived"
+    }
+  ],
+  "authority": "CM persistent append-only decision ledger; repository stores publishable review snapshots."
+}

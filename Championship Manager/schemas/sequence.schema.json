@@ -125,7 +125,8 @@
               "standings",
               "next_round_forecast",
               "pre_race_announcement",
-              "race_results_announcement"
+              "race_results_announcement",
+              "stewarding_review"
             ]
           },
           "title": {
@@ -321,6 +322,30 @@
     "race_date": {
       "type": "string",
       "format": "date"
+    },
+    "stewarding_review": {
+      "type": "object",
+      "required": [
+        "path",
+        "sha256"
+      ],
+      "properties": {
+        "path": {
+          "type": "string"
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "additionalProperties": false
+    },
+    "result_snapshot_sha256": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^[a-f0-9]{64}$"
     }
   },
   "allOf": [
@@ -356,6 +381,33 @@
         "properties": {
           "race_review_complete": {
             "const": true
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "ready"
+          },
+          "phase": {
+            "enum": [
+              "post_race",
+              "results_announcement"
+            ]
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "stewarding_review",
+          "result_snapshot_sha256"
+        ],
+        "properties": {
+          "result_snapshot_sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
           }
         }
       }

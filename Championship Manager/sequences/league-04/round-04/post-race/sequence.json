@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "sequence_id": "league04-r04-post-race",
-  "revision": 4,
+  "revision": 5,
   "status": "archived",
   "league_id": "league-04",
   "round": 4,
@@ -80,7 +80,7 @@
       "content": {
         "path": "sequences/league-04/round-04/post-race/02-race_results.txt",
         "format": "cm-template-v1",
-        "sha256": "effe9b5d20999dd80a6e56ad01ce7428ba18babd0163724836e72026e2978035"
+        "sha256": "211fcdb8ae2fe0a96ea8c6f3ef32183d7810e3eaaec171adf09afc9df9b88fa7"
       },
       "attachments": [
         {
@@ -108,8 +108,26 @@
       }
     },
     {
-      "post_id": "league04-r04-race-insights",
+      "post_id": "league04-r04-stewarding-review",
       "order": 3,
+      "category": "stewarding_review",
+      "title": "Stewarding Review",
+      "destination_key": "results",
+      "kind": "text",
+      "mention_everyone": false,
+      "content": {
+        "path": "sequences/league-04/round-04/post-race/06-stewarding_review.txt",
+        "format": "cm-template-v1",
+        "sha256": "c7f255864b35131f9808e4fb37d540ad695f00a7dee1e299c27102b1808f426b"
+      },
+      "attachments": [],
+      "presentation": {
+        "mode": "direct"
+      }
+    },
+    {
+      "post_id": "league04-r04-race-insights",
+      "order": 4,
       "category": "race_insights",
       "title": "Race Insights",
       "destination_key": "results",
@@ -179,7 +197,7 @@
     },
     {
       "post_id": "league04-r04-standings",
-      "order": 4,
+      "order": 5,
       "category": "standings",
       "title": "Championship Standings",
       "destination_key": "results",
@@ -215,7 +233,7 @@
     },
     {
       "post_id": "league04-r04-next-round-forecast",
-      "order": 5,
+      "order": 6,
       "category": "next_round_forecast",
       "title": "Portimao Forecast",
       "destination_key": "results",
@@ -241,5 +259,10 @@
       }
     }
   ],
-  "race_date": "2026-11-21"
+  "race_date": "2026-11-21",
+  "stewarding_review": {
+    "path": "stewarding/league-04/round-04.json",
+    "sha256": "bef6859a1876baa42713a1db104ee99770857970b55f3adb8dbf95b044cdbf34"
+  },
+  "result_snapshot_sha256": null
 }
