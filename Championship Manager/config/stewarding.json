@@ -116,5 +116,43 @@
     "mention_everyone": false,
     "include_all_current_penalties": true
   },
-  "round_completion": "Explicit final review including zero penalties; no unresolved applicable reports or numeric writes."
+  "round_completion": "Explicit owner finalization of supplied decisions, including zero penalties; verified numeric updates. MEE6 report management is outside scope.",
+  "report_workflow": "MEE6 / outside CM integration",
+  "review_finalizer": "owner_user_id",
+  "decision_responsibility": "actor using sanction UI",
+  "manual_ban_enforcement": true,
+  "round_ban_practice_allowed": true,
+  "cancel_workflow": {
+    "button": "Cancel a penalty",
+    "authorized_role_keys": [
+      "super-admins"
+    ],
+    "steps": [
+      "select_driver",
+      "select_active_penalty",
+      "required_reason_modal",
+      "review_reversal",
+      "Apply"
+    ],
+    "append_only_history": true,
+    "numeric_acsm_reversal": "automatic_verified_once"
+  },
+  "publication_validation": {
+    "owner": "organizer_user_id_from_CM_UI",
+    "timeout_seconds": 3600,
+    "auto_validate_only_without_owner_response": true,
+    "timer_start": "ready_notification_acknowledged_for_revision",
+    "owner_reply_or_hold_pauses_timer": true,
+    "revision_change_requires_new_window": true
+  },
+  "permanent_buttons": [
+    "Apply a penalty",
+    "Cancel a penalty"
+  ],
+  "duplicate_case_warning": {
+    "enabled": true,
+    "confirmation_required_to_continue": true,
+    "same_operation_retry": "reuse_idempotency_key",
+    "report_integration_required": false
+  }
 }

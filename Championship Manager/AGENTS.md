@@ -24,3 +24,7 @@ Apply [STEWARDING.md](STEWARDING.md): add a text-only review after Race Results,
 ## Automated steward workflow
 
 [STEWARDING_WORKFLOW.md](STEWARDING_WORKFLOW.md) specifies Sunday 15:00 CET report cutoff, Sunday 23:00 CET finalization, the role-authorized permanent panel, ENTRANTS-backed sanction wizard, automatic verified ACSM application and organizer-tagged results-ready notification. This deadline replaces the prior Sunday 20:00 rule for future live results.
+
+## Authoritative owner decisions
+
+[OWNER_DECISIONS.md](OWNER_DECISIONS.md) supersedes earlier recommendations on review finalization, publication control, cancellation, MEE6 report scope, manual bans and the one-hour owner-response timeout. Apply those decisions before implementing this workflow.

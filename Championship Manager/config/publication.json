@@ -47,7 +47,7 @@
       "messages": 3
     }
   },
-  "schedule_rule": "Friday production/publication follows its explicit timestamp. Post-race publication is triggered by the verified final review; Sunday 23:00 CET is its finalization deadline. Results announcements wait for the complete Results sequence. Each ready sequence retains an explicit scheduled_at equal to its earliest permitted release.",
+  "schedule_rule": "Friday production/publication follows its explicit timestamp. Post-race availability requires owner-finalized review, verified application and refreshed assets by Sunday 23:00 CET. Publication then requires owner approval or expiry of the acknowledged ready revision notification window (3,600 seconds without owner response). Results announcements wait for complete Results delivery. scheduled_at is only the earliest permitted release and does not bypass these gates.",
   "category_order": [
     "practice_highlights",
     "forecast",
@@ -88,7 +88,8 @@
     "report_cutoff": {
       "weekday": "SUNDAY",
       "local_time": "15:00",
-      "timezone": "CET"
+      "timezone": "CET",
+      "managed_by": "MEE6"
     },
     "finalization": {
       "weekday": "SUNDAY",
@@ -108,5 +109,11 @@
     ],
     "organizer_user_id": "configured in CM UI",
     "entrant_source": "existing CM ENTRANTS database"
+  },
+  "publication_approval": {
+    "actor": "owner_user_id",
+    "timeout_seconds": 3600,
+    "mode": "owner_approval_or_no_response_timeout",
+    "manual_publication_control": "owner_only"
   }
 }

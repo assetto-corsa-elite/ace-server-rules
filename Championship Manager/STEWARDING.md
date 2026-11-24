@@ -73,7 +73,7 @@ New outstanding decisions use outstanding_mode=award. Historical state observati
 
 Reset, threshold and enforcement records are written in the same persistent transaction as the accepted award. Before applying an award, check its decision ID against the ledger. Repeated delivery, restart or ACSM retry must not increment the counter or trigger a ban again. Ban service, appeal and reversal remain explicit history events.
 
-Require the organizer to identify a ban's effective scope and target round/league/server set. Execute the supplied approved decision through the actual connected tools when available. If enforcement is pending or fails, show that state accurately and retain the approved decision. Do not claim that a driver is banned until the relevant system acknowledges the action.
+Require the organizer to identify a ban's effective scope and target round/league/server set. Ban execution is manual. Record the supplied approved decision and the acknowledged manual enforcement. If enforcement is pending or fails, show that state accurately and retain the approved decision. Do not claim that a driver is banned until the relevant system acknowledges the action.
 
 ## Durable history
 
@@ -93,3 +93,7 @@ Corrections append superseding events. Keep prior decisions and receipts. The pu
 ## Automated steward workflow
 
 [STEWARDING_WORKFLOW.md](STEWARDING_WORKFLOW.md) specifies Sunday 15:00 CET report cutoff, Sunday 23:00 CET finalization, the role-authorized permanent panel, ENTRANTS-backed sanction wizard, automatic verified ACSM application and organizer-tagged results-ready notification. This deadline replaces the prior Sunday 20:00 rule for future live results.
+
+## Authoritative owner decisions
+
+[OWNER_DECISIONS.md](OWNER_DECISIONS.md) supersedes earlier recommendations on review finalization, publication control, cancellation, MEE6 report scope, manual bans and the one-hour owner-response timeout. Apply those decisions before implementing this workflow.

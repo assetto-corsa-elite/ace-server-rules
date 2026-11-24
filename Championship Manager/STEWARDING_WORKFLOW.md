@@ -4,13 +4,13 @@ This is the functional integration contract. CM owns the actual UI, Discord hand
 
 ## Weekly deadlines and results release
 
-Players submit reports until **Sunday 15:00 CET** for the round just raced. Use the Discord receipt timestamp, with the inclusive cutoff at 15:00:00 UTC+01:00. Store the round and report revision. Keep late reports visibly labelled for a steward to assess; a late submission must not silently replace an on-time record.
+MEE6 handles report submission and the report workflow outside this CM integration. Players submit reports until **Sunday 15:00 CET** for the round just raced. The deadline and any late-report handling remain in MEE6; CM does not implement report intake or acceptance.
 
 Reports are analyzed and stewards make the decisions. **Sunday 23:00 CET** is the operational deadline for all decisions, automatic application and availability of the final sequence. Replace the previous Sunday 20:00 publication rule with release driven by completion of the verified review. A fully verified sequence can become available earlier. The 23:00 deadline is not an additional waiting period.
 
-The organizer-approved final decision set, numeric ACSM read-back, refreshed standings and regenerated publication files remain mandatory. An empty decision list must also be explicitly confirmed as the completed review. If unresolved reports, incomplete decisions, failed/ambiguous writes or stale posters remain at 23:00, keep the sequence blocked and notify the configured super admin with the specific outstanding work. The deadline never implies that missing decisions were approved.
+The organizer-approved final decision set, numeric ACSM read-back, refreshed standings and regenerated publication files remain mandatory. An empty decision list must also be explicitly confirmed as the completed review. If owner finalization is missing, decisions are incomplete, writes are failed/ambiguous or posters are stale at 23:00, keep the sequence blocked and notify the configured super admin with the specific outstanding work. The deadline never implies that missing decisions were approved.
 
-CM must track review completeness through its round/report model. Individual Apply actions add decisions; they do not establish that all reports were reviewed. Surface report progress and the round's existing final-review confirmation control in the CM UI. Preserve the requested simple permanent Discord panel.
+The owner explicitly finalizes the complete decision set in CM. CM attributes the supplied decisions and verifies their application. Report intake, report review tracking and late-report acceptance remain in MEE6/the existing process.
 
 ## UI configuration
 
@@ -101,7 +101,7 @@ The authenticated Apply action is the validation of this decision bundle. The co
 
 The sanction-summary message is a per-case audit message. Include player mention, round/date, incident types, reasons, every component and status. Initial status is `Applying` until verified. CM applies the approved seconds and points automatically through the real ACSM editing mechanisms, then edits the same summary to `Applied and verified`. Record partial failures with actionable details and retry/reconcile them. A failed Discord summary send must not cause the accepted numeric penalties to be applied twice.
 
-Outstanding units are added transactionally, with immediate reset at three and carry-over of surplus. First threshold creates the round-ban enforcement record; second threshold creates the league-ban record. Retain the lifetime threshold-event count and the current active counter. Replays of a decision never add units again. Ban application/enforcement uses the actual configured adapters and persists receipts; show pending enforcement accurately.
+Outstanding units are added transactionally, with immediate reset at three and carry-over of surplus. First threshold creates the round-ban enforcement record; second threshold creates the league-ban record. Retain the lifetime threshold-event count and the current active counter. Replays of a decision never add units again. Ban enforcement is manual; record the manual action and preserve pending state accurately. Practice remains allowed under a round ban.
 
 Apply the numeric updates exactly once, verify official race and championship data, then regenerate dependent text/posters. Race time sanctions can change the finishing classification; point deductions can change both championship tables under the actual scoring rules. A completed race's original starting grid remains a historical fact. Future-grid eligibility changes arise from an explicit affected-round ban or other explicitly supplied grid decision; do not manufacture grid-place penalties from time sanctions.
 
@@ -131,10 +131,14 @@ Include round/date, ready timestamp, review revision, ACSM verification status, 
 
 Use the actual stored draft/preview link for internal checking where CM supports it. Before publication the public Results jump link does not yet exist, so do not fabricate it. The results announcement obtains its jump link only after the full Results sequence is delivered.
 
-Persist the notification message ID with the ready revision. Update it after an amendment and mark a stale sequence blocked while it is regenerated. An ambiguous notification send is reconciled through the normal delivery ledger. The notification gives the organizer a current verification summary; it adds no new mandatory approval step beyond the confirmed final review.
+Persist the notification message ID with the ready revision. Update it after an amendment and mark a stale sequence blocked while it is regenerated. An ambiguous notification send is reconciled through the normal delivery ledger. The notification gives the organizer a current verification summary; it starts the owner-only publication validation window defined in OWNER_DECISIONS.md. Automatic validation occurs after one hour only if the owner has not responded.
 
 ## Deadline monitoring and acceptance tests
 
-Show report cutoff and finalization deadline in CM's round UI. At report cutoff, summarize report count and unresolved cases for stewards. At the finalization deadline, notify the organizer of any blocker. If a package is already ready, show its ready state and previously sent notification. Never mark a write verified merely to satisfy the time limit.
+Show report cutoff and finalization deadline in CM's round UI. Display the MEE6-managed report cutoff as context; do not add report-count tracking or a parallel report workflow. At the finalization deadline, notify the organizer of any blocker. If a package is already ready, show its ready state and previously sent notification. Never mark a write verified merely to satisfy the time limit.
 
 Test role removal between form steps, two simultaneous stewards, entrants updates, dropdown pagination, multiple sanctions, mandatory reason modals, duplicate Apply, an ambiguous ACSM write, crash/restart, threshold resets, second maximum, missed deadlines, explicit no-penalty finalization, result-order/points changes and the tagged results-ready notification. The full sequence must remain blocked whenever an applicable finalization condition is unresolved.
+
+## Authoritative owner decisions
+
+[OWNER_DECISIONS.md](OWNER_DECISIONS.md) supersedes earlier recommendations on review finalization, publication control, cancellation, MEE6 report scope, manual bans and the one-hour owner-response timeout. Apply those decisions before implementing this workflow.
