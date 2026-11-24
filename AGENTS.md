@@ -12,3 +12,4 @@ Before any CM/Post Results integration work, read [VSC_INTEGRATION.md](Champions
 
 If working in a separate CM application repository, add this canonical guide link to that repository's existing AGENTS.md or equivalent VSC instructions so it is discovered there too. Preserve existing application instructions. The content repository does not contain the CM runtime.
 
+Before implementing or changing sanctions, read [ACSM-Penalties-POST.md](Championship%20Manager/ACSM-Penalties-POST.md) in full. It specifies the verified HTTP forms, cancellation rules, and scheduled Blocklist execution for authorized round and league bans.
