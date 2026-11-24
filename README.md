@@ -71,3 +71,7 @@ Le catalogue des posts de ligue, les textes, les posters et le contrat de lectur
 - [Contrat d’intégration CM](Championship%20Manager/CONSUMER.md)
 - [Règles de production](Championship%20Manager/PRODUCTION.md)
 
+
+### Required reading for VSC / CM integration
+
+Read the [Post Results implementation handoff](Championship%20Manager/VSC_INTEGRATION.md) before implementing the bot connection or native CM UI. Responsibilities, championship tabs, channel-ID fields, penalty attribution/cancellation, histories and publication controls are specified there.

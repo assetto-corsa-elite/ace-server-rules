@@ -1,5 +1,7 @@
 # Championship Manager feed
 
+**Required for VSC/CM implementation:** read [VSC_INTEGRATION.md](VSC_INTEGRATION.md) first and follow its required reading order. Build native CM actions and Discord actions on the same backend. Preserve the producer/integrator boundary.
+
 Read README.md, PRODUCTION.md CONSUMER.md and ANNOUNCEMENTS.md before preparing or updating a sequence.
 
 - Author the actual English posts and PNG assets here. CM consumes them through catalog.json.

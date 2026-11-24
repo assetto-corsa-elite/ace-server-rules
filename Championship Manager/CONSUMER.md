@@ -1,5 +1,7 @@
 # CM consumer contract v1
 
+Read [VSC_INTEGRATION.md](VSC_INTEGRATION.md) first for responsibilities and the required native CM UI. Source readiness and schedule eligibility below do not replace runtime owner approval, its one-hour window, or other publication gates.
+
 ## Fetch and preview
 
 1. Resolve `main` to a commit SHA. A git pull/checkout or GitHub API fetch is supported. Pin that SHA for the complete import.

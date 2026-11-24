@@ -2,6 +2,10 @@
 
 ACE publication feed for Championship Manager. ChatGPT/Codex authors the posts and posters here. CM reads the feed, shows the available sequences in its UI and delivers their messages to Discord in order.
 
+## Required VSC implementation handoff
+
+Start with [VSC_INTEGRATION.md](VSC_INTEGRATION.md). It assigns responsibilities and specifies the native **Post Results** section: existing championship tabs, sequences, stewarding, penalty/publication histories and owner configuration. Both native CM and Discord actions use the same persistent backend. Read this guide before implementation.
+
 ## Entry point
 
 | Item | Repository path |
@@ -22,7 +26,7 @@ Read `catalog.json` at a resolved commit SHA. Fetch every manifest, text and att
 
 1. Practice Highlights and Forecast, Friday at 19:00 CET.
 2. Pre-Race Briefing, at the explicit time set for that round.
-3. Qualifying Report, Race Results, Stewarding Review, Race Insights, Driver/Team Standings and Next-Round Forecast, after verified final stewarding, due by Sunday 23:00 CET.
+3. Qualifying Report, Race Results, Stewarding Review, Race Insights, Driver/Team Standings and Next-Round Forecast, available after verified final stewarding by Sunday 23:00 CET; publication follows owner approval or the authorized one-hour no-response window.
 
 Each sequence carries an explicit timezone-aware `scheduled_at`. The Friday/Sunday settings guide production; they do not create missing content. Pre-race briefing time is still unset because ACE has not supplied a recurring time for it.
 
