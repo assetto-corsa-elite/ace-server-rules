@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "sequence_id": "league04-r04-pre-race-briefing",
-  "revision": 3,
+  "revision": 4,
   "status": "archived",
   "league_id": "league-04",
   "round": 4,
@@ -43,7 +43,10 @@
         }
       ],
       "kind": "text",
-      "mention_everyone": false
+      "mention_everyone": false,
+      "presentation": {
+        "mode": "direct"
+      }
     }
   ],
   "race_date": "2026-11-21"

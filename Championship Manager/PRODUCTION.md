@@ -51,3 +51,5 @@ Keep screenshots, admin credentials, private chat logs and raw driver database e
 ## Announcement deliverables
 
 Add the race-day 09:00 CET briefing announcement and the three-message results announcement described in [ANNOUNCEMENTS.md](ANNOUNCEMENTS.md). Every Results package must link its announcement posters explicitly. The full Results sequence remains the source of truth, and the announcement links back to its first delivered message.
+
+See [CAROUSELS.md](CAROUSELS.md) for native embed poster viewers, persistent Previous/Next navigation and the categories whose posters remain directly visible.

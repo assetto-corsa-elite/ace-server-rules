@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "revision": 2,
+  "revision": 3,
   "status": "archived",
   "league_id": "league-04",
   "round": 4,
@@ -35,7 +35,10 @@
         "format": "cm-template-v1",
         "sha256": "49cb455321008b7a7ec369432f8d4f767b683b9de624061aef42526cdb1300e8"
       },
-      "attachments": []
+      "attachments": [],
+      "presentation": {
+        "mode": "direct"
+      }
     },
     {
       "post_id": "league04-r04-results-announcement-2",
@@ -65,7 +68,10 @@
           "description": "Championship Standings poster 2",
           "role": "team_standings"
         }
-      ]
+      ],
+      "presentation": {
+        "mode": "direct"
+      }
     },
     {
       "post_id": "league04-r04-results-announcement-3",
@@ -157,7 +163,53 @@
           "content_type": "image/png",
           "description": "Portimao Forecast poster 1"
         }
-      ]
+      ],
+      "presentation": {
+        "mode": "carousel",
+        "title": "REMAINING RESULTS POSTERS",
+        "screens": [
+          {
+            "attachment_path": "sequences/league-04/round-04/post-race/assets/01-01_DRIVER_REPORT.png",
+            "label": "DRIVER REPORT"
+          },
+          {
+            "attachment_path": "sequences/league-04/round-04/post-race/assets/01-02_QUALIFYING_HIGHLIGHTS.png",
+            "label": "QUALIFYING HIGHLIGHTS"
+          },
+          {
+            "attachment_path": "sequences/league-04/round-04/post-race/assets/01-03_TEAM_REPORT.png",
+            "label": "TEAM REPORT"
+          },
+          {
+            "attachment_path": "sequences/league-04/round-04/post-race/assets/02-01_RACE_PODIUM.png",
+            "label": "RACE PODIUM"
+          },
+          {
+            "attachment_path": "sequences/league-04/round-04/post-race/assets/03-01_RACE_CONSISTENCY.png",
+            "label": "RACE CONSISTENCY"
+          },
+          {
+            "attachment_path": "sequences/league-04/round-04/post-race/assets/03-02_RACE_POSITIONS.png",
+            "label": "RACE POSITIONS"
+          },
+          {
+            "attachment_path": "sequences/league-04/round-04/post-race/assets/03-03_RACE_GAPS.png",
+            "label": "RACE GAPS"
+          },
+          {
+            "attachment_path": "sequences/league-04/round-04/post-race/assets/03-04_RACE_GAPS_TOP5.png",
+            "label": "RACE GAPS - TOP FIVE"
+          },
+          {
+            "attachment_path": "sequences/league-04/round-04/post-race/assets/04-01_DRIVER_STANDINGS.png",
+            "label": "DRIVER STANDINGS"
+          },
+          {
+            "attachment_path": "sequences/league-04/round-04/post-race/assets/05-01_PORTIMAO_FORECAST.png",
+            "label": "PORTIMAO FORECAST"
+          }
+        ]
+      }
     }
   ],
   "race_date": "2026-11-21"

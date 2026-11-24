@@ -202,5 +202,49 @@ class AuditRegressionTests(unittest.TestCase):
             feed.validate_template(text.replace('• Another', '    • Another'), self.drivers, self.emojis)
 
 
+class CarouselTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        FeedRegressionTests.setUpClass.__func__(cls)
+        cls.viewer = next(p for p in cls.sequence['posts'] if p['category'] == 'race_insights')
+
+    def test_navigation_edges_and_one_image_per_screen(self):
+        first = feed.render_carousel(self.viewer, 0, 'example-viewer')
+        last = feed.render_carousel(self.viewer, 3, 'example-viewer')
+        self.assertTrue(first['message']['components'][0]['components'][0]['disabled'])
+        self.assertFalse(first['message']['components'][0]['components'][1]['disabled'])
+        self.assertTrue(last['message']['components'][0]['components'][1]['disabled'])
+        self.assertEqual(first['upload'], self.viewer['attachments'][0])
+        self.assertIn('(1/4)', first['message']['embeds'][0]['title'])
+        self.assertEqual(len(first['message']['embeds']), 1)
+        self.assertEqual(last['message']['allowed_mentions']['parse'], [])
+
+    def test_out_of_range_and_missing_screen_fail(self):
+        with self.assertRaises(feed.FeedError):
+            feed.render_carousel(self.viewer, 4, 'example-viewer')
+        broken = copy.deepcopy(self.viewer)
+        broken['presentation']['screens'].pop()
+        with self.assertRaises(feed.FeedError):
+            feed.validate_presentation(broken)
+
+    def test_protected_posters_stay_direct(self):
+        for m in self.manifests:
+            for post in m['posts']:
+                if post['category'] in ['race_results', 'standings', 'pre_race_briefing', 'pre_race_announcement']:
+                    self.assertEqual(post['presentation']['mode'], 'direct')
+        wrong = copy.deepcopy(self.post)
+        wrong['presentation'] = copy.deepcopy(self.viewer['presentation'])
+        with self.assertRaises(feed.FeedError):
+            feed.validate_presentation(wrong)
+
+    def test_announcement_keeps_three_messages_and_all_screens(self):
+        m = next(m for m in self.manifests if m['phase'] == 'results_announcement')
+        self.assertEqual(len(m['posts']), 3)
+        self.assertEqual(m['posts'][1]['presentation']['mode'], 'direct')
+        self.assertEqual(m['posts'][2]['presentation']['mode'], 'carousel')
+        self.assertEqual(len(m['posts'][2]['presentation']['screens']), 10)
+        feed.validate_presentation(m['posts'][2])
+
+
 if __name__ == '__main__':
     unittest.main()

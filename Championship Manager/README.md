@@ -64,3 +64,5 @@ See [ANNOUNCEMENTS.md](ANNOUNCEMENTS.md) for race-day announcements at 09:00 CET
 ## Editorial direction
 
 [EDITORIAL.md](EDITORIAL.md) defines distinct roles for each post, a round-specific storyline, whole-field and team coverage, contextualized statistics and sharper, varied humour. Detailed content is retained through readable structure and successive messages.
+
+See [CAROUSELS.md](CAROUSELS.md) for native embed poster viewers, persistent Previous/Next navigation and the categories whose posters remain directly visible.

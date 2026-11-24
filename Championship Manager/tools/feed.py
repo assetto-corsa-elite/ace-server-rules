@@ -161,8 +161,7 @@ def validate(root: Path) -> tuple[dict, list[dict]]:
                     raise FeedError("Results announcement requires its complete-results link")
             elif post["content"] is not None or not post["attachments"]:
                 raise FeedError("Media post requires images and null content")
-            if not 0 <= len(post["attachments"]) <= 10:
-                raise FeedError("A post permits at most 10 ordered attachments")
+            validate_presentation(post)
             filenames = set()
             for attachment in post["attachments"]:
                 data = checked_bytes(root, attachment)
@@ -257,6 +256,57 @@ def validate_dependencies(manifests: list[dict]) -> None:
         remaining = [asset for asset in source_images if asset["path"] not in selected]
         if posts[1]["attachments"] != first or posts[2]["attachments"] != remaining:
             raise FeedError("Announcement must include the two results posters then every remaining source poster exactly in order")
+
+
+def validate_presentation(post: dict) -> None:
+    presentation = post.get("presentation", {})
+    mode = presentation.get("mode")
+    if mode == "direct":
+        if len(post["attachments"]) > 10:
+            raise FeedError("Direct messages permit at most ten attachments")
+        if presentation.get("screens"):
+            raise FeedError("Direct posters cannot contain carousel screens")
+        return
+    if mode != "carousel":
+        raise FeedError("Unknown presentation mode")
+    if post["category"] in {"practice_highlights", "pre_race_briefing", "race_results", "standings", "forecast", "next_round_forecast", "pre_race_announcement"}:
+        raise FeedError("This category keeps its posters directly visible")
+    if post["category"] == "race_results_announcement" and post["order"] != 3:
+        raise FeedError("Only the third results announcement is a carousel")
+    screens = presentation.get("screens", [])
+    if len(screens) < 2 or [screen["attachment_path"] for screen in screens] != [a["path"] for a in post["attachments"]]:
+        raise FeedError("Carousel screens must cover every source poster in order")
+    title = presentation.get("title", "")
+    if not title or len(title) > 100:
+        raise FeedError("Carousel needs a short clear heading")
+    for screen in screens:
+        if not screen.get("label") or len(screen["label"]) > 100:
+            raise FeedError("Each screen needs a clear label")
+
+
+def render_carousel(post: dict, page: int, viewer_key: str) -> dict:
+    """Return a one-image embed update plus its file descriptor for CM to upload."""
+    validate_presentation(post)
+    if post["presentation"]["mode"] != "carousel":
+        raise FeedError("Post is not a carousel")
+    if not re.fullmatch(r"[a-zA-Z0-9-]{1,48}", viewer_key):
+        raise FeedError("Invalid persistent viewer key")
+    screens = post["presentation"]["screens"]
+    if type(page) is not int or page < 0 or page >= len(screens):
+        raise FeedError("Invalid carousel page")
+    screen = screens[page]
+    asset = post["attachments"][page]
+    heading = f"{post['presentation']['title']} | {screen['label']} ({page + 1}/{len(screens)})"
+    message = {
+        "embeds": [{"title": heading, "color": 0x0755FF,
+                    "image": {"url": "attachment://" + asset["filename"]},
+                    "footer": {"text": f"ACE / Page {page + 1} of {len(screens)}"}}],
+        "components": [{"type": 1, "components": [
+            {"type": 2, "style": 2, "label": "Previous", "custom_id": f"cm:viewer:{viewer_key}:previous", "disabled": page == 0},
+            {"type": 2, "style": 2, "label": "Next", "custom_id": f"cm:viewer:{viewer_key}:next", "disabled": page == len(screens) - 1}]}],
+        "allowed_mentions": {"parse": [], "users": [], "roles": [], "replied_user": False},
+    }
+    return {"message": message, "upload": asset, "page": page}
 
 
 def validate_post_policy(post: dict) -> None:

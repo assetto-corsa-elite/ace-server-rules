@@ -8,7 +8,7 @@
 4. Keep the previously validated snapshot available if an import fails. Mark the new snapshot as invalid in CM and retry fetching. Never combine files from two commits.
 5. Display ready, draft, archived and cancelled sequences separately. Show track, round, scheduled local date/time, revision, ordered posts, text preview, ordered image thumbnails, validation errors and delivery status.
 
-The catalog is a directory of content. Every message is a manifest post with `kind=text` or `kind=media`. Text posts contain a template and zero to ten ordered attachments. Media posts have null content and one to ten ordered attachments. A message with four posters is one Discord message with four files. The next post follows only after successful completion of the previous post.
+The catalog is a directory of content. Every message is a manifest post with `kind=text` or `kind=media`. Text posts contain a template and zero to ten ordered attachments. Media posts have null content. Direct posts upload at most ten attachments; carousel posts list every logical screen and upload only the active image. A message with four posters is one Discord message with four files. The next post follows only after successful completion of the previous post.
 
 ## Identity and emoji rendering
 
@@ -69,3 +69,7 @@ CM imports the four historical sequences into its archive view. The current cata
 ## Announcement extension
 
 [ANNOUNCEMENTS.md](ANNOUNCEMENTS.md) defines the two logical channels, runtime Results jump link, image-only message kinds and the authorized everyone exceptions. This extension governs notification permissions and announcement ordering. The reference renderer returns the correct allowlist for each kind.
+
+## Poster presentation
+
+Apply [CAROUSELS.md](CAROUSELS.md) at the post's existing sequence position. Read presentation.mode before building Discord files. Persist carousel views and use the reference screen renderer for embed/button payloads. Protect the direct individual/team posters and practice highlights.

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "revision": 2,
+  "revision": 3,
   "status": "archived",
   "league_id": "league-04",
   "round": 4,
@@ -43,7 +43,10 @@
           "content_type": "image/png",
           "description": "02 DRIVER TEAM STANDINGS"
         }
-      ]
+      ],
+      "presentation": {
+        "mode": "direct"
+      }
     }
   ],
   "race_date": "2026-11-21"

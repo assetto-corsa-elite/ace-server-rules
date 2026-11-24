@@ -67,3 +67,7 @@ The committed checks are runnable locally and by the future producer. A GitHub A
 ## Editorial rule confirmed by ACE
 
 The volume of information is not the problem. Do not remove pertinent analysis or team content merely to make posts shorter. Use short sentences, explicit line breaks, separate sections and shallow lists. A detailed package can contain successive messages with stable IDs and contiguous order. Only the first authorized message receives everyone; continuations do not.
+
+## Carousel extension
+
+Feed metadata now declares direct/carousel presentation. The reference code validates screen coverage and builds one-image embeds with Previous/Next buttons. The actual persistent handlers, edit operations and real-guild checks belong to the pending CM implementation. See CAROUSELS.md.

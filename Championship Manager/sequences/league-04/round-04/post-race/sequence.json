@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "sequence_id": "league04-r04-post-race",
-  "revision": 3,
+  "revision": 4,
   "status": "archived",
   "league_id": "league-04",
   "round": 4,
@@ -51,7 +51,25 @@
         }
       ],
       "kind": "text",
-      "mention_everyone": false
+      "mention_everyone": false,
+      "presentation": {
+        "mode": "carousel",
+        "title": "QUALIFYING REPORT",
+        "screens": [
+          {
+            "attachment_path": "sequences/league-04/round-04/post-race/assets/01-01_DRIVER_REPORT.png",
+            "label": "DRIVER REPORT"
+          },
+          {
+            "attachment_path": "sequences/league-04/round-04/post-race/assets/01-02_QUALIFYING_HIGHLIGHTS.png",
+            "label": "QUALIFYING HIGHLIGHTS"
+          },
+          {
+            "attachment_path": "sequences/league-04/round-04/post-race/assets/01-03_TEAM_REPORT.png",
+            "label": "TEAM REPORT"
+          }
+        ]
+      }
     },
     {
       "post_id": "league04-r04-race-results",
@@ -84,7 +102,10 @@
         }
       ],
       "kind": "text",
-      "mention_everyone": false
+      "mention_everyone": false,
+      "presentation": {
+        "mode": "direct"
+      }
     },
     {
       "post_id": "league04-r04-race-insights",
@@ -132,7 +153,29 @@
         }
       ],
       "kind": "text",
-      "mention_everyone": false
+      "mention_everyone": false,
+      "presentation": {
+        "mode": "carousel",
+        "title": "RACE INSIGHTS",
+        "screens": [
+          {
+            "attachment_path": "sequences/league-04/round-04/post-race/assets/03-01_RACE_CONSISTENCY.png",
+            "label": "RACE CONSISTENCY"
+          },
+          {
+            "attachment_path": "sequences/league-04/round-04/post-race/assets/03-02_RACE_POSITIONS.png",
+            "label": "RACE POSITIONS"
+          },
+          {
+            "attachment_path": "sequences/league-04/round-04/post-race/assets/03-03_RACE_GAPS.png",
+            "label": "RACE GAPS"
+          },
+          {
+            "attachment_path": "sequences/league-04/round-04/post-race/assets/03-04_RACE_GAPS_TOP5.png",
+            "label": "RACE GAPS - TOP FIVE"
+          }
+        ]
+      }
     },
     {
       "post_id": "league04-r04-standings",
@@ -165,7 +208,10 @@
         }
       ],
       "kind": "text",
-      "mention_everyone": false
+      "mention_everyone": false,
+      "presentation": {
+        "mode": "direct"
+      }
     },
     {
       "post_id": "league04-r04-next-round-forecast",
@@ -189,7 +235,10 @@
         }
       ],
       "kind": "text",
-      "mention_everyone": false
+      "mention_everyone": false,
+      "presentation": {
+        "mode": "direct"
+      }
     }
   ],
   "race_date": "2026-11-21"
