@@ -1,0 +1,270 @@
+{
+  "schema_version": 1,
+  "sequence_id": "test-league04-r04-post-race",
+  "revision": 1,
+  "status": "draft",
+  "league_id": "league-04",
+  "round": 4,
+  "track": "Nordschleife Endurance",
+  "phase": "post_race",
+  "title": "TEST / Round 4 - Nordschleife results",
+  "scheduled_at": "2026-11-22T20:00:00+01:00",
+  "expires_at": null,
+  "race_review_complete": true,
+  "posts": [
+    {
+      "post_id": "test-league04-r04-qualifying-report",
+      "order": 1,
+      "category": "qualifying_report",
+      "title": "Qualifying Report",
+      "destination_key": "results",
+      "content": {
+        "path": "TEST/league-04/round-04/post-race/01-qualifying_report.txt",
+        "sha256": "c4b54a3778d07250c5941df6484e745af8d3419abc47074ba116b1b3e4fd4dd2",
+        "format": "cm-template-v1"
+      },
+      "attachments": [
+        {
+          "path": "TEST/league-04/round-04/post-race/assets/01-01_DRIVER_REPORT.png",
+          "filename": "01-01_DRIVER_REPORT.png",
+          "sha256": "b6872236f59845b57c253d62b946056f5f8d4fa908270a058a11e44fd9d6cfb2",
+          "size_bytes": 243245,
+          "content_type": "image/png",
+          "description": "Qualifying Report poster 1"
+        },
+        {
+          "path": "TEST/league-04/round-04/post-race/assets/01-02_QUALIFYING_HIGHLIGHTS.png",
+          "filename": "01-02_QUALIFYING_HIGHLIGHTS.png",
+          "sha256": "6e4daf509595303e4414d5cffbf8e44a3eb9b9d39b11b2a7a4846470d3951f92",
+          "size_bytes": 1351613,
+          "content_type": "image/png",
+          "description": "Qualifying Report poster 2"
+        },
+        {
+          "path": "TEST/league-04/round-04/post-race/assets/01-03_TEAM_REPORT.png",
+          "filename": "01-03_TEAM_REPORT.png",
+          "sha256": "458a69648612a2c5f34a1bc0e8bd99f11603f2edad9138a9cdc1186632a20531",
+          "size_bytes": 445750,
+          "content_type": "image/png",
+          "description": "Qualifying Report poster 3"
+        }
+      ],
+      "kind": "text",
+      "mention_everyone": false,
+      "presentation": {
+        "mode": "carousel",
+        "title": "QUALIFYING REPORT",
+        "screens": [
+          {
+            "attachment_path": "TEST/league-04/round-04/post-race/assets/01-01_DRIVER_REPORT.png",
+            "label": "DRIVER REPORT"
+          },
+          {
+            "attachment_path": "TEST/league-04/round-04/post-race/assets/01-02_QUALIFYING_HIGHLIGHTS.png",
+            "label": "QUALIFYING HIGHLIGHTS"
+          },
+          {
+            "attachment_path": "TEST/league-04/round-04/post-race/assets/01-03_TEAM_REPORT.png",
+            "label": "TEAM REPORT"
+          }
+        ]
+      }
+    },
+    {
+      "post_id": "test-league04-r04-race-results",
+      "order": 2,
+      "category": "race_results",
+      "title": "Race Results",
+      "destination_key": "results",
+      "content": {
+        "path": "TEST/league-04/round-04/post-race/02-race_results.txt",
+        "sha256": "5e7d4b011b644c692fdc8e06f97c9f0d39df78cb4ca730ca47ab69587233b416",
+        "format": "cm-template-v1"
+      },
+      "attachments": [
+        {
+          "path": "TEST/league-04/round-04/post-race/assets/02-01_RACE_PODIUM.png",
+          "filename": "02-01_RACE_PODIUM.png",
+          "sha256": "82bb3b8372d8aabdcdb673da94c37ac054d2c3e2f97dbb7d56939f5cc2c56e93",
+          "size_bytes": 1328208,
+          "content_type": "image/png",
+          "description": "Race Results poster 1"
+        },
+        {
+          "path": "TEST/league-04/round-04/post-race/assets/02-02_RACE_CLASSIFICATION.png",
+          "filename": "02-02_RACE_CLASSIFICATION.png",
+          "sha256": "b1846a2915a05640720536947db6504cc29433f2e316e0f29135d7ea83afc6e1",
+          "size_bytes": 235546,
+          "content_type": "image/png",
+          "description": "Race Results poster 2",
+          "role": "race_classification"
+        }
+      ],
+      "kind": "text",
+      "mention_everyone": false,
+      "presentation": {
+        "mode": "direct"
+      }
+    },
+    {
+      "post_id": "test-league04-r04-stewarding-review",
+      "order": 3,
+      "category": "stewarding_review",
+      "title": "Stewarding Review",
+      "destination_key": "results",
+      "kind": "text",
+      "mention_everyone": false,
+      "content": {
+        "path": "TEST/league-04/round-04/post-race/06-stewarding_review.txt",
+        "sha256": "0af345ec5d1324a724a90cb12ed8081d1268873658eca11a77fe9901fa378121",
+        "format": "cm-template-v1"
+      },
+      "attachments": [],
+      "presentation": {
+        "mode": "direct"
+      }
+    },
+    {
+      "post_id": "test-league04-r04-race-insights",
+      "order": 4,
+      "category": "race_insights",
+      "title": "Race Insights",
+      "destination_key": "results",
+      "content": {
+        "path": "TEST/league-04/round-04/post-race/03-race_insights.txt",
+        "sha256": "6fd8911e9df1a02a81fb9a5c29885e303e421f08653be0911ad002518ebe464a",
+        "format": "cm-template-v1"
+      },
+      "attachments": [
+        {
+          "path": "TEST/league-04/round-04/post-race/assets/03-01_RACE_CONSISTENCY.png",
+          "filename": "03-01_RACE_CONSISTENCY.png",
+          "sha256": "ef0af59ecb866d74e9fd336e2f23ff18457f743a219f2af62d09a2dd9131c0da",
+          "size_bytes": 1182010,
+          "content_type": "image/png",
+          "description": "Race Insights poster 1"
+        },
+        {
+          "path": "TEST/league-04/round-04/post-race/assets/03-02_RACE_POSITIONS.png",
+          "filename": "03-02_RACE_POSITIONS.png",
+          "sha256": "48b2ecf610e7602369ea0cf4fe53af8f9ccf21863df604180f1c1e0ed1e48808",
+          "size_bytes": 349646,
+          "content_type": "image/png",
+          "description": "Race Insights poster 2"
+        },
+        {
+          "path": "TEST/league-04/round-04/post-race/assets/03-03_RACE_GAPS.png",
+          "filename": "03-03_RACE_GAPS.png",
+          "sha256": "f13431a6c33cae4f0e027554812d26d6ed3ee5f09462fd11fa64c8f5df7d0b77",
+          "size_bytes": 348189,
+          "content_type": "image/png",
+          "description": "Race Insights poster 3"
+        },
+        {
+          "path": "TEST/league-04/round-04/post-race/assets/03-04_RACE_GAPS_TOP5.png",
+          "filename": "03-04_RACE_GAPS_TOP5.png",
+          "sha256": "6d76b365753ac0c8e47ce04c6953269cc3fd2993769aadd37fa178dedabfb087",
+          "size_bytes": 216593,
+          "content_type": "image/png",
+          "description": "Race Insights poster 4"
+        }
+      ],
+      "kind": "text",
+      "mention_everyone": false,
+      "presentation": {
+        "mode": "carousel",
+        "title": "RACE INSIGHTS",
+        "screens": [
+          {
+            "attachment_path": "TEST/league-04/round-04/post-race/assets/03-01_RACE_CONSISTENCY.png",
+            "label": "RACE CONSISTENCY"
+          },
+          {
+            "attachment_path": "TEST/league-04/round-04/post-race/assets/03-02_RACE_POSITIONS.png",
+            "label": "RACE POSITIONS"
+          },
+          {
+            "attachment_path": "TEST/league-04/round-04/post-race/assets/03-03_RACE_GAPS.png",
+            "label": "RACE GAPS"
+          },
+          {
+            "attachment_path": "TEST/league-04/round-04/post-race/assets/03-04_RACE_GAPS_TOP5.png",
+            "label": "RACE GAPS - TOP FIVE"
+          }
+        ]
+      }
+    },
+    {
+      "post_id": "test-league04-r04-standings",
+      "order": 5,
+      "category": "standings",
+      "title": "Championship Standings",
+      "destination_key": "results",
+      "content": {
+        "path": "TEST/league-04/round-04/post-race/04-standings.txt",
+        "sha256": "baf24301fb5c452a2640bb07acdc236eeeac6568e2c3619dee02199d77db979b",
+        "format": "cm-template-v1"
+      },
+      "attachments": [
+        {
+          "path": "TEST/league-04/round-04/post-race/assets/04-01_DRIVER_STANDINGS.png",
+          "filename": "04-01_DRIVER_STANDINGS.png",
+          "sha256": "f63c2da9cad080d47fbd697cda1a0aa36cfe67b712fb49163a473f433b7179ee",
+          "size_bytes": 969683,
+          "content_type": "image/png",
+          "description": "Championship Standings poster 1"
+        },
+        {
+          "path": "TEST/league-04/round-04/post-race/assets/04-02_TEAM_STANDINGS.png",
+          "filename": "04-02_TEAM_STANDINGS.png",
+          "sha256": "a5baff1c4e0ccf4638a353af6b335b6a9543407bead62d1948099029deadd4f5",
+          "size_bytes": 894082,
+          "content_type": "image/png",
+          "description": "Championship Standings poster 2",
+          "role": "team_standings"
+        }
+      ],
+      "kind": "text",
+      "mention_everyone": false,
+      "presentation": {
+        "mode": "direct"
+      }
+    },
+    {
+      "post_id": "test-league04-r04-next-round-forecast",
+      "order": 6,
+      "category": "next_round_forecast",
+      "title": "Portimao Forecast",
+      "destination_key": "results",
+      "content": {
+        "path": "TEST/league-04/round-04/post-race/05-next_round_forecast.txt",
+        "sha256": "9027b815763522247b851fca4dee7f578276a409fbd814fce2f48c9c0543f87a",
+        "format": "cm-template-v1"
+      },
+      "attachments": [
+        {
+          "path": "TEST/league-04/round-04/post-race/assets/05-01_PORTIMAO_FORECAST.png",
+          "filename": "05-01_PORTIMAO_FORECAST.png",
+          "sha256": "f29ac29a3111bf86c1b1139238a87d1d0b890d8d56750e49f60fe41f9afcc32d",
+          "size_bytes": 1545173,
+          "content_type": "image/png",
+          "description": "Portimao Forecast poster 1"
+        }
+      ],
+      "kind": "text",
+      "mention_everyone": false,
+      "presentation": {
+        "mode": "direct"
+      }
+    }
+  ],
+  "race_date": "2026-11-21",
+  "stewarding_review": {
+    "path": "TEST/league-04/round-04/stewarding-review.json",
+    "sha256": "cc73b755ed848b5fc72cc926f72aea6a226efaa5f90841d2ffb90e9cff43cb8a"
+  },
+  "result_snapshot_sha256": null,
+  "requires_sequences": [
+    "test-league04-r04-race-day-announcement"
+  ]
+}

@@ -1,0 +1,35 @@
+# ⚡ NORDSCHLEIFE ROUND 4 - PRE-RACE BRIEFING ⚡
+
+{{emoji:checked}} 📅 **RACE DAY**
+<t:1795274100:F>
+Layout: **Nordschleife Endurance**.
+
+{{emoji:checked}} ⏱️ **SCHEDULE**
+<t:1795267800:t> - Practice | 60 minutes
+<t:1795271400:t> - Qualifying | 45 minutes
+<t:1795274100:t> - Race | **90 minutes + 1 lap**
+
+{{emoji:checked}} ⛽ **ONE MANDATORY PIT STOP**
+Opens 15 minutes after the start. Closes 10 minutes before the 90-minute timer expires.
+**Window: elapsed minute 15 to minute 80.**
+Complete the mandatory stop inside the window.
+
+{{emoji:checked}} 🌇 **CONDITIONS**
+Day/night cycles. Fixed air and track temperatures.
+Damage multiplier: **30%**.
+
+{{emoji:checked}} 🚨 **PITLANE**
+Collisions in the pits are enabled. Leave room around pit boxes.
+Pitlane speeding results in a **drive-through penalty**.
+
+{{emoji:checked}} 🔮 **THE FORECAST**
+Versthappening won VIR. Kaasglenneman won Daytona.
+LilCoughDrop won Road America by **4.128s**.
+Three rounds, three winners.
+
+{{emoji:checked}} 📊 **THE CHAMPIONSHIP**
+LilCoughDrop **73 pts** | Kaasglenneman **50** | Versthappening **47**.
+Pirates **81** | Blue Hue **62** | The Heart of Binning **52** | Burnout\_Baddies **51**.
+Three points split P2 and P3. One point divides the Lexus and Audi teams.
+
+https://es2.assettohosting.com:10190/live-timing

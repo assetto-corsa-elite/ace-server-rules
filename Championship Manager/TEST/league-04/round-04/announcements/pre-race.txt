@@ -1,0 +1,21 @@
+# 🏁 NORDSCHLEIFE ROUND 4 - RACE DAY
+
+{{emoji:checked}} 📅 **TODAY'S RACE**
+<t:1795274100:F> | Nordschleife Endurance
+
+{{emoji:checked}} ⏱️ **SCHEDULE**
+<t:1795267800:t> Practice | <t:1795271400:t> Qualifying
+<t:1795274100:t> Race - **90 minutes + 1 lap**
+
+{{emoji:checked}} ⛽ **MANDATORY STOP**
+One stop. Pit window: **elapsed minute 15 to minute 80**.
+
+{{emoji:checked}} 🚨 **ESSENTIALS**
+• Day/night cycles. Fixed air and track temperatures.
+• 30% damage. Collisions enabled in pits.
+• Pitlane speeding = drive-through.
+
+{{emoji:checked}} 🔮 **THE FIGHT**
+LilCoughDrop leads on 73 points.
+Kaasglenneman has 50; Versthappening has 47.
+Pirates 81 | Blue Hue 62 | The Heart of Binning 52 | Burnout\_Baddies 51.

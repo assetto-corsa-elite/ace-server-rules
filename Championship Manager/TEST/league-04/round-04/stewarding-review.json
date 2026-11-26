@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "review_id": "test-league04-r04-stewarding",
+  "revision": 2,
+  "league_id": "league-04",
+  "round": 4,
+  "state": "archived",
+  "organizer_supplied": true,
+  "approval_reference": "Organizer instruction in this project conversation after completed Nordschleife race review",
+  "numeric_application_state": "not_required",
+  "result_snapshot_sha256": null,
+  "decisions": [
+    {
+      "decision_id": "test-league04-r04-noobdoc-outstanding",
+      "driver_key": "noob_doc",
+      "type": "outstanding_penalty",
+      "value": 2,
+      "reason": "repetitive blueflag incidents",
+      "public_wording": "Noob Doc Outstanding Penalty 2/3 for repetitive blueflag incidents",
+      "enforcement_state": "historical_record",
+      "active_counter_before": null,
+      "active_counter_after": 2,
+      "maximum_events_after": null,
+      "outstanding_mode": "snapshot"
+    }
+  ],
+  "history_note": "Historical publication fixture only. Do not import as a new decision, increment counters, apply a sanction, or write to ACSM."
+}

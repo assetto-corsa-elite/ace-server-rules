@@ -1,0 +1,23 @@
+# 🏁 NORDSCHLEIFE ROUND 4 - PRACTICE HIGHLIGHTS
+
+{{emoji:checked}} ⏱️ **EVENT-SESSION SNAPSHOT**
+Practice export dated <t:1795271580:F>.
+**6 drivers | 9 recorded laps | 1 classified best lap.**
+This is the event session, not the whole week of practice.
+
+{{emoji:checked}} 🏎️ **THE CLASSIFIED BENCHMARK**
+Andy Thompson records **8:21.031** in the BMW M4 GT3 EVO.
+He is the only driver with a classified best lap in this export.
+The other five have a no-time sentinel, not a 277-hour lap.
+
+{{emoji:checked}} 🔁 **WHO PUT LAPS IN**
+• Andy Thompson, GreEZ and Otherside: **2 laps each**.
+• Eugene Mulin, LilCoughDrop and Kaasglenneman: **1 each**.
+These are recorded lap counts, not valid flying-lap counts.
+
+{{emoji:checked}} 🤝 **THE TEAM SAMPLE**
+MMMNuts records **3 laps** across Eugene and Otherside.
+Damsels in Distress and Lambda Racing record two each.
+The sample cannot support a fastest-model ranking or a full-week prediction.
+
+https://es2.assettohosting.com:10190/results/2026_11_21_15_33_PRACTICE

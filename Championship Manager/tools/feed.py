@@ -399,6 +399,8 @@ def validate_post_policy(post: dict) -> None:
 
 def render(root: Path, post: dict, bindings: dict) -> dict:
     """Bindings come from CM's existing driver DB and destination guild emoji lookup."""
+    if post['post_id'].startswith('test-'):
+        raise FeedError('Use TEST/tools/render_test.py for TEST posts; production rendering is forbidden')
     validate_post_policy(post)
     if post["kind"] == "media":
         return {"content": "", "allowed_mentions": {"parse": [], "users": [], "roles": [], "replied_user": False}}

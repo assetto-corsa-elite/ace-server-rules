@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-24T13:31:22.458669+00:00",
+  "generated_at": "2026-11-26T16:09:54.601740+00:00",
   "sequences": [
     {
       "sequence_id": "league04-r04-race-day-announcement",
@@ -45,6 +45,61 @@
       "scheduled_at": null,
       "path": "sequences/league-04/round-04/pre-race-briefing/sequence.json",
       "sha256": "3b41fbc2f4724e26b0d55862021c77b2457e254f93cb95626c328eac521bf338"
+    },
+    {
+      "sequence_id": "test-league04-r04-pre-race",
+      "revision": 1,
+      "status": "draft",
+      "phase": "pre_race",
+      "league_id": "league-04",
+      "round": 4,
+      "scheduled_at": null,
+      "path": "TEST/league-04/round-04/pre-race/sequence.json",
+      "sha256": "ec735b3a9a43644c9605cd8e5d89f8d85b44f34eaefa3087fd347d4530d68b71"
+    },
+    {
+      "sequence_id": "test-league04-r04-pre-race-briefing",
+      "revision": 1,
+      "status": "draft",
+      "phase": "pre_race_briefing",
+      "league_id": "league-04",
+      "round": 4,
+      "scheduled_at": null,
+      "path": "TEST/league-04/round-04/pre-race-briefing/sequence.json",
+      "sha256": "4acb61a0a2cd3088b67a24543397453ee12b5758659f6a81ae5bcf7bac523192"
+    },
+    {
+      "sequence_id": "test-league04-r04-race-day-announcement",
+      "revision": 1,
+      "status": "draft",
+      "phase": "race_day_announcement",
+      "league_id": "league-04",
+      "round": 4,
+      "scheduled_at": "2026-11-21T09:00:00+01:00",
+      "path": "TEST/league-04/round-04/announcements/pre-race.sequence.json",
+      "sha256": "821c17f310cacf30d0a3a496a2d27373a6b470719255f34e0ddfb27cc90b5fef"
+    },
+    {
+      "sequence_id": "test-league04-r04-post-race",
+      "revision": 1,
+      "status": "draft",
+      "phase": "post_race",
+      "league_id": "league-04",
+      "round": 4,
+      "scheduled_at": "2026-11-22T20:00:00+01:00",
+      "path": "TEST/league-04/round-04/post-race/sequence.json",
+      "sha256": "7bb33b081d7d4174f5f4745bfb6570380ecdfa180a7f4987fcb0c0a603f38f5d"
+    },
+    {
+      "sequence_id": "test-league04-r04-results-announcement",
+      "revision": 1,
+      "status": "draft",
+      "phase": "results_announcement",
+      "league_id": "league-04",
+      "round": 4,
+      "scheduled_at": "2026-11-22T20:00:00+01:00",
+      "path": "TEST/league-04/round-04/announcements/results.sequence.json",
+      "sha256": "3735f76420b00ec894e95fa009f716849e210d61cc982e316900f76070c727ec"
     }
   ],
   "config_sha256": {

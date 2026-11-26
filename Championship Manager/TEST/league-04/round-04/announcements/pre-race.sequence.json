@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "revision": 1,
+  "status": "draft",
+  "league_id": "league-04",
+  "round": 4,
+  "track": "Nordschleife Endurance",
+  "expires_at": null,
+  "race_review_complete": true,
+  "sequence_id": "test-league04-r04-race-day-announcement",
+  "phase": "race_day_announcement",
+  "title": "TEST / Round 4 - Race day announcement",
+  "scheduled_at": "2026-11-21T09:00:00+01:00",
+  "posts": [
+    {
+      "post_id": "test-league04-r04-race-day-announcement",
+      "order": 1,
+      "category": "pre_race_announcement",
+      "title": "Race day essentials",
+      "destination_key": "announcements",
+      "kind": "text",
+      "mention_everyone": true,
+      "content": {
+        "path": "TEST/league-04/round-04/announcements/pre-race.txt",
+        "sha256": "5f8e9626ac1a1005b3303cf8e0bbf48a204461bdfd1562995357944564f296bd",
+        "format": "cm-template-v1"
+      },
+      "attachments": [
+        {
+          "path": "TEST/league-04/round-04/pre-race-briefing/assets/01_RACE_ESSENTIALS.png",
+          "filename": "01_RACE_ESSENTIALS.png",
+          "sha256": "f8b56a40cce06720377ebb551ed7fd25e84471389a1e018b23768eb547b7c415",
+          "size_bytes": 1078563,
+          "content_type": "image/png",
+          "description": "01 RACE ESSENTIALS"
+        },
+        {
+          "path": "TEST/league-04/round-04/pre-race-briefing/assets/02_DRIVER_TEAM_STANDINGS.png",
+          "filename": "02_DRIVER_TEAM_STANDINGS.png",
+          "sha256": "f9c9696634381d4facf4360cb12389a27a941a0c0e4bac62f786c6ff85d5778b",
+          "size_bytes": 1136167,
+          "content_type": "image/png",
+          "description": "02 DRIVER TEAM STANDINGS"
+        }
+      ],
+      "presentation": {
+        "mode": "direct"
+      }
+    }
+  ],
+  "race_date": "2026-11-21",
+  "requires_sequences": [
+    "test-league04-r04-pre-race-briefing"
+  ]
+}

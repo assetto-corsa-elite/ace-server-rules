@@ -82,3 +82,7 @@ Apply [STEWARDING.md](STEWARDING.md): add a text-only review after Race Results,
 ## Authoritative owner decisions
 
 [OWNER_DECISIONS.md](OWNER_DECISIONS.md) supersedes earlier recommendations on review finalization, publication control, cancellation, MEE6 report scope, manual bans and the one-hour owner-response timeout. Apply those decisions before implementing this workflow.
+
+## Complete manual TEST package
+
+[TEST/README.md](TEST/README.md) documents the complete Nordschleife test: 5 draft sequences, 13 messages and 17 unique PNG posters, including the authorized event Practice snapshot. Open [all texts and posters](TEST/PREVIEW.md). Use the dedicated TEST renderer and CM's configured TEST destination; automatic delivery remains disabled.

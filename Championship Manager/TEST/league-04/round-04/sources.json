@@ -1,0 +1,628 @@
+{
+  "source_commit": "48ff1708f6fd1dd88522633beca0f95a85b98a3b",
+  "retrieved_at": "2026-11-26T16:09:48.511204+00:00",
+  "championship": "MULTICLASS LEAGUE 04",
+  "round": 4,
+  "track": "Nordschleife Endurance",
+  "race_date": "2026-11-21",
+  "sources": [
+    {
+      "url": "https://es2.assettohosting.com:10190/results/download/2026_11_21_15_33_PRACTICE.json",
+      "sha256": "9b341748b88d3994ed379f665e2d9801014adab1001a2d4a2f9367f6773cfed8",
+      "date": "2026-11-21T15:33:00+01:00"
+    },
+    {
+      "url": "https://es2.assettohosting.com:10190/results/download/2026_11_21_16_22_QUALIFY.json",
+      "sha256": "49fc9ecb8d0a6258273b8ad665934bed9b2bc67d76f0c2441c2481a7c3b62327",
+      "date": "2026-11-21T16:22:00+01:00"
+    },
+    {
+      "url": "https://es2.assettohosting.com:10190/results/download/2026_11_21_18_16_RACE.json",
+      "sha256": "c87bc8a5d1626fb42cb387ba7fa3ee2b6540f1bc1f3fca67acff1c6534d2b8bd",
+      "date": "2026-11-21T18:16:00+01:00"
+    },
+    {
+      "url": "https://es2.assettohosting.com:10190/championship/8a40b3b7-bf46-4a50-8658-1245d7524d16",
+      "sha256": "8d4920337e5660c04c6edb69ec1d3c213d6c3d9774fc9104e3b45a3ef22f5bc3",
+      "note": "Public standings, session tables and completed-event labels; raw HTML not published."
+    }
+  ],
+  "practice_scope": "event-session snapshot; not a full-week practice leaderboard",
+  "practice": [
+    {
+      "DriverName": "Andy Thompson",
+      "BestLap": 501031,
+      "NumLaps": 2,
+      "TotalTime": 3216136,
+      "GridPosition": 10
+    },
+    {
+      "DriverName": "GreEZ",
+      "BestLap": 999999999,
+      "NumLaps": 2,
+      "TotalTime": 2331516,
+      "GridPosition": 22
+    },
+    {
+      "DriverName": "Otherside",
+      "BestLap": 999999999,
+      "NumLaps": 2,
+      "TotalTime": 3009811,
+      "GridPosition": 4
+    },
+    {
+      "DriverName": "Eugene Mulin",
+      "BestLap": 999999999,
+      "NumLaps": 1,
+      "TotalTime": 3361446,
+      "GridPosition": 14
+    },
+    {
+      "DriverName": "LilCoughDrop",
+      "BestLap": 999999999,
+      "NumLaps": 1,
+      "TotalTime": 3576566,
+      "GridPosition": 23
+    },
+    {
+      "DriverName": "Kaasglenneman",
+      "BestLap": 999999999,
+      "NumLaps": 1,
+      "TotalTime": 2807360,
+      "GridPosition": 9
+    }
+  ],
+  "qualifying": [
+    {
+      "DriverName": "LilCoughDrop",
+      "BestLap": 480926,
+      "NumLaps": 5,
+      "TotalTime": 2582284,
+      "GridPosition": 6
+    },
+    {
+      "DriverName": "Eugene Mulin",
+      "BestLap": 484323,
+      "NumLaps": 4,
+      "TotalTime": 2637842,
+      "GridPosition": 5
+    },
+    {
+      "DriverName": "Kaasglenneman",
+      "BestLap": 484792,
+      "NumLaps": 3,
+      "TotalTime": 2898989,
+      "GridPosition": 4
+    },
+    {
+      "DriverName": "Dragos56",
+      "BestLap": 496120,
+      "NumLaps": 4,
+      "TotalTime": 2839248,
+      "GridPosition": 11
+    },
+    {
+      "DriverName": "Andy Thompson",
+      "BestLap": 497599,
+      "NumLaps": 3,
+      "TotalTime": 1533683,
+      "GridPosition": 1
+    },
+    {
+      "DriverName": "Muchacho_AC | 🤡",
+      "BestLap": 497808,
+      "NumLaps": 2,
+      "TotalTime": 1007648,
+      "GridPosition": 12
+    },
+    {
+      "DriverName": "Old_Fella",
+      "BestLap": 499339,
+      "NumLaps": 2,
+      "TotalTime": 2329448,
+      "GridPosition": 10
+    },
+    {
+      "DriverName": "Moises B",
+      "BestLap": 515326,
+      "NumLaps": 2,
+      "TotalTime": 1285358,
+      "GridPosition": 13
+    },
+    {
+      "DriverName": "GreEZ",
+      "BestLap": 517945,
+      "NumLaps": 3,
+      "TotalTime": 1766788,
+      "GridPosition": 3
+    },
+    {
+      "DriverName": "Otherside",
+      "BestLap": 518581,
+      "NumLaps": 4,
+      "TotalTime": 2462036,
+      "GridPosition": 2
+    },
+    {
+      "DriverName": "THE_NOOB_DOC",
+      "BestLap": 559494,
+      "NumLaps": 4,
+      "TotalTime": 2429949,
+      "GridPosition": 9
+    },
+    {
+      "DriverName": "Cyber",
+      "BestLap": 999999999,
+      "NumLaps": 2,
+      "TotalTime": 2131186,
+      "GridPosition": 7
+    },
+    {
+      "DriverName": "EAO Hector",
+      "BestLap": 999999999,
+      "NumLaps": 1,
+      "TotalTime": 644371,
+      "GridPosition": 8
+    },
+    {
+      "DriverName": "Vern7",
+      "BestLap": 999999999,
+      "NumLaps": 2,
+      "TotalTime": 2746077,
+      "GridPosition": 22
+    },
+    {
+      "DriverName": "Saturn",
+      "BestLap": 999999999,
+      "NumLaps": 1,
+      "TotalTime": 2464171,
+      "GridPosition": 15
+    }
+  ],
+  "race": [
+    {
+      "DriverName": "LilCoughDrop",
+      "BestLap": 481486,
+      "NumLaps": 12,
+      "TotalTime": 5912412,
+      "GridPosition": 1
+    },
+    {
+      "DriverName": "Eugene Mulin",
+      "BestLap": 487568,
+      "NumLaps": 12,
+      "TotalTime": 5959374,
+      "GridPosition": 2
+    },
+    {
+      "DriverName": "Versthappening",
+      "BestLap": 487973,
+      "NumLaps": 12,
+      "TotalTime": 5987560,
+      "GridPosition": 16
+    },
+    {
+      "DriverName": "Muchacho_AC | 🤡",
+      "BestLap": 503373,
+      "NumLaps": 12,
+      "TotalTime": 6146083,
+      "GridPosition": 6
+    },
+    {
+      "DriverName": "Dragos56",
+      "BestLap": 498121,
+      "NumLaps": 12,
+      "TotalTime": 6152757,
+      "GridPosition": 4
+    },
+    {
+      "DriverName": "Andy Thompson",
+      "BestLap": 502416,
+      "NumLaps": 12,
+      "TotalTime": 6238252,
+      "GridPosition": 5
+    },
+    {
+      "DriverName": "Otherside",
+      "BestLap": 515164,
+      "NumLaps": 12,
+      "TotalTime": 6370903,
+      "GridPosition": 10
+    },
+    {
+      "DriverName": "GreEZ",
+      "BestLap": 515688,
+      "NumLaps": 11,
+      "TotalTime": 5914114,
+      "GridPosition": 9
+    },
+    {
+      "DriverName": "Moises B",
+      "BestLap": 515550,
+      "NumLaps": 11,
+      "TotalTime": 5933276,
+      "GridPosition": 8
+    },
+    {
+      "DriverName": "Saturn",
+      "BestLap": 529509,
+      "NumLaps": 11,
+      "TotalTime": 6073751,
+      "GridPosition": 15
+    },
+    {
+      "DriverName": "Vern7",
+      "BestLap": 497610,
+      "NumLaps": 11,
+      "TotalTime": 6133024,
+      "GridPosition": 13
+    },
+    {
+      "DriverName": "THE_NOOB_DOC",
+      "BestLap": 551201,
+      "NumLaps": 11,
+      "TotalTime": 6494117,
+      "GridPosition": 11
+    },
+    {
+      "DriverName": "EAO Hector",
+      "BestLap": 545171,
+      "NumLaps": 10,
+      "TotalTime": 6032643,
+      "GridPosition": 14
+    },
+    {
+      "DriverName": "Old_Fella",
+      "BestLap": 500827,
+      "NumLaps": 7,
+      "TotalTime": 3748116,
+      "GridPosition": 7
+    },
+    {
+      "DriverName": "Cyber",
+      "BestLap": 647315,
+      "NumLaps": 5,
+      "TotalTime": 3843723,
+      "GridPosition": 12
+    },
+    {
+      "DriverName": "Kaasglenneman",
+      "BestLap": 486532,
+      "NumLaps": 3,
+      "TotalTime": 1481422,
+      "GridPosition": 3
+    }
+  ],
+  "driver_standings": [
+    [
+      "1",
+      "LilCoughDrop",
+      "Pirates of the Carribean",
+      "104"
+    ],
+    [
+      "2",
+      "Versthappening",
+      "The Heart of Binning",
+      "62"
+    ],
+    [
+      "3",
+      "Eugene Mulin",
+      "MMMNuts",
+      "52"
+    ],
+    [
+      "4",
+      "Kaasglenneman",
+      "Blue Hue Racing",
+      "50"
+    ],
+    [
+      "5",
+      "BananaBreeze",
+      "Burnout_Baddies",
+      "37"
+    ],
+    [
+      "6",
+      "Muchacho_AC | 🤡",
+      "ACE BRB SQUAD",
+      "24"
+    ],
+    [
+      "7",
+      "Dragos56",
+      "Blue Hue Racing",
+      "22"
+    ],
+    [
+      "8",
+      "bluee",
+      "Sawit Racing",
+      "21"
+    ],
+    [
+      "9",
+      "Vani11a_1ce",
+      "Burnout_Baddies",
+      "14"
+    ],
+    [
+      "10",
+      "Andy Thompson",
+      "Damsels in Distress",
+      "14"
+    ],
+    [
+      "11",
+      "Tokai Teio",
+      "Pirates of the Carribean",
+      "8"
+    ],
+    [
+      "12",
+      "Otherside",
+      "MMMNuts",
+      "6"
+    ],
+    [
+      "13",
+      "Old_Fella",
+      "The Heart of Binning",
+      "5"
+    ],
+    [
+      "14",
+      "GreEZ",
+      "Lambda Racing",
+      "4"
+    ],
+    [
+      "15",
+      "Moises B",
+      "Zero Grip Racing (1 races), Blackout Sim Racing (1 races)",
+      "2"
+    ],
+    [
+      "16",
+      "Vern7",
+      "Sawit Racing",
+      "2"
+    ],
+    [
+      "17",
+      "Saturn",
+      "Zero Grip Racing (2 races), Blackout Sim Racing (1 races)",
+      "1"
+    ],
+    [
+      "18",
+      "Tony Blackberry",
+      "RushHour",
+      "0"
+    ],
+    [
+      "19",
+      "THE_NOOB_DOC",
+      "GrassMowers (1 races), HOTNOOBIES (3 races)",
+      "0"
+    ],
+    [
+      "20",
+      "EAO Hector",
+      "Damsels in Distress",
+      "0"
+    ],
+    [
+      "21",
+      "JxstMosa_",
+      "Pirates of the Carribean (1 races), (1 races)",
+      "0"
+    ],
+    [
+      "22",
+      "Attack heli (Quitting school)",
+      "HOTNOOBIES",
+      "0"
+    ],
+    [
+      "23",
+      "Cyber",
+      "ACE BRB SQUAD",
+      "0"
+    ]
+  ],
+  "team_standings": [
+    [
+      "1",
+      "Pirates of the Carribean",
+      "112"
+    ],
+    [
+      "2",
+      "Blue Hue Racing",
+      "72"
+    ],
+    [
+      "3",
+      "The Heart of Binning",
+      "67"
+    ],
+    [
+      "4",
+      "MMMNuts",
+      "58"
+    ],
+    [
+      "5",
+      "Burnout_Baddies",
+      "51"
+    ],
+    [
+      "6",
+      "ACE BRB SQUAD",
+      "24"
+    ],
+    [
+      "7",
+      "Sawit Racing",
+      "23"
+    ],
+    [
+      "8",
+      "Damsels in Distress",
+      "14"
+    ],
+    [
+      "9",
+      "Lambda Racing",
+      "4"
+    ],
+    [
+      "10",
+      "Blackout Sim Racing",
+      "3"
+    ],
+    [
+      "11",
+      "RushHour",
+      "0"
+    ],
+    [
+      "12",
+      "Zero Grip Racing",
+      "0"
+    ],
+    [
+      "13",
+      "GrassMowers",
+      "0"
+    ],
+    [
+      "14",
+      "HOTNOOBIES",
+      "0"
+    ]
+  ],
+  "round_points": [
+    [
+      "1",
+      "LilCoughDrop",
+      "Pirates of the Carribean",
+      "ACF GT3 - Ford Mustang GT3 2024",
+      "31"
+    ],
+    [
+      "2",
+      "Eugene Mulin",
+      "MMMNuts",
+      "ACF GT3 - BMW M4 GT3 EVO 2025",
+      "18"
+    ],
+    [
+      "3",
+      "Versthappening",
+      "The Heart of Binning",
+      "ACF GT3 - Lexus RC F GT3 2016",
+      "15"
+    ],
+    [
+      "4",
+      "Muchacho_AC | 🤡",
+      "ACE BRB SQUAD",
+      "ACF GT3 - Ferrari 296 GT3 2023",
+      "12"
+    ],
+    [
+      "5",
+      "Dragos56",
+      "Blue Hue Racing",
+      "ACF GT3 - AMG GT3 EVO 2025",
+      "10"
+    ],
+    [
+      "6",
+      "Andy Thompson",
+      "Damsels in Distress",
+      "ACF GT3 - BMW M4 GT3 EVO 2025",
+      "8"
+    ],
+    [
+      "7",
+      "Otherside",
+      "MMMNuts",
+      "ACF GT3 - BMW M4 GT3 EVO 2025",
+      "6"
+    ],
+    [
+      "8",
+      "GreEZ",
+      "Lambda Racing",
+      "ACF GT3 - Lamborghini Huracan GT3 EVO II 2023",
+      "4"
+    ],
+    [
+      "9",
+      "Moises B",
+      "Blackout Sim Racing",
+      "ACF GT3 - Audi R8 LMS EVO II 2021",
+      "2"
+    ],
+    [
+      "10",
+      "Saturn",
+      "Blackout Sim Racing",
+      "ACF GT3 - Audi R8 LMS EVO II 2021",
+      "1"
+    ],
+    [
+      "11",
+      "Vern7",
+      "Sawit Racing",
+      "ACF GT3 - McLaren 720S GT3 EVO 2023",
+      "0"
+    ],
+    [
+      "12",
+      "THE_NOOB_DOC",
+      "GrassMowers",
+      "ACF GT3 - Audi R8 LMS EVO II 2021",
+      "0"
+    ],
+    [
+      "13",
+      "EAO Hector",
+      "Damsels in Distress",
+      "ACF GT3 - BMW M4 GT3 EVO 2025",
+      "0"
+    ],
+    [
+      "14",
+      "Old_Fella",
+      "The Heart of Binning",
+      "ACF GT3 - Lexus RC F GT3 2016",
+      "0"
+    ],
+    [
+      "15",
+      "Cyber",
+      "ACE BRB SQUAD",
+      "ACF GT3 - Ferrari 296 GT3 2023",
+      "0"
+    ],
+    [
+      "16",
+      "Kaasglenneman",
+      "Blue Hue Racing",
+      "ACF GT3 - AMG GT3 EVO 2025",
+      "0"
+    ]
+  ],
+  "limitations": [
+    "Weekly practice snapshot unavailable; owner authorized event practice.",
+    "Next event currently labelled Portimao - Round 4 in ACSM; existing season production calls it Round 5. This test uses the archived season order and makes no ACSM change.",
+    "Archived briefing describes intended fixed temperatures; race lap records contain changing temperatures. Briefing is retained as the historical pre-race instruction, not a claim about measured race conditions.",
+    "Stewarding 2/3 is a resulting historical counter, not a fresh award."
+  ]
+}

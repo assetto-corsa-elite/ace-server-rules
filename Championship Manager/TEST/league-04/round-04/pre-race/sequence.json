@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "sequence_id": "test-league04-r04-pre-race",
+  "revision": 1,
+  "status": "draft",
+  "league_id": "league-04",
+  "round": 4,
+  "track": "Nordschleife Endurance",
+  "phase": "pre_race",
+  "title": "TEST / Nordschleife practice and forecast",
+  "scheduled_at": null,
+  "expires_at": null,
+  "race_review_complete": false,
+  "race_date": "2026-11-21",
+  "posts": [
+    {
+      "post_id": "test-league04-r04-practice-highlights",
+      "order": 1,
+      "category": "practice_highlights",
+      "title": "Practice Highlights",
+      "destination_key": "results",
+      "kind": "text",
+      "mention_everyone": true,
+      "content": {
+        "path": "TEST/league-04/round-04/pre-race/01-practice_highlights.txt",
+        "sha256": "da1950da84153b2cccf851f35cec1aad28595050e945b7294736275658f96843",
+        "format": "cm-template-v1"
+      },
+      "attachments": [
+        {
+          "path": "TEST/league-04/round-04/pre-race/assets/01_PRACTICE_HIGHLIGHTS.png",
+          "filename": "01_PRACTICE_HIGHLIGHTS.png",
+          "sha256": "59384029f688b2f802d5177c307234751e290ed58b715bcd96a1c3dca7d2aac5",
+          "size_bytes": 423705,
+          "content_type": "image/png",
+          "description": "Practice Highlights"
+        },
+        {
+          "path": "TEST/league-04/round-04/pre-race/assets/02_PRACTICE_FIELD.png",
+          "filename": "02_PRACTICE_FIELD.png",
+          "sha256": "e24e9c1b50fe3d075d4597754e56f573f558675f5d3e29b1cf51ad3c31678e33",
+          "size_bytes": 417655,
+          "content_type": "image/png",
+          "description": "Practice Highlights"
+        }
+      ],
+      "presentation": {
+        "mode": "direct"
+      }
+    },
+    {
+      "post_id": "test-league04-r04-forecast",
+      "order": 2,
+      "category": "forecast",
+      "title": "Nordschleife Forecast",
+      "destination_key": "results",
+      "kind": "text",
+      "mention_everyone": false,
+      "content": {
+        "path": "TEST/league-04/round-04/pre-race/02-forecast.txt",
+        "sha256": "62bb2633d2a59c6d2607ec957cdd575f31c94e3f3c646261e06f2e67961541d1",
+        "format": "cm-template-v1"
+      },
+      "attachments": [
+        {
+          "path": "TEST/league-04/round-04/pre-race/assets/03_NORDSCHLEIFE_FORECAST.png",
+          "filename": "03_NORDSCHLEIFE_FORECAST.png",
+          "sha256": "b9db8689531d63c8c665e948ce5d3a66b9d58bb9e14a4636a7b902f56fc8b628",
+          "size_bytes": 432189,
+          "content_type": "image/png",
+          "description": "Nordschleife Forecast"
+        }
+      ],
+      "presentation": {
+        "mode": "direct"
+      }
+    }
+  ],
+  "requires_sequences": []
+}

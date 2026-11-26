@@ -23,8 +23,9 @@ class FeedRegressionTests(unittest.TestCase):
                         'emojis': {'checked': {'id': '234567890123456789', 'name': 'd_', 'animated': False}}, 'links': {'results_start': 'https://discord.com/channels/123456789012345678/234567890123456789/345678901234567890'}}
 
     def test_catalog_and_all_assets(self):
-        self.assertEqual(sum(len(m['posts']) for m in self.manifests), 11)
-        self.assertEqual(sum(len(p['attachments']) for m in self.manifests for p in m['posts']), 28)
+        archived = [m for m in self.manifests if m['status'] == 'archived']
+        self.assertEqual(sum(len(m['posts']) for m in archived), 11)
+        self.assertEqual(sum(len(p['attachments']) for m in archived for p in m['posts']), 28)
 
     def test_historical_import_cannot_repost_on_first_connection(self):
         self.assertEqual(feed.due_sequences(self.manifests, feed.timestamp('2026-11-29T23:00:00+01:00')), [])
@@ -60,6 +61,8 @@ class FeedRegressionTests(unittest.TestCase):
     def test_driver_id_stays_identical_across_every_post(self):
         expected = '<@' + self.bindings['drivers']['lilcoughdrop'] + '>'
         for manifest in self.manifests:
+            if manifest['sequence_id'].startswith('test-'):
+                continue  # Plain-name TEST rendering is covered in test_manual_test_package.py.
             for post in manifest['posts']:
                 if post['kind'] == 'media':
                     continue
@@ -127,6 +130,8 @@ class AnnouncementTests(unittest.TestCase):
 
     def test_everyone_exactly_on_authorized_messages(self):
         for manifest in self.manifests:
+            if manifest['sequence_id'].startswith('test-'):
+                continue  # TEST messages never ping; exercise their dedicated renderer separately.
             for post in manifest['posts']:
                 payload = feed.render(ROOT, post, self.bindings)
                 self.assertEqual(payload['content'].startswith('@everyone'), post['mention_everyone'])

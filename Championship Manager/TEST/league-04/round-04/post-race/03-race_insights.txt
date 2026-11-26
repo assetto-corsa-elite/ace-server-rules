@@ -1,0 +1,27 @@
+# ⚡ NORDSCHLEIFE ROUND 4 - RACE INSIGHTS ⚡
+
+{{emoji:checked}} 🔁 **CONSISTENCY - TOP 5**
+1. Eugene Mulin - **99.18% | 3.9905s**
+2. Versthappening - **98.96% | 5.0836s**
+3. LilCoughDrop - **98.89% | 5.3374s**
+4. Muchacho\_AC - **98.68% | 6.6648s**
+5. Old\_Fella - **98.59% | 7.0823s**
+SimResults compares best lap with its selected average of other laps.
+Old Fella completed seven laps; consistency ranks the recorded sample.
+
+{{emoji:checked}} 📈 **THE POSITION STORY**
+• LilCoughDrop leads at the end of **11 of 12 laps**.
+• Eugene leads at lap **5**.
+• Versthappening gains **13 places**, P16 to P3.
+The Lexus is P3 at the first completed lap. The chart shows completed-lap observations.
+
+{{emoji:checked}} ⏱️ **THE OFFICIAL GAPS**
+• P1 to P2 - **46.962s**.
+• P2 to P3 - **28.186s**.
+• P4 to P5 - **6.674s**.
+
+{{emoji:checked}} 📊 **READING THE POSTERS**
+Positions use SimResults. Gaps use cumulative recorded lap times at equal lap counts, including pit laps.
+Retired drivers stop at their last lap. Official finishing gaps are on the classification poster.
+
+https://simresults.net/remote?result=https%3A%2F%2Fes2.assettohosting.com%3A10190%2Fresults%2Fdownload%2F2026_11_21_18_16_RACE.json
