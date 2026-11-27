@@ -6,7 +6,7 @@
 
 Read this file, then OWNER_DECISIONS.md, CONSUMER.md, ANNOUNCEMENTS.md, CAROUSELS.md, STEWARDING.md and STEWARDING_WORKFLOW.md in full. Read [ACSM-Penalties-POST.md](ACSM-Penalties-POST.md) before implementing the ACSM adapter. Read schemas/sequence.schema.json, schemas/stewarding.schema.json and config/*.json for the data contract. PRODUCTION.md and EDITORIAL.md govern authored content. README.md identifies the reference validation commands.
 
-OWNER_DECISIONS.md governs permissions, manual bans, owner finalization and publication approval. This handoff adds the native CM interface and assigns integration responsibilities; it does not remove existing publication gates.
+OWNER_DECISIONS.md governs permissions, manual bans, owner finalization and publication approval. This handoff adds the native CM interface and assigns integration responsibilities. The local CM authorization rules below govern desktop actions. Keep the existing publication gates.
 
 When working in a separate CM application repository, add this source URL and required-reading instruction to that repository's existing AGENTS.md or equivalent VSC project instructions. A file in this content repository is not automatically loaded by an editor working in another checkout. Preserve that application's existing instructions.
 
@@ -66,7 +66,7 @@ Reuse existing CM-wide fields and role bindings where available; show a link to 
 | Stewarding panel channel ID | Permanent Discord panel destination; optional if using CM-only stewarding |
 | Sanction summaries channel ID | Destination for the existing per-case summary messages |
 | Results-ready alerts channel ID | Required owner-tagged ready notification destination before its approval timer starts |
-| Owner Discord user ID | Reuse the configured organizer identity; required for owner actions and ready alert |
+| Owner Discord user ID | Reuse the configured organizer identity; required to identify the owner in Discord workflows and tag the ready alert |
 | League Stewards / Super Admins roles | Reuse actual guild role-ID bindings; never infer from display names |
 | Sequence / message destination overrides | Select a known sequence, category or post ID and enter Channel ID; show inherited destination alongside override |
 | Import refresh interval | Persist a bounded non-zero interval, default 300 seconds; manual Refresh now remains available |
@@ -129,7 +129,7 @@ Stewarding opens on the selected championship/round with a decision table showin
 3. Select sanction: 5 seconds; 20 seconds; 10 points deduction; 1, 2 or 3 outstanding penalties; Round ban; League ban; Servers and Discord ban.
 4. Require Reason for outstanding and all bans. Require affected-round/scope for bans. Native CM uses a labelled text field equivalent to the Discord modal.
 5. Show bundle preview with driver, round, incident(s), reasons and projected effects. Add another penalty returns to incident/sanction selection for the same driver/case. Allow combined seconds, points and outstanding.
-6. Warn about previously treated matching cases. Require acknowledgement to continue a deliberate additional decision. Apply commits once, rechecks rights/revision and displays verified or pending/error state.
+6. Warn about previously treated matching cases. Require acknowledgement to continue a deliberate additional decision. Apply commits once, rechecks the revision and applicable authorization for the calling interface, and displays verified or pending/error state.
 
 **Cancel a penalty** is Super Admin-only:
 
@@ -151,9 +151,11 @@ Publication History filters by championship, round, sequence, destination and st
 
 Do not mix public publication assets with private stewarding reasons/evidence. Native history uses the existing private CM persistence and access controls, not a public GitHub dump of private data.
 
-## Permissions in both interfaces
+## Local CM and Discord permissions
 
-Check actual owner user ID and bound roles on every mutation, including final Apply after a draft. Reuse CM authentication and its existing trusted owner session. Do not invent another login system. A native session must map to its existing authorized actor; an unidentified actor cannot attribute sanctions.
+**Local CM desktop.** The owner operates CM on their own PC. Actions initiated from the local desktop application, including Post Update, Apply, Cancel and publication controls, must work without `!cm-auth`, Discord login, or Discord identity verification per action. Remove the `!cm-auth` command and all dependencies on it in CM. This rule applies only to actions initiated from the local desktop application. An incoming Discord interaction or a remote request must never be treated as local based on a caller-supplied flag or ID. Keep the existing workflow gates and record local actions as local CM actions in the audit history.
+
+**Discord.** For each button or command interaction, including final Apply after a draft, use the actual Discord actor ID and bound guild role IDs to enforce the workflow permissions below. Never use the bot token or a caller-supplied ID as proof of the Discord actor's identity.
 
 | Action | Owner | League Stewards | Super Admins |
 | --- | --- | --- | --- |
@@ -163,7 +165,7 @@ Check actual owner user ID and bound roles on every mutation, including final Ap
 | Configure destinations | Yes, through existing CM settings access | No | No |
 | Private history access | Existing CM authorization | Existing authorized steward scope | Existing authorized admin scope |
 
-A shared Discord panel must keep drafts bound to their initiating actor. Native drafts are bound to their authenticated session/actor. Losing a role invalidates later mutations even if the form was already open. Viewing a button is never authorization. No voting or self-case restriction is added.
+A shared Discord panel must keep drafts bound to their initiating actor. Bind native drafts to their local CM session and championship/round. In Discord, losing a role invalidates later mutations even if the form was already open. Viewing a button is never authorization. No voting or self-case restriction is added.
 
 ## Ready notification and one-hour window
 
@@ -189,7 +191,7 @@ Verify at least:
 2. Owner enters channel IDs, validates destinations and sees exact ordered text/poster previews.
 3. First import lists historical archives without publishing them; malformed imports retain the prior valid snapshot.
 4. Native Apply and Cancel work without Discord interaction, with shared history and no repeated numeric writes.
-5. Role removal, unauthorized users, two actors, repeated clicks and restart do not bypass permissions or duplicate effects.
+5. Post Update and other local CM actions work without `!cm-auth` or Discord login. Discord handlers reject unauthorized users, recheck role removal before final Apply, and keep drafts bound to their initiating actor. Repeated clicks and restart do not duplicate effects.
 6. Combined sanctions, threshold resets, cancellation and ban states are correct, including scheduled Blocklist enforcement and expiry, restart recovery, overlapping bans and practice access before the round-ban window.
 7. Owner can finalize zero penalties and hold/approve from CM; timer responds to CM and Discord decisions and survives restart.
 8. Stale results or failed ACSM writes block release; updated verified content invalidates prior timer/approval.
