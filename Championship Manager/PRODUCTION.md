@@ -31,6 +31,10 @@ Only include race-review decisions supplied by the organizer or established offi
 
 ## Posters
 
+**Mandatory acceptance standard:** follow the complete [Poster composition](EDITORIAL.md#poster-composition--mandatory-visual-direction), in-place correction and nomenclature requirements in EDITORIAL.md. New editorial posters must explain their story visually. Copying the Discord post into a photo banner plus stacked lists/paragraphs fails production acceptance. Full field reports, classifications and complete standings remain table exceptions; keep all required data.
+
+Choose the layout before rendering: driver/car confrontation, podium, scaled gap or points chart, position progression, track diagram, session timeline or pit-window band according to the stage. Practice and forecast require actual visual comparisons; Race Essentials requires a visual schedule and pit window. Preserve the exact poster counts and direct/carousel categories already specified.
+
 Use the official ACE logo and the established white/blue/black palette with restrained red accents. Keep a clear title, circuit and round. Use an editorial hierarchy, readable margins and enough visual space for circuit photography and car liveries. Tables should serve exact comparisons; photos and focal points should carry the visual identity.
 
 Retrieve actual liveries from server skin previews when possible. Use real imagery of the correct circuit/layout. Preserve source credits. Keep the same factual detail as the established reports, including team performances when relevant. Forecast posters must contain a visible team section alongside driver content.
@@ -40,7 +44,10 @@ Render exact figures and charts with deterministic layout/plotting tools. Do not
 ## Checks before commit
 
 - Check the source results, classification, points, gaps, aliases and team membership.
-- Open and visually inspect every final poster for clipping, unreadable labels and missing team sections.
+- Open and visually inspect every final poster at full resolution and mobile reading size for clipping, unreadable labels, missing team sections and the actual visual composition required by EDITORIAL.md.
+- Keep the private per-poster acceptance record specified in EDITORIAL.md. Rework list-dominated editorial posters; do not report the package complete because files exist or integrity checks pass.
+- Apply owner corrections in place across text and visuals. Resolve aliases internally; do not narrate a correction or name mapping in public copy.
+- Verify live driver mentions, the actual checked emoji, section/title formatting and everyone placement. TEST suppression must not leak into live publication.
 - Check UTF-8, mojibake, HTML entities, broken Markdown, underscores, section markers and all identity tokens.
 - Render using CM bindings when available; verify final lengths and native Discord syntax.
 - Validate asset hashes, byte sizes, PNG signatures, sequence order and explicit schedule.

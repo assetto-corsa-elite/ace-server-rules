@@ -15,7 +15,7 @@ Read README.md, PRODUCTION.md CONSUMER.md and ANNOUNCEMENTS.md before preparing 
 
 Preserve editorial detail. The user identified indentation and dense paragraphs as the issue, not overall volume. Follow the audit status in AUDIT.md and never describe documented cadence as an active generation or delivery service.
 
-Read EDITORIAL.md for every new production. Give stages distinct editorial purposes, maintain a fact-based round storyline, cover relevant teams and midfield progress, and use fresh caustic humour. Preserve information through structure rather than shortening the package by default.
+Read EDITORIAL.md in full before every new production, including manual packages delivered directly in chat. Give stages distinct editorial purposes, maintain a fact-based round storyline, cover relevant teams and midfield progress, and use fresh caustic humour. Preserve information through structure rather than shortening the package by default.
 
 See [CAROUSELS.md](CAROUSELS.md) for native embed poster viewers, persistent Previous/Next navigation and the categories whose posters remain directly visible.
 
@@ -30,3 +30,11 @@ Apply [STEWARDING.md](STEWARDING.md): add a text-only review after Race Results,
 ## Authoritative owner decisions
 
 [OWNER_DECISIONS.md](OWNER_DECISIONS.md) supersedes earlier recommendations on review finalization, publication control, cancellation, MEE6 report scope, manual bans and the one-hour owner-response timeout. Apply those decisions before implementing this workflow.
+
+## Mandatory editorial and visual acceptance
+
+EDITORIAL.md is the canonical visual direction and release checklist; PRODUCTION.md makes it a production requirement. Read both before writing or rendering. Use dynamic, information-bearing compositions: car/driver confrontations, charts, podiums, track diagrams and timelines as appropriate. A photograph above stacked lists/paragraphs does not pass. Tables remain appropriate for necessary complete reports, classifications and standings. Keep the required poster counts and all relevant data.
+
+Keep the private per-poster acceptance record required by EDITORIAL.md, including a justified table/list exception and full-size/mobile inspection. Failed visual or nomenclature checks require rework before reporting completion; automated integrity tests alone do not prove editorial quality.
+
+Apply owner clarifications directly in place. Resolve driver aliases internally and use canonical mentions; never add public alias explanations or narrate the owner's correction. Preserve checked markers, bold section headings, verified driver tags and the applicable everyone policy. TEST restrictions apply only to explicit TEST production.

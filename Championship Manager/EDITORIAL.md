@@ -63,11 +63,54 @@ Information volume may remain substantial. Use short sentences, one clear idea p
 
 When a detailed post exceeds Discord's message limit, split it at a logical section boundary, retaining the information and publication order. Only the authorized first message receives everyone. Native driver mentions and checked emoji remain resolved through the central mappings.
 
-## Poster composition
+## Poster composition — mandatory visual direction
 
-Give each poster a dominant visual or factual focus, with a readable secondary hierarchy. Use actual track imagery and retrieved server liveries. Exact results and full-field comparisons retain their tables and clear labels. Maintain the ACE palette, logo and factual detail.
+**A poster must communicate its main sporting story visually. A text post copied into bullets, rows or cards is not an acceptable poster.** A circuit-photo strip above a long list does not satisfy this requirement. The same applies to a wall of statistic cards that merely recreates that list.
 
-The narrative and visuals should complement one another. Put the team stakes visibly on the forecast poster. Keep driver names, units, data sources and chart methods legible at the delivered size.
+Choose the composition from the evidence and the purpose of the stage. Use a clear focal point, meaningful scale, contrast, grouping and a reading path. Actual circuit photography, verified car liveries, charts, track maps, timelines and concise annotations should explain the story. Layouts may be asymmetrical when that improves hierarchy; decorative shapes alone do not make a page informative.
+
+### Stage-specific compositions
+
+| Poster purpose | Required visual approach | When a table or list is justified |
+| --- | --- | --- |
+| Practice Highlights | A prominent pace comparison or driver/car focal point, supported by a lap-volume chart or a second distinct comparison. Make the fastest time, close gap or preparation story visible. | A separate full-field report may use a complete table. It must not become the Highlights composition. |
+| Forecast | A visual driver confrontation and a visible team battle: verified car imagery with a gap comparison, points bars, a slope chart or clearly labelled scenarios. Show the track as meaningful context. | A compact exact comparison may support the story. A list of drivers followed by a list of teams is insufficient. |
+| Pre-Race Briefing / Race Essentials | A session timeline, a pit-window band positioned on elapsed race time, prominent duration and a visually separated track-limits diagram or warning-counter flow. Group a few settings with clear icons and short labels. | Short safety instructions and precise settings can remain text when clarity requires it. They must not occupy the entire page as successive paragraphs. |
+| Qualifying Highlights | A front-row or podium-style car/driver arrangement and a scaled gap comparison showing the closest fights. | The distinct Driver Report can use the complete qualifying table. Team Report should visually connect teammates and compare their contributions. |
+| Race Podium | A clear podium composition using the actual cars/liveries, with finishing positions and decisive gaps. Use a small grid-to-finish comparison when supported. | The separate complete Race Classification remains a table. Do not replace the podium poster with it. |
+| Race Insights | Actual position, gap and consistency charts with clear driver identification, units, sample size and a few evidence-based annotations. | A small legend or exact metric table may supplement a chart. A list of chart observations alone is not the visual. |
+| Championship Standings | Preserve complete driver/team rankings where required. Emphasize meaningful gaps or changes through a companion gap graphic, movement marks or a compact visual comparison. | Full standings tables are an explicit exception: completeness and accurate comparison require them. Do not delete lower-ranked drivers to make the page more decorative. |
+| Next-Round Forecast | Actual next-track imagery, visual title battles and team stakes carried forward from the completed round. | Only a supporting exact comparison; do not reuse the standings page as the whole forecast. |
+
+These are composition requirements, not an instruction to repeat one template in every round. Choose the visual form that best explains the actual story. Keep necessary complete field reports, classifications and standings, but distinguish them from the editorial highlight posters.
+
+### Limits on lists and decoration
+
+- Every editorial poster needs a dominant information-bearing visual beyond its title, logo and decorative photograph. The visual must let the reader see a relationship, progression, comparison, location or action.
+- Use tables when exact row-by-row reading, complete classification or complete standings is the purpose. Use short lists for indispensable instructions, labels or a small supporting comparison. Record why a list/table is needed in the private production check.
+- Do not fill the remaining space with repeated paragraphs. Put detailed narration in the accompanying Discord text; retain required complete data in the appropriate report poster.
+- Vary the roles and compositions across the package. Reusing the ACE identity is expected; five pages with the same photo banner and stacked text sections are not a finished visual package.
+- Visual emphasis must preserve the facts. Do not fabricate cars, liveries, circuit layouts, incidents or graphical relationships. For incomparable samples, label conditions, car/BoP differences and scope rather than implying equal race pace.
+- Crop clean source imagery. Do not paste new headings over an old flattened poster whose embedded text remains visible. Preserve source credits.
+- Inspect at full resolution and at an actual mobile reading size. Check chart labels, contrast, text overlap, image crops, margins and completeness. Increase space or split a permitted report when needed; do not shrink everything until it becomes unreadable.
+
+Use the official ACE logo, white/blue/black palette and restrained red accents. Driver and team stories must remain identifiable; a team section on a forecast must explain a sporting stake, not merely display its name.
+
+## Apply owner corrections in place
+
+An owner clarification updates the relevant fact, identity mapping, text, chart and poster directly. It is not public editorial material.
+
+When an alias is clarified, resolve it internally to the correct stable driver identity and use that driver's canonical mention in the final post. Attribute all relevant laps, times and points to that identity. Do not add sentences such as "X is Y", "under his X alias", "as confirmed by the organizer", or an account of the correction. Do not turn an internal name reconciliation into a sporting story. Mention an alias publicly only when the owner explicitly requests that treatment.
+
+Apply this rule equally to other corrections: fix the number, setting, team or wording in place. Keep production notes, uncertainty resolution and conversation history outside public copy. Retain a public caveat only when it helps readers interpret a real sporting limitation.
+
+## Publication nomenclature is part of editorial acceptance
+
+Preserve the established title, thematic section emoji and bold section heading. Every section uses the canonical checked marker: `{{emoji:checked}}` in the CM source, resolved to the guild's actual `d_` emoji for native delivery. Do not silently substitute another checked symbol.
+
+Use `{{driver:stable_key}}` in CM source and the verified identity mapping for delivery. Driver mentions remain outside bold formatting. For explicitly requested manual copy, use verified handles consistently and state any unresolved native bindings privately to the owner. A typed `@handle` or `:d_:` shortcode is not evidence that a native Discord mention/emoji was resolved. Do not invent missing handles or IDs or describe a blocked rendering as fully ready.
+
+Apply the everyone policy in ANNOUNCEMENTS.md: the first Practice Highlights message and race-day announcement receive everyone; forecast and full briefing do not. TEST's no-mention policy applies only to an explicitly selected TEST package. Never carry it into ordinary race publication.
 
 ## Editorial check before release
 
@@ -79,5 +122,16 @@ The narrative and visuals should complement one another. Put the team stakes vis
 - Does each joke grow from a real fact, and is its construction fresh relative to recent packs?
 - Can the text be scanned through short sentences, line breaks and lists without losing detail?
 - Do the linked posters show the promised driver and team information?
+- Does each editorial poster explain its story through an information-bearing visual, rather than reproducing the post as a list?
+- Are complete tables restricted to the reports/classifications/standings that need them, with a specific justification for other exceptions?
+- Does the package vary its visual compositions rather than repeating the same banner-and-paragraph page?
+- Have owner corrections been applied in place without alias explanations, correction commentary or conversation history?
+- Are checked markers, driver identities, bold headings and everyone placement correct for the selected live or TEST mode?
 
 These editorial checks supplement the automated integrity and syntax tests. Human-readable narrative quality is reviewed from the finished text and posters.
+
+## Required producer acceptance record
+
+Before calling a new package complete, keep a private production record for each final poster: its filename, sporting purpose, chosen visual composition, any necessary table/list exception, source grounding, and full-size/mobile visual inspection result. Record the nomenclature and in-place-correction checks for the accompanying posts. This record is working evidence, not another public post or poster caption.
+
+A failed visual or nomenclature check requires rework before delivery. Passing hashes, PNG signatures, message lengths or regression tests does not establish editorial acceptance. Do not claim strict adherence from those automated checks alone. Existing archived examples do not override this direction and are not evidence that repeating their layout is acceptable.

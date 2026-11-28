@@ -99,6 +99,8 @@ If the post-race package is absent, show `Awaiting content producer`. If decisio
 
 ## Sequences and exact previews
 
+Authored content must meet the current visual and editorial acceptance standard in EDITORIAL.md and PRODUCTION.md, including the per-poster production check. An import/hash check establishes integrity, not visual quality. The producer must rework list-dominated highlight/forecast/briefing posters and preserve necessary complete report tables. CM displays the supplied full-resolution assets and their direct/carousel treatment; it must not rebuild them as text lists, silently substitute simplified graphics or rewrite them. Preserve the canonical driver/checked tokens and everyone policy. Owner corrections are applied to the content in place, never narrated to the public as alias or correction explanations. Keep the existing owner controls and application architecture; this documentation update adds no new runtime gate or implemented UI claim.
+
 Filter by round, phase, source status and delivery status. Each row shows championship, track, round, phase, sequence ID, revision, source commit, earliest release time with timezone, actual destination and blocker count.
 
 Opening a sequence shows messages in manifest order. Each message displays:
